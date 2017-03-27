@@ -7,6 +7,12 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		113CB12F1E86A2110054B413 /* NewsStoryboard.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 113CB12E1E86A2110054B413 /* NewsStoryboard.storyboard */; };
+		113CB1581E86B48A0054B413 /* PhotoStoryboard.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 113CB1571E86B48A0054B413 /* PhotoStoryboard.storyboard */; };
+		113CB15A1E86B4A10054B413 /* ProfileStoryboard.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 113CB1591E86B4A10054B413 /* ProfileStoryboard.storyboard */; };
+		113CB1651E899E8F0054B413 /* ProfileController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 113CB1641E899E8F0054B413 /* ProfileController.swift */; };
+		113CB1671E89AC800054B413 /* NewsController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 113CB1661E89AC800054B413 /* NewsController.swift */; };
+		113CB1691E89ACAF0054B413 /* PhotoController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 113CB1681E89ACAF0054B413 /* PhotoController.swift */; };
 		11FE47621E81DE1F00D57721 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 11FE47611E81DE1F00D57721 /* AppDelegate.swift */; };
 		11FE47641E81DE1F00D57721 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 11FE47631E81DE1F00D57721 /* ViewController.swift */; };
 		11FE47671E81DE1F00D57721 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 11FE47651E81DE1F00D57721 /* Main.storyboard */; };
@@ -16,6 +22,12 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		113CB12E1E86A2110054B413 /* NewsStoryboard.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = NewsStoryboard.storyboard; sourceTree = "<group>"; };
+		113CB1571E86B48A0054B413 /* PhotoStoryboard.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = PhotoStoryboard.storyboard; sourceTree = "<group>"; };
+		113CB1591E86B4A10054B413 /* ProfileStoryboard.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = ProfileStoryboard.storyboard; sourceTree = "<group>"; };
+		113CB1641E899E8F0054B413 /* ProfileController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ProfileController.swift; sourceTree = "<group>"; };
+		113CB1661E89AC800054B413 /* NewsController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NewsController.swift; sourceTree = "<group>"; };
+		113CB1681E89ACAF0054B413 /* PhotoController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PhotoController.swift; sourceTree = "<group>"; };
 		11FE475E1E81DE1F00D57721 /* InstaVK.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = InstaVK.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		11FE47611E81DE1F00D57721 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		11FE47631E81DE1F00D57721 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
@@ -37,6 +49,16 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		113CB1301E86A2940054B413 /* Storyboard */ = {
+			isa = PBXGroup;
+			children = (
+				113CB12E1E86A2110054B413 /* NewsStoryboard.storyboard */,
+				113CB1571E86B48A0054B413 /* PhotoStoryboard.storyboard */,
+				113CB1591E86B4A10054B413 /* ProfileStoryboard.storyboard */,
+			);
+			name = Storyboard;
+			sourceTree = "<group>";
+		};
 		11FE47551E81DE1F00D57721 = {
 			isa = PBXGroup;
 			children = (
@@ -56,8 +78,12 @@
 		11FE47601E81DE1F00D57721 /* InstaVK */ = {
 			isa = PBXGroup;
 			children = (
+				113CB1301E86A2940054B413 /* Storyboard */,
 				11FE47611E81DE1F00D57721 /* AppDelegate.swift */,
 				11FE47631E81DE1F00D57721 /* ViewController.swift */,
+				113CB1641E899E8F0054B413 /* ProfileController.swift */,
+				113CB1661E89AC800054B413 /* NewsController.swift */,
+				113CB1681E89ACAF0054B413 /* PhotoController.swift */,
 				11FE47651E81DE1F00D57721 /* Main.storyboard */,
 				11FE476B1E81DE1F00D57721 /* Assets.xcassets */,
 				11FE476D1E81DE1F00D57721 /* LaunchScreen.storyboard */,
@@ -127,6 +153,9 @@
 			buildActionMask = 2147483647;
 			files = (
 				11FE476F1E81DE1F00D57721 /* LaunchScreen.storyboard in Resources */,
+				113CB1581E86B48A0054B413 /* PhotoStoryboard.storyboard in Resources */,
+				113CB12F1E86A2110054B413 /* NewsStoryboard.storyboard in Resources */,
+				113CB15A1E86B4A10054B413 /* ProfileStoryboard.storyboard in Resources */,
 				11FE476C1E81DE1F00D57721 /* Assets.xcassets in Resources */,
 				11FE47671E81DE1F00D57721 /* Main.storyboard in Resources */,
 			);
@@ -139,8 +168,11 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				113CB1691E89ACAF0054B413 /* PhotoController.swift in Sources */,
+				113CB1651E899E8F0054B413 /* ProfileController.swift in Sources */,
 				11FE47641E81DE1F00D57721 /* ViewController.swift in Sources */,
 				11FE47621E81DE1F00D57721 /* AppDelegate.swift in Sources */,
+				113CB1671E89AC800054B413 /* NewsController.swift in Sources */,
 				11FE476A1E81DE1F00D57721 /* InstaVK.xcdatamodeld in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -303,6 +335,7 @@
 				11FE47751E81DE1F00D57721 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 
