@@ -34,19 +34,21 @@ class NewsController: UITableViewController {
 
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         // #warning Incomplete implementation, return the number of rows
-        return 1
+        return 5
     }
 
     
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCell(withIdentifier: "NewsPictureCell", for: indexPath)
-
-        // Configure the cell...
-
+        let cell = PictureCell.instanceFromNib()
+        cell.postPicture.image = #imageLiteral(resourceName: "Image")
         return cell
     }
     
-
+    override func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
+        let scale : CGFloat = #imageLiteral(resourceName: "Image").size.width/359
+        return #imageLiteral(resourceName: "Image").size.height/scale + 80 + 32
+    }
+    
     /*
     // Override to support conditional editing of the table view.
     override func tableView(_ tableView: UITableView, canEditRowAt indexPath: IndexPath) -> Bool {
