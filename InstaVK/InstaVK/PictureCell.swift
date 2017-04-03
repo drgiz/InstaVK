@@ -11,6 +11,7 @@ import UIKit
 class PictureCell: UITableViewCell {
 
     @IBOutlet weak var postPicture: UIImageView!
+    
     override func awakeFromNib() {
         super.awakeFromNib()
         // Initialization code
@@ -20,10 +21,6 @@ class PictureCell: UITableViewCell {
         super.setSelected(selected, animated: animated)
 
         // Configure the view for the selected state
-    }
-    
-    class func instanceFromNib() -> PictureCell {
-        return UINib(nibName: "PictureCell", bundle: nil).instantiate(withOwner: self, options: nil)[0] as! PictureCell
     }
     
 }

@@ -10,11 +10,15 @@
 		113CB12F1E86A2110054B413 /* NewsStoryboard.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 113CB12E1E86A2110054B413 /* NewsStoryboard.storyboard */; };
 		113CB1581E86B48A0054B413 /* PhotoStoryboard.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 113CB1571E86B48A0054B413 /* PhotoStoryboard.storyboard */; };
 		113CB15A1E86B4A10054B413 /* ProfileStoryboard.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 113CB1591E86B4A10054B413 /* ProfileStoryboard.storyboard */; };
-		113CB1651E899E8F0054B413 /* ProfileController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 113CB1641E899E8F0054B413 /* ProfileController.swift */; };
 		113CB1671E89AC800054B413 /* NewsController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 113CB1661E89AC800054B413 /* NewsController.swift */; };
 		113CB1691E89ACAF0054B413 /* PhotoController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 113CB1681E89ACAF0054B413 /* PhotoController.swift */; };
 		113CB16C1E8B91C60054B413 /* PictureCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 113CB16A1E8B91C60054B413 /* PictureCell.swift */; };
 		113CB16D1E8B91C60054B413 /* PictureCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 113CB16B1E8B91C60054B413 /* PictureCell.xib */; };
+		113CB1741E8EECBC0054B413 /* ProfileController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 113CB1731E8EECBC0054B413 /* ProfileController.swift */; };
+		113CB1761E8FA8EB0054B413 /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = 113CB1751E8FA8EB0054B413 /* User.swift */; };
+		113CB1781E8FB05A0054B413 /* UserPhotoCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 113CB1771E8FB05A0054B413 /* UserPhotoCell.swift */; };
+		1156B20C1E92D3DD00FAEA51 /* HeaderProfileView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1156B20B1E92D3DD00FAEA51 /* HeaderProfileView.swift */; };
+		1156B20E1E92D4BF00FAEA51 /* ProfileGridCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1156B20D1E92D4BF00FAEA51 /* ProfileGridCell.swift */; };
 		11FE47621E81DE1F00D57721 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 11FE47611E81DE1F00D57721 /* AppDelegate.swift */; };
 		11FE47641E81DE1F00D57721 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 11FE47631E81DE1F00D57721 /* ViewController.swift */; };
 		11FE47671E81DE1F00D57721 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 11FE47651E81DE1F00D57721 /* Main.storyboard */; };
@@ -27,11 +31,15 @@
 		113CB12E1E86A2110054B413 /* NewsStoryboard.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = NewsStoryboard.storyboard; sourceTree = "<group>"; };
 		113CB1571E86B48A0054B413 /* PhotoStoryboard.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = PhotoStoryboard.storyboard; sourceTree = "<group>"; };
 		113CB1591E86B4A10054B413 /* ProfileStoryboard.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = ProfileStoryboard.storyboard; sourceTree = "<group>"; };
-		113CB1641E899E8F0054B413 /* ProfileController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ProfileController.swift; sourceTree = "<group>"; };
 		113CB1661E89AC800054B413 /* NewsController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NewsController.swift; sourceTree = "<group>"; };
 		113CB1681E89ACAF0054B413 /* PhotoController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PhotoController.swift; sourceTree = "<group>"; };
 		113CB16A1E8B91C60054B413 /* PictureCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PictureCell.swift; sourceTree = "<group>"; };
 		113CB16B1E8B91C60054B413 /* PictureCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = PictureCell.xib; sourceTree = "<group>"; };
+		113CB1731E8EECBC0054B413 /* ProfileController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ProfileController.swift; sourceTree = "<group>"; };
+		113CB1751E8FA8EB0054B413 /* User.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = User.swift; sourceTree = "<group>"; };
+		113CB1771E8FB05A0054B413 /* UserPhotoCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UserPhotoCell.swift; sourceTree = "<group>"; };
+		1156B20B1E92D3DD00FAEA51 /* HeaderProfileView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HeaderProfileView.swift; sourceTree = "<group>"; };
+		1156B20D1E92D4BF00FAEA51 /* ProfileGridCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ProfileGridCell.swift; sourceTree = "<group>"; };
 		11FE475E1E81DE1F00D57721 /* InstaVK.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = InstaVK.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		11FE47611E81DE1F00D57721 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		11FE47631E81DE1F00D57721 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
@@ -56,11 +64,50 @@
 		113CB1301E86A2940054B413 /* Storyboard */ = {
 			isa = PBXGroup;
 			children = (
+				11FE47651E81DE1F00D57721 /* Main.storyboard */,
 				113CB12E1E86A2110054B413 /* NewsStoryboard.storyboard */,
 				113CB1571E86B48A0054B413 /* PhotoStoryboard.storyboard */,
 				113CB1591E86B4A10054B413 /* ProfileStoryboard.storyboard */,
 			);
 			name = Storyboard;
+			sourceTree = "<group>";
+		};
+		113CB16E1E8E3AF00054B413 /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				113CB1751E8FA8EB0054B413 /* User.swift */,
+			);
+			name = Model;
+			sourceTree = "<group>";
+		};
+		113CB16F1E8E3B090054B413 /* Controller */ = {
+			isa = PBXGroup;
+			children = (
+				11FE47631E81DE1F00D57721 /* ViewController.swift */,
+				113CB1661E89AC800054B413 /* NewsController.swift */,
+				113CB1681E89ACAF0054B413 /* PhotoController.swift */,
+				113CB1731E8EECBC0054B413 /* ProfileController.swift */,
+			);
+			name = Controller;
+			sourceTree = "<group>";
+		};
+		113CB1701E8E3B150054B413 /* View */ = {
+			isa = PBXGroup;
+			children = (
+				113CB16A1E8B91C60054B413 /* PictureCell.swift */,
+				1156B20D1E92D4BF00FAEA51 /* ProfileGridCell.swift */,
+				113CB1771E8FB05A0054B413 /* UserPhotoCell.swift */,
+				1156B20B1E92D3DD00FAEA51 /* HeaderProfileView.swift */,
+			);
+			name = View;
+			sourceTree = "<group>";
+		};
+		113CB1791E8FD8D60054B413 /* Xibs */ = {
+			isa = PBXGroup;
+			children = (
+				113CB16B1E8B91C60054B413 /* PictureCell.xib */,
+			);
+			name = Xibs;
 			sourceTree = "<group>";
 		};
 		11FE47551E81DE1F00D57721 = {
@@ -82,15 +129,12 @@
 		11FE47601E81DE1F00D57721 /* InstaVK */ = {
 			isa = PBXGroup;
 			children = (
+				113CB1701E8E3B150054B413 /* View */,
+				113CB16F1E8E3B090054B413 /* Controller */,
+				113CB16E1E8E3AF00054B413 /* Model */,
+				113CB1791E8FD8D60054B413 /* Xibs */,
 				113CB1301E86A2940054B413 /* Storyboard */,
 				11FE47611E81DE1F00D57721 /* AppDelegate.swift */,
-				11FE47631E81DE1F00D57721 /* ViewController.swift */,
-				113CB1641E899E8F0054B413 /* ProfileController.swift */,
-				113CB1661E89AC800054B413 /* NewsController.swift */,
-				113CB1681E89ACAF0054B413 /* PhotoController.swift */,
-				113CB16A1E8B91C60054B413 /* PictureCell.swift */,
-				113CB16B1E8B91C60054B413 /* PictureCell.xib */,
-				11FE47651E81DE1F00D57721 /* Main.storyboard */,
 				11FE476B1E81DE1F00D57721 /* Assets.xcassets */,
 				11FE476D1E81DE1F00D57721 /* LaunchScreen.storyboard */,
 				11FE47701E81DE1F00D57721 /* Info.plist */,
@@ -176,12 +220,16 @@
 			buildActionMask = 2147483647;
 			files = (
 				113CB1691E89ACAF0054B413 /* PhotoController.swift in Sources */,
-				113CB1651E899E8F0054B413 /* ProfileController.swift in Sources */,
+				113CB1781E8FB05A0054B413 /* UserPhotoCell.swift in Sources */,
+				1156B20C1E92D3DD00FAEA51 /* HeaderProfileView.swift in Sources */,
 				11FE47641E81DE1F00D57721 /* ViewController.swift in Sources */,
 				11FE47621E81DE1F00D57721 /* AppDelegate.swift in Sources */,
 				113CB1671E89AC800054B413 /* NewsController.swift in Sources */,
+				113CB1741E8EECBC0054B413 /* ProfileController.swift in Sources */,
 				113CB16C1E8B91C60054B413 /* PictureCell.swift in Sources */,
+				113CB1761E8FA8EB0054B413 /* User.swift in Sources */,
 				11FE476A1E81DE1F00D57721 /* InstaVK.xcdatamodeld in Sources */,
+				1156B20E1E92D4BF00FAEA51 /* ProfileGridCell.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

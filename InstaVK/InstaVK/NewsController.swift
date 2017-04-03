@@ -9,14 +9,18 @@
 import UIKit
 
 class NewsController: UITableViewController {
+    
+    let identifier = "PictureCell"
 
     override func viewDidLoad() {
         super.viewDidLoad()
 
         // Uncomment the following line to preserve selection between presentations
         // self.clearsSelectionOnViewWillAppear = false
-        self.tableView.dataSource = self
         // Uncomment the following line to display an Edit button in the navigation bar for this view controller.
+        let nib = UINib (nibName: "PictureCell", bundle: nil)
+        self.tableView.register(nib, forCellReuseIdentifier: identifier)
+        //self.tableView!.register(PictureCell.self, forCellReuseIdentifier: identifier)
         // self.navigationItem.rightBarButtonItem = self.editButtonItem()
     }
 
@@ -39,8 +43,9 @@ class NewsController: UITableViewController {
 
     
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = PictureCell.instanceFromNib()
+        let cell = tableView .dequeueReusableCell(withIdentifier: identifier, for: indexPath) as! PictureCell
         cell.postPicture.image = #imageLiteral(resourceName: "Image")
+        //cell.avatarImageView.image = #imageLiteral(resourceName: "Image")
         return cell
     }
     
