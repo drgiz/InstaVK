@@ -12,6 +12,7 @@ class NewsController: UITableViewController {
     
     let identifier = "PictureCell"
 
+
     override func viewDidLoad() {
         super.viewDidLoad()
 
