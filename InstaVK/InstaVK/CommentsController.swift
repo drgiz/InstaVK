@@ -1,27 +1,27 @@
 //
-//  NewsController.swift
+//  CommentsController.swift
 //  InstaVK
 //
-//  Created by Никита on 27.03.17.
-//  Copyright © 2017 Nikita Susoev. All rights reserved.
+//  Created by Svyatoslav Bykov on 03.04.17.
+//  Copyright © 2017 Svyatoslav Bykov. All rights reserved.
 //
 
 import UIKit
 
-class NewsController: UITableViewController {
+class CommentsController: UITableViewController {
     
-    let identifier = "PictureCell"
-
+    let commentCellIdentifier = "CommentCell"
 
     override func viewDidLoad() {
         super.viewDidLoad()
 
         // Uncomment the following line to preserve selection between presentations
         // self.clearsSelectionOnViewWillAppear = false
+        
+        let nib = UINib (nibName: "CommentCell", bundle: nil)
+        self.tableView.register(nib, forCellReuseIdentifier: commentCellIdentifier)
+
         // Uncomment the following line to display an Edit button in the navigation bar for this view controller.
-        let nib = UINib (nibName: "PictureCell", bundle: nil)
-        self.tableView.register(nib, forCellReuseIdentifier: identifier)
-        //self.tableView!.register(PictureCell.self, forCellReuseIdentifier: identifier)
         // self.navigationItem.rightBarButtonItem = self.editButtonItem()
     }
 
@@ -41,27 +41,25 @@ class NewsController: UITableViewController {
         // #warning Incomplete implementation, return the number of rows
         return 5
     }
-
     
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = tableView .dequeueReusableCell(withIdentifier: identifier, for: indexPath) as! PictureCell
-        cell.postPicture.image = #imageLiteral(resourceName: "Image")
-        //cell.avatarImageView.image = #imageLiteral(resourceName: "Image")
+        let cell = tableView.dequeueReusableCell(withIdentifier: commentCellIdentifier, for: indexPath) as! CommentCell
+        cell.avatarImage.image = #imageLiteral(resourceName: "Image")
+        cell.commentText.text = "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris"
         return cell
     }
     
+    
     override func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
-        let scale : CGFloat = #imageLiteral(resourceName: "Image").size.width/359
-        return #imageLiteral(resourceName: "Image").size.height/scale + 80 + 32
+        return UITableViewAutomaticDimension
+        
     }
     
-    @IBAction func didTapCommentsButton(_ sender: Any) {
-        let control = storyboard?.instantiateViewController(withIdentifier: "CommentsControllerIdentifier") as! CommentsController
-        navigationController?.pushViewController(control, animated: true)
+    override func tableView(_ tableView: UITableView, estimatedHeightForRowAt indexPath: IndexPath) -> CGFloat {
+        return 100
     }
-    
-    
-    
+
+
     /*
     // Override to support conditional editing of the table view.
     override func tableView(_ tableView: UITableView, canEditRowAt indexPath: IndexPath) -> Bool {
