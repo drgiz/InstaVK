@@ -25,6 +25,8 @@
 		11FE476A1E81DE1F00D57721 /* InstaVK.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 11FE47681E81DE1F00D57721 /* InstaVK.xcdatamodeld */; };
 		11FE476C1E81DE1F00D57721 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 11FE476B1E81DE1F00D57721 /* Assets.xcassets */; };
 		11FE476F1E81DE1F00D57721 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 11FE476D1E81DE1F00D57721 /* LaunchScreen.storyboard */; };
+		63A455121E93A3C2008C4D5E /* CommentCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 63A455101E93A3C2008C4D5E /* CommentCell.swift */; };
+		63A455131E93A3C2008C4D5E /* CommentCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 63A455111E93A3C2008C4D5E /* CommentCell.xib */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -48,6 +50,8 @@
 		11FE476B1E81DE1F00D57721 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		11FE476E1E81DE1F00D57721 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		11FE47701E81DE1F00D57721 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		63A455101E93A3C2008C4D5E /* CommentCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CommentCell.swift; sourceTree = "<group>"; };
+		63A455111E93A3C2008C4D5E /* CommentCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = CommentCell.xib; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -94,6 +98,7 @@
 		113CB1701E8E3B150054B413 /* View */ = {
 			isa = PBXGroup;
 			children = (
+				63A455101E93A3C2008C4D5E /* CommentCell.swift */,
 				113CB16A1E8B91C60054B413 /* PictureCell.swift */,
 				1156B20D1E92D4BF00FAEA51 /* ProfileGridCell.swift */,
 				113CB1771E8FB05A0054B413 /* UserPhotoCell.swift */,
@@ -106,6 +111,7 @@
 			isa = PBXGroup;
 			children = (
 				113CB16B1E8B91C60054B413 /* PictureCell.xib */,
+				63A455111E93A3C2008C4D5E /* CommentCell.xib */,
 			);
 			name = Xibs;
 			sourceTree = "<group>";
@@ -205,6 +211,7 @@
 				113CB16D1E8B91C60054B413 /* PictureCell.xib in Resources */,
 				11FE476F1E81DE1F00D57721 /* LaunchScreen.storyboard in Resources */,
 				113CB1581E86B48A0054B413 /* PhotoStoryboard.storyboard in Resources */,
+				63A455131E93A3C2008C4D5E /* CommentCell.xib in Resources */,
 				113CB12F1E86A2110054B413 /* NewsStoryboard.storyboard in Resources */,
 				113CB15A1E86B4A10054B413 /* ProfileStoryboard.storyboard in Resources */,
 				11FE476C1E81DE1F00D57721 /* Assets.xcassets in Resources */,
@@ -230,6 +237,7 @@
 				113CB1761E8FA8EB0054B413 /* User.swift in Sources */,
 				11FE476A1E81DE1F00D57721 /* InstaVK.xcdatamodeld in Sources */,
 				1156B20E1E92D4BF00FAEA51 /* ProfileGridCell.swift in Sources */,
+				63A455121E93A3C2008C4D5E /* CommentCell.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
