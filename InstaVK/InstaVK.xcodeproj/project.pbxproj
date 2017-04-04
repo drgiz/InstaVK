@@ -28,7 +28,6 @@
 		63A455121E93A3C2008C4D5E /* CommentCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 63A455101E93A3C2008C4D5E /* CommentCell.swift */; };
 		63A455131E93A3C2008C4D5E /* CommentCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 63A455111E93A3C2008C4D5E /* CommentCell.xib */; };
 		63A455161E93A7E1008C4D5E /* CommentsController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 63A455141E93A7E1008C4D5E /* CommentsController.swift */; };
-		63A455171E93A7E1008C4D5E /* CommentsStoryboard.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 63A455151E93A7E1008C4D5E /* CommentsStoryboard.storyboard */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -55,7 +54,6 @@
 		63A455101E93A3C2008C4D5E /* CommentCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CommentCell.swift; sourceTree = "<group>"; };
 		63A455111E93A3C2008C4D5E /* CommentCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = CommentCell.xib; sourceTree = "<group>"; };
 		63A455141E93A7E1008C4D5E /* CommentsController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CommentsController.swift; sourceTree = "<group>"; };
-		63A455151E93A7E1008C4D5E /* CommentsStoryboard.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = CommentsStoryboard.storyboard; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -76,7 +74,6 @@
 				113CB12E1E86A2110054B413 /* NewsStoryboard.storyboard */,
 				113CB1571E86B48A0054B413 /* PhotoStoryboard.storyboard */,
 				113CB1591E86B4A10054B413 /* ProfileStoryboard.storyboard */,
-				63A455151E93A7E1008C4D5E /* CommentsStoryboard.storyboard */,
 			);
 			name = Storyboard;
 			sourceTree = "<group>";
@@ -220,7 +217,6 @@
 				63A455131E93A3C2008C4D5E /* CommentCell.xib in Resources */,
 				113CB12F1E86A2110054B413 /* NewsStoryboard.storyboard in Resources */,
 				113CB15A1E86B4A10054B413 /* ProfileStoryboard.storyboard in Resources */,
-				63A455171E93A7E1008C4D5E /* CommentsStoryboard.storyboard in Resources */,
 				11FE476C1E81DE1F00D57721 /* Assets.xcassets in Resources */,
 				11FE47671E81DE1F00D57721 /* Main.storyboard in Resources */,
 			);

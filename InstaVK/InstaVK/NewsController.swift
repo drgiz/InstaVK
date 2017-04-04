@@ -54,6 +54,13 @@ class NewsController: UITableViewController {
         return #imageLiteral(resourceName: "Image").size.height/scale + 80 + 32
     }
     
+    @IBAction func didTapCommentsButton(_ sender: Any) {
+        let control = storyboard?.instantiateViewController(withIdentifier: "CommentsControllerIdentifier") as! CommentsController
+        navigationController?.pushViewController(control, animated: true)
+    }
+    
+    
+    
     /*
     // Override to support conditional editing of the table view.
     override func tableView(_ tableView: UITableView, canEditRowAt indexPath: IndexPath) -> Bool {
