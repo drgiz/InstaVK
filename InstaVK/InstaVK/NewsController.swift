@@ -8,7 +8,7 @@
 
 import UIKit
 
-class NewsController: UITableViewController {
+class NewsController: UITableViewController, PictureCellDelegate {
     
     let identifier = "PictureCell"
 
@@ -45,6 +45,7 @@ class NewsController: UITableViewController {
     
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView .dequeueReusableCell(withIdentifier: identifier, for: indexPath) as! PictureCell
+        cell.delegate = self
         cell.postPicture.image = #imageLiteral(resourceName: "Image")
         //cell.avatarImageView.image = #imageLiteral(resourceName: "Image")
         return cell
@@ -55,7 +56,7 @@ class NewsController: UITableViewController {
         return #imageLiteral(resourceName: "Image").size.height/scale + 80 + 32
     }
     
-    @IBAction func didTapCommentsButton(_ sender: Any) {
+    func didTapButton(sender: UITableViewCell) {
         let control = storyboard?.instantiateViewController(withIdentifier: "CommentsControllerIdentifier") as! CommentsController
         navigationController?.pushViewController(control, animated: true)
     }
