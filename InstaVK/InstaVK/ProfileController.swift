@@ -14,9 +14,10 @@ private let reuseIdentifier2 = "cell2"
 class ProfileController: UICollectionViewController {
     
     @IBAction func pressFollowersButton(_ sender: Any) {
-        let vs : ProfileController
-        vs = storyboard?.instantiateViewController(withIdentifier: "ProfileControllerIdentifier") as! ProfileController
-        navigationController?.pushViewController(vs, animated: true)
+        let followersController = FollowersController.init(id: "id")
+        navigationController?.pushViewController(followersController, animated: true)
+        //vs = storyboard?.instantiateViewController(withIdentifier: "ProfileControllerIdentifier") as! ProfileController
+        //navigationController?.pushViewController(vs, animated: true)
         
     }
 
@@ -48,7 +49,7 @@ class ProfileController: UICollectionViewController {
     }
     */
 
-    // MARK: UICollectionViewDataSource
+    //MARK: UICollectionViewDataSource
 
     override func numberOfSections(in collectionView: UICollectionView) -> Int {
         return 1

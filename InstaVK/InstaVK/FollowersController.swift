@@ -1,68 +1,69 @@
 //
-//  NewsController.swift
+//  FollowersController.swift
 //  InstaVK
 //
-//  Created by Никита on 27.03.17.
+//  Created by Никита on 10.04.17.
 //  Copyright © 2017 Nikita Susoev. All rights reserved.
 //
 
 import UIKit
 
-class NewsController: UITableViewController, PictureCellDelegate {
+
+
+class FollowersController: UITableViewController {
     
-    let identifier = "PictureCell"
-
-
+    let followerCellIdentifier = "FollowerCell"
+    
     override func viewDidLoad() {
         super.viewDidLoad()
-
+        
+        
+        let nib = UINib(nibName: "FollowerCell", bundle: nil)
+        self.tableView.register(nib, forCellReuseIdentifier: followerCellIdentifier)
         // Uncomment the following line to preserve selection between presentations
         // self.clearsSelectionOnViewWillAppear = false
+
         // Uncomment the following line to display an Edit button in the navigation bar for this view controller.
-        let nib = UINib (nibName: "PictureCell", bundle: nil)
-        self.tableView.register(nib, forCellReuseIdentifier: identifier)
-        //self.tableView!.register(PictureCell.self, forCellReuseIdentifier: identifier)
         // self.navigationItem.rightBarButtonItem = self.editButtonItem()
     }
-
+    
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
+    }
+    
+    convenience init(id : String) {
+        self.init()
     }
 
     // MARK: - Table view data source
 
     override func numberOfSections(in tableView: UITableView) -> Int {
-        // #warning Incomplete implementation, return the number of sections
         return 1
     }
 
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        // #warning Incomplete implementation, return the number of rows
         return 5
     }
 
     
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = tableView .dequeueReusableCell(withIdentifier: identifier, for: indexPath) as! PictureCell
-        cell.delegate = self
-        cell.postPicture.image = #imageLiteral(resourceName: "Image")
-        //cell.avatarImageView.image = #imageLiteral(resourceName: "Image")
+        
+        
+        let cell = tableView.dequeueReusableCell(withIdentifier: followerCellIdentifier, for: indexPath) as! FollowerCell
+        
+        cell.followerImageView.image = #imageLiteral(resourceName: "Image")
+        cell.fistAndLastNameLabel.text = "Nikita Susoev"
+        
+             // Configure the cell...
+
         return cell
     }
     
     override func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
-        let scale : CGFloat = #imageLiteral(resourceName: "Image").size.width/UIScreen.main.bounds.width
-        return #imageLiteral(resourceName: "Image").size.height/scale + 80 + 32
+        return 100
     }
-    
-    func didTapButton(sender: UITableViewCell) {
-        let control = storyboard?.instantiateViewController(withIdentifier: "CommentsControllerIdentifier") as! CommentsController
-        navigationController?.pushViewController(control, animated: true)
-    }
-    
-    
-    
+
     /*
     // Override to support conditional editing of the table view.
     override func tableView(_ tableView: UITableView, canEditRowAt indexPath: IndexPath) -> Bool {
