@@ -51,7 +51,7 @@ class NewsController: UITableViewController {
     }
     
     override func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
-        let scale : CGFloat = #imageLiteral(resourceName: "Image").size.width/359
+        let scale : CGFloat = #imageLiteral(resourceName: "Image").size.width/UIScreen.main.bounds.width
         return #imageLiteral(resourceName: "Image").size.height/scale + 80 + 32
     }
     
