@@ -8,9 +8,15 @@
 
 import UIKit
 
+protocol PictureCellDelegate {
+    func didTapButton(sender: UITableViewCell)
+}
+
 class PictureCell: UITableViewCell {
 
     @IBOutlet weak var postPicture: UIImageView!
+    
+    var delegate: PictureCellDelegate?
     
     override func awakeFromNib() {
         super.awakeFromNib()
@@ -24,4 +30,9 @@ class PictureCell: UITableViewCell {
         // Configure the view for the selected state
     }
     
+    @IBAction func didTapCommentsButton(_ sender: UIButton) {
+        if let delegate = self.delegate {
+            delegate.didTapButton(sender: self)
+        }
+    }
 }
