@@ -44,9 +44,11 @@ class NewsController: UITableViewController, PictureCellDelegate {
 
     
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = tableView .dequeueReusableCell(withIdentifier: identifier, for: indexPath) as! PictureCell
-        cell.delegate = self
-        cell.postPicture.image = #imageLiteral(resourceName: "Image")
+        let cell = tableView .dequeueReusableCell(withIdentifier: identifier, for: indexPath)
+        if let newsCell = cell as? PictureCell {
+        newsCell.delegate = self
+        newsCell.postPicture.image = #imageLiteral(resourceName: "Image")
+        }
         //cell.avatarImageView.image = #imageLiteral(resourceName: "Image")
         return cell
     }
@@ -57,8 +59,8 @@ class NewsController: UITableViewController, PictureCellDelegate {
     }
     
     func didTapButton(sender: UITableViewCell) {
-        let control = storyboard?.instantiateViewController(withIdentifier: "CommentsControllerIdentifier") as! CommentsController
-        navigationController?.pushViewController(control, animated: true)
+        let commentsControler = CommentsController()
+        navigationController?.pushViewController(commentsControler, animated: true)
     }
     
     
