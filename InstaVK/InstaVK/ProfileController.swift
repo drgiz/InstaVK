@@ -20,6 +20,10 @@ class ProfileController: UICollectionViewController {
         //navigationController?.pushViewController(vs, animated: true)
         
     }
+    @IBAction func pressFollowingButton(_ sender: Any) {
+        let followingController = FollowingController()
+        navigationController?.pushViewController(followingController, animated: true)
+    }
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -78,6 +82,12 @@ class ProfileController: UICollectionViewController {
         cell.imageCell.image = #imageLiteral(resourceName: "Image")
         
         return cell
+    }
+    
+    override func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
+        
+        let pictureController = PictureController()
+        navigationController?.pushViewController(pictureController, animated: true)
     }
     
     
