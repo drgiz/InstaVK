@@ -68,7 +68,9 @@ class ProfileController: UICollectionViewController {
     override func collectionView(_ collectionView: UICollectionView, viewForSupplementaryElementOfKind kind: String, at indexPath: IndexPath) -> UICollectionReusableView {
         
         let header = collectionView.dequeueReusableSupplementaryView(ofKind: UICollectionElementKindSectionHeader, withReuseIdentifier: "header", for: indexPath) as! HeaderProfileView
-        header.profileHeaderImage.image = #imageLiteral(resourceName: "Image")
+        header.profileHeaderImage.image = #imageLiteral(resourceName: "Kevin")
+        header.profileHeaderImage.layer.cornerRadius = 50.0
+        header.profileHeaderImage.clipsToBounds = true
         //header.profileHeaderImage.layer.contents = #imageLiteral(resourceName: "Image").cgImage
         //header.profileHeaderImage.layer.cornerRadius = 50
         //header.profileHeaderImage.layer.borderColor = UIColor.black.cgColor

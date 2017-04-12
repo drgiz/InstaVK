@@ -103,7 +103,6 @@
 		113CB16F1E8E3B090054B413 /* Controller */ = {
 			isa = PBXGroup;
 			children = (
-				11FE47631E81DE1F00D57721 /* ViewController.swift */,
 				113CB1661E89AC800054B413 /* NewsController.swift */,
 				113CB1681E89ACAF0054B413 /* PhotoController.swift */,
 				113CB1731E8EECBC0054B413 /* ProfileController.swift */,
@@ -165,6 +164,7 @@
 				113CB1791E8FD8D60054B413 /* Xibs */,
 				113CB1301E86A2940054B413 /* Storyboard */,
 				11FE47611E81DE1F00D57721 /* AppDelegate.swift */,
+				11FE47631E81DE1F00D57721 /* ViewController.swift */,
 				11FE476B1E81DE1F00D57721 /* Assets.xcassets */,
 				11FE476D1E81DE1F00D57721 /* LaunchScreen.storyboard */,
 				11FE47701E81DE1F00D57721 /* Info.plist */,
