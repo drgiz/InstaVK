@@ -53,6 +53,8 @@ class FollowersController: UITableViewController {
         let cell = tableView.dequeueReusableCell(withIdentifier: followerCellIdentifier, for: indexPath) as! FollowerCell
         
         cell.followerImageView.image = #imageLiteral(resourceName: "Image")
+        cell.followerImageView.layer.cornerRadius = 40
+        cell.followerImageView.clipsToBounds = true
         cell.fistAndLastNameLabel.text = "Nikita Susoev"
         
              // Configure the cell...

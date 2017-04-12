@@ -31,6 +31,9 @@
                     </label>
                 </subviews>
             </tableViewCellContentView>
+            <connections>
+                <outlet property="followingImageView" destination="U73-5U-cNV" id="HWS-Za-lBI"/>
+            </connections>
             <point key="canvasLocation" x="34" y="80"/>
         </tableViewCell>
     </objects>

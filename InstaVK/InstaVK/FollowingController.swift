@@ -44,6 +44,10 @@ class FollowingController: UITableViewController {
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         
         let cell = tableView.dequeueReusableCell(withIdentifier: followingCellIdentifier, for: indexPath) as! FollowingCell
+        
+        cell.followingImageView.image = #imageLiteral(resourceName: "Image")
+        cell.followingImageView.layer.cornerRadius = 40
+        cell.followingImageView.clipsToBounds = true
 
         // Configure the cell...
 

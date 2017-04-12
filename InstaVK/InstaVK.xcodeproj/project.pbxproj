@@ -26,6 +26,8 @@
 		1156B2191E9E473D00FAEA51 /* FollowingCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1156B2171E9E473D00FAEA51 /* FollowingCell.swift */; };
 		1156B21A1E9E473D00FAEA51 /* FollowingCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 1156B2181E9E473D00FAEA51 /* FollowingCell.xib */; };
 		1156B21C1E9E51BC00FAEA51 /* PictureController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1156B21B1E9E51BC00FAEA51 /* PictureController.swift */; };
+		1156B21E1E9ED2E000FAEA51 /* HeaderPhotoView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1156B21D1E9ED2E000FAEA51 /* HeaderPhotoView.swift */; };
+		1156B2201E9ED30400FAEA51 /* PhotoGridCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1156B21F1E9ED30400FAEA51 /* PhotoGridCell.swift */; };
 		11FE47621E81DE1F00D57721 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 11FE47611E81DE1F00D57721 /* AppDelegate.swift */; };
 		11FE47641E81DE1F00D57721 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 11FE47631E81DE1F00D57721 /* ViewController.swift */; };
 		11FE47671E81DE1F00D57721 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 11FE47651E81DE1F00D57721 /* Main.storyboard */; };
@@ -57,6 +59,8 @@
 		1156B2171E9E473D00FAEA51 /* FollowingCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FollowingCell.swift; sourceTree = "<group>"; };
 		1156B2181E9E473D00FAEA51 /* FollowingCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = FollowingCell.xib; sourceTree = "<group>"; };
 		1156B21B1E9E51BC00FAEA51 /* PictureController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PictureController.swift; sourceTree = "<group>"; };
+		1156B21D1E9ED2E000FAEA51 /* HeaderPhotoView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HeaderPhotoView.swift; sourceTree = "<group>"; };
+		1156B21F1E9ED30400FAEA51 /* PhotoGridCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PhotoGridCell.swift; sourceTree = "<group>"; };
 		11FE475E1E81DE1F00D57721 /* InstaVK.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = InstaVK.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		11FE47611E81DE1F00D57721 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		11FE47631E81DE1F00D57721 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
@@ -120,10 +124,12 @@
 				63A455101E93A3C2008C4D5E /* CommentCell.swift */,
 				113CB16A1E8B91C60054B413 /* PictureCell.swift */,
 				1156B20D1E92D4BF00FAEA51 /* ProfileGridCell.swift */,
+				1156B21F1E9ED30400FAEA51 /* PhotoGridCell.swift */,
 				1156B2111E9C1BB800FAEA51 /* FollowerCell.swift */,
 				1156B2171E9E473D00FAEA51 /* FollowingCell.swift */,
 				113CB1771E8FB05A0054B413 /* UserPhotoCell.swift */,
 				1156B20B1E92D3DD00FAEA51 /* HeaderProfileView.swift */,
+				1156B21D1E9ED2E000FAEA51 /* HeaderPhotoView.swift */,
 			);
 			name = View;
 			sourceTree = "<group>";
@@ -263,8 +269,10 @@
 				63A455161E93A7E1008C4D5E /* CommentsController.swift in Sources */,
 				113CB1671E89AC800054B413 /* NewsController.swift in Sources */,
 				113CB1741E8EECBC0054B413 /* ProfileController.swift in Sources */,
+				1156B21E1E9ED2E000FAEA51 /* HeaderPhotoView.swift in Sources */,
 				1156B2161E9E471300FAEA51 /* FollowingController.swift in Sources */,
 				113CB16C1E8B91C60054B413 /* PictureCell.swift in Sources */,
+				1156B2201E9ED30400FAEA51 /* PhotoGridCell.swift in Sources */,
 				1156B2101E9C155F00FAEA51 /* FollowersController.swift in Sources */,
 				113CB1761E8FA8EB0054B413 /* User.swift in Sources */,
 				11FE476A1E81DE1F00D57721 /* InstaVK.xcdatamodeld in Sources */,
