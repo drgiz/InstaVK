@@ -11,6 +11,7 @@ import UIKit
 class CommentCell: UITableViewCell {
     @IBOutlet weak var avatarImage: UIImageView!
     @IBOutlet weak var commentText: UILabel!
+    @IBOutlet weak var userFirstLastName: UIButton!
 
     override func awakeFromNib() {
         super.awakeFromNib()
