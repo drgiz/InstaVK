@@ -78,7 +78,6 @@
 			isa = PBXGroup;
 			children = (
 				11FE47651E81DE1F00D57721 /* Main.storyboard */,
-				633BD6931EA3EC4500378414 /* LoginController.swift */,
 				113CB12E1E86A2110054B413 /* NewsStoryboard.storyboard */,
 				113CB1571E86B48A0054B413 /* PhotoStoryboard.storyboard */,
 				113CB1591E86B4A10054B413 /* ProfileStoryboard.storyboard */,
@@ -98,6 +97,7 @@
 			isa = PBXGroup;
 			children = (
 				11FE47631E81DE1F00D57721 /* ViewController.swift */,
+				633BD6931EA3EC4500378414 /* LoginController.swift */,
 				113CB1661E89AC800054B413 /* NewsController.swift */,
 				113CB1681E89ACAF0054B413 /* PhotoController.swift */,
 				113CB1731E8EECBC0054B413 /* ProfileController.swift */,
