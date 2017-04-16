@@ -25,6 +25,7 @@
 		11FE476A1E81DE1F00D57721 /* InstaVK.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 11FE47681E81DE1F00D57721 /* InstaVK.xcdatamodeld */; };
 		11FE476C1E81DE1F00D57721 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 11FE476B1E81DE1F00D57721 /* Assets.xcassets */; };
 		11FE476F1E81DE1F00D57721 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 11FE476D1E81DE1F00D57721 /* LaunchScreen.storyboard */; };
+		633BD6951EA3EC4500378414 /* LoginController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 633BD6931EA3EC4500378414 /* LoginController.swift */; };
 		63A455121E93A3C2008C4D5E /* CommentCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 63A455101E93A3C2008C4D5E /* CommentCell.swift */; };
 		63A455131E93A3C2008C4D5E /* CommentCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 63A455111E93A3C2008C4D5E /* CommentCell.xib */; };
 		63A455161E93A7E1008C4D5E /* CommentsController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 63A455141E93A7E1008C4D5E /* CommentsController.swift */; };
@@ -53,6 +54,7 @@
 		11FE476B1E81DE1F00D57721 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		11FE476E1E81DE1F00D57721 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		11FE47701E81DE1F00D57721 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		633BD6931EA3EC4500378414 /* LoginController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LoginController.swift; sourceTree = "<group>"; };
 		63A455101E93A3C2008C4D5E /* CommentCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CommentCell.swift; sourceTree = "<group>"; };
 		63A455111E93A3C2008C4D5E /* CommentCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = CommentCell.xib; sourceTree = "<group>"; };
 		63A455141E93A7E1008C4D5E /* CommentsController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CommentsController.swift; sourceTree = "<group>"; };
@@ -76,6 +78,7 @@
 			isa = PBXGroup;
 			children = (
 				11FE47651E81DE1F00D57721 /* Main.storyboard */,
+				633BD6931EA3EC4500378414 /* LoginController.swift */,
 				113CB12E1E86A2110054B413 /* NewsStoryboard.storyboard */,
 				113CB1571E86B48A0054B413 /* PhotoStoryboard.storyboard */,
 				113CB1591E86B4A10054B413 /* ProfileStoryboard.storyboard */,
@@ -304,6 +307,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				633BD6951EA3EC4500378414 /* LoginController.swift in Sources */,
 				113CB1691E89ACAF0054B413 /* PhotoController.swift in Sources */,
 				113CB1781E8FB05A0054B413 /* UserPhotoCell.swift in Sources */,
 				1156B20C1E92D3DD00FAEA51 /* HeaderProfileView.swift in Sources */,
