@@ -41,26 +41,26 @@
                                 </subviews>
                             </stackView>
                             <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="Lcc-ww-wWc">
-                                <rect key="frame" x="0.0" y="54" width="414" height="235.5"/>
+                                <rect key="frame" x="0.0" y="54" width="414" height="247.5"/>
                             </imageView>
-                            <stackView opaque="NO" contentMode="scaleToFill" spacing="2" translatesAutoresizingMaskIntoConstraints="NO" id="dtm-be-Zun">
-                                <rect key="frame" x="0.0" y="295.5" width="98" height="48"/>
+                            <stackView opaque="NO" contentMode="scaleToFill" spacing="18" translatesAutoresizingMaskIntoConstraints="NO" id="dtm-be-Zun">
+                                <rect key="frame" x="0.0" y="307.5" width="90" height="36"/>
                                 <subviews>
-                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="jAB-aO-x5x">
-                                        <rect key="frame" x="0.0" y="0.0" width="48" height="48"/>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="jAB-aO-x5x">
+                                        <rect key="frame" x="0.0" y="0.0" width="36" height="36"/>
                                         <constraints>
-                                            <constraint firstAttribute="height" constant="48" id="U5h-hg-Nmg"/>
-                                            <constraint firstAttribute="width" constant="48" id="fZq-HT-faG"/>
+                                            <constraint firstAttribute="height" constant="36" id="U5h-hg-Nmg"/>
+                                            <constraint firstAttribute="width" constant="36" id="fZq-HT-faG"/>
                                         </constraints>
-                                        <state key="normal" title="❤️"/>
+                                        <state key="normal" title="❤️" image="heartEmpty"/>
                                     </button>
-                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="UnI-0E-lHi">
-                                        <rect key="frame" x="50" y="0.0" width="48" height="48"/>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="UnI-0E-lHi">
+                                        <rect key="frame" x="54" y="0.0" width="36" height="36"/>
                                         <constraints>
-                                            <constraint firstAttribute="width" constant="48" id="V58-2L-MMX"/>
-                                            <constraint firstAttribute="height" constant="48" id="ahn-2g-J6m"/>
+                                            <constraint firstAttribute="width" constant="36" id="V58-2L-MMX"/>
+                                            <constraint firstAttribute="height" constant="36" id="ahn-2g-J6m"/>
                                         </constraints>
-                                        <state key="normal" title="💬"/>
+                                        <state key="normal" title="💬" image="chat"/>
                                         <connections>
                                             <action selector="didTapCommentsButton:" destination="KGk-i7-Jjw" eventType="touchUpInside" id="ejv-UY-H9U"/>
                                         </connections>
@@ -85,4 +85,8 @@
             <point key="canvasLocation" x="-20" y="78"/>
         </tableViewCell>
     </objects>
+    <resources>
+        <image name="chat" width="256" height="256"/>
+        <image name="heartEmpty" width="256" height="256"/>
+    </resources>
 </document>
