@@ -6,6 +6,7 @@
     <dependencies>
         <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="12086"/>
+        <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
@@ -21,50 +22,51 @@
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="zcS-cw-WcH">
-                                <rect key="frame" x="100" y="115" width="220" height="30"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <nil key="textColor"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                                <textInputTraits key="textInputTraits"/>
-                            </textField>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Login" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="DzS-gn-3GC">
-                                <rect key="frame" x="50" y="120" width="42" height="21"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                            <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="10" translatesAutoresizingMaskIntoConstraints="NO" id="Ylo-d9-dn8">
+                                <rect key="frame" x="67" y="295" width="241" height="76"/>
+                                <subviews>
+                                    <button opaque="NO" contentMode="scaleToFill" restorationIdentifier="authViaVKButton" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Obz-yg-INY">
+                                        <rect key="frame" x="0.0" y="0.0" width="241" height="33"/>
+                                        <fontDescription key="fontDescription" style="UICTFontTextStyleHeadline"/>
+                                        <state key="normal" title="Войти через приложение VK"/>
+                                        <connections>
+                                            <action selector="loginWithVKApp:" destination="kpP-qM-SP6" eventType="touchUpInside" id="RxC-pk-NZO"/>
+                                        </connections>
+                                    </button>
+                                    <button opaque="NO" contentMode="scaleToFill" restorationIdentifier="authViaSafariButton" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="71C-uo-gqk">
+                                        <rect key="frame" x="0.0" y="43" width="241" height="33"/>
+                                        <fontDescription key="fontDescription" style="UICTFontTextStyleHeadline"/>
+                                        <state key="normal" title="Войти через логин и пароль"/>
+                                        <connections>
+                                            <action selector="loginWithLoginAndPassword:" destination="kpP-qM-SP6" eventType="touchUpInside" id="vyW-ba-cUp"/>
+                                        </connections>
+                                    </button>
+                                </subviews>
+                            </stackView>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="InstaVK" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ezV-sv-eXW">
+                                <rect key="frame" x="139" y="259" width="96" height="28"/>
+                                <fontDescription key="fontDescription" name="AmericanTypewriter" family="American Typewriter" pointSize="24"/>
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Password" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="d8A-QD-F2h">
-                                <rect key="frame" x="16" y="157" width="76" height="21"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                <nil key="textColor"/>
-                                <nil key="highlightedColor"/>
-                            </label>
-                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="sHi-K3-CIQ">
-                                <rect key="frame" x="100" y="152" width="220" height="30"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <nil key="textColor"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                                <textInputTraits key="textInputTraits"/>
-                            </textField>
-                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="GA3-5v-epa">
-                                <rect key="frame" x="157" y="190" width="60" height="30"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="20"/>
-                                <state key="normal" title="Log in"/>
-                                <connections>
-                                    <segue destination="m4g-Ht-Vvy" kind="show" identifier="loggedSegue" id="0KA-wC-ksu"/>
-                                </connections>
-                            </button>
                         </subviews>
                         <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                        <constraints>
+                            <constraint firstAttribute="trailingMargin" secondItem="Ylo-d9-dn8" secondAttribute="trailing" constant="51" id="718-RA-91t"/>
+                            <constraint firstItem="ezV-sv-eXW" firstAttribute="centerX" secondItem="Ylo-d9-dn8" secondAttribute="centerX" id="OnS-pS-vCI"/>
+                            <constraint firstItem="Ylo-d9-dn8" firstAttribute="leading" secondItem="1a9-z4-Tkj" secondAttribute="leadingMargin" constant="51" id="Zre-pC-BDP"/>
+                            <constraint firstItem="Ylo-d9-dn8" firstAttribute="top" secondItem="ezV-sv-eXW" secondAttribute="bottom" constant="8" id="cyJ-Yd-dii"/>
+                            <constraint firstItem="Ylo-d9-dn8" firstAttribute="top" secondItem="7gq-zr-Jcm" secondAttribute="bottom" constant="275" id="qz5-Fm-CGc"/>
+                            <constraint firstItem="J1G-pO-Kw0" firstAttribute="top" secondItem="Ylo-d9-dn8" secondAttribute="bottom" constant="296" id="reM-8x-V5c"/>
+                        </constraints>
                     </view>
+                    <connections>
+                        <segue destination="m4g-Ht-Vvy" kind="show" identifier="loggedSegue" id="gzj-MZ-C8g"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="34q-9o-zeB" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="230" y="163"/>
+            <point key="canvasLocation" x="229.59999999999999" y="162.3688155922039"/>
         </scene>
         <!--Tab Bar Controller-->
         <scene sceneID="up9-ga-P0W">

@@ -10,14 +10,15 @@ import UIKit
 import VK_ios_sdk
 
 let applicationID = "5986161"
-let nestSegue: String = "loggedSegue"
+let nextSegue: String = "loggedSegue"
 var SCOPE: [Any]? = nil
+let okButton = UIAlertAction(title: "OK", style: .destructive, handler: { (action) -> Void in }) //TO-DO move to helper class
 
 
 class LoginController: UIViewController, VKSdkDelegate, VKSdkUIDelegate {
 
     override func viewDidLoad() {
-        SCOPE = [VK_PER_FRIENDS, VK_PER_WALL, VK_PER_AUDIO, VK_PER_PHOTOS, VK_PER_NOHTTPS, VK_PER_EMAIL, VK_PER_MESSAGES]
+        SCOPE = [VK_PER_FRIENDS, VK_PER_WALL, VK_PER_PHOTOS, VK_PER_EMAIL, VK_PER_MESSAGES]
         super.viewDidLoad()
         VKSdk.initialize(withAppId: applicationID).register(self) // Initialize VK SDK with our app id (5986161)
         VKSdk.instance().uiDelegate = self
@@ -26,10 +27,9 @@ class LoginController: UIViewController, VKSdkDelegate, VKSdkUIDelegate {
                 self.startWorking()
             }
             else if error != nil {
-                //TO-DO: Fix depricated method to smth like: 
-                // UIAlertController(title: "", message: error.debugDescription, preferredStyle: UIAlertControllerStyle.alert)
-                UIAlertView(title: "", message: error.debugDescription, delegate: self as! UIAlertViewDelegate, cancelButtonTitle: "Ok", otherButtonTitles: "").show()
-                
+                let alertVC = UIAlertController(title: "", message: error.debugDescription, preferredStyle: UIAlertControllerStyle.alert)
+                alertVC.addAction(okButton)
+                self.present(alertVC, animated: true, completion: nil)
             }
             
         })
@@ -41,12 +41,18 @@ class LoginController: UIViewController, VKSdkDelegate, VKSdkUIDelegate {
         // Dispose of any resources that can be recreated.
     }
     
-    func startWorking() {
-        performSegue(withIdentifier: nestSegue, sender: self)
+    
+    @IBAction func loginWithVKApp(_ sender: UIButton) {
+        VKSdk.authorize(SCOPE)
     }
     
-    @IBAction func authorize(_ sender: Any) {
-        VKSdk.authorize(SCOPE)
+    @IBAction func loginWithLoginAndPassword(_ sender: UIButton) {
+        VKAuthorizeController.presentForAuthorize(withAppId: applicationID, andPermissions: SCOPE, revokeAccess: false, displayType: VK_DISPLAY_IOS)
+    }
+    
+    
+    func startWorking() {
+        performSegue(withIdentifier: nextSegue, sender: self)
     }
     
     
@@ -56,7 +62,7 @@ class LoginController: UIViewController, VKSdkDelegate, VKSdkUIDelegate {
     }
     
     func vkSdkTokenHasExpired(_ expiredToken: VKAccessToken) {
-        authorize(self)
+        VKSdk.authorize(SCOPE)
     }
     
     func vkSdkAccessAuthorizationFinished(with result: VKAuthorizationResult) {
@@ -64,20 +70,21 @@ class LoginController: UIViewController, VKSdkDelegate, VKSdkUIDelegate {
             startWorking()
         }
         else if (result.error != nil) {
-            //TO-DO: Fix depricated UIAlertView
-            UIAlertView(title: "", message: "Access denied\n\(result.error)", delegate: self as! UIAlertViewDelegate, cancelButtonTitle: "Ok", otherButtonTitles: "").show()
+            let alertVC = UIAlertController(title: "", message: "Access denied\n\(result.error)", preferredStyle: UIAlertControllerStyle.alert)
+            alertVC.addAction(okButton)
+            self.present(alertVC, animated: true, completion: nil)
         }
         
     }
     
     func vkSdkUserAuthorizationFailed() {
-        //TO-DO: Fix depricated UIAlertView
-        UIAlertView(title: "", message: "Access denied", delegate: self as! UIAlertViewDelegate, cancelButtonTitle: "Ok", otherButtonTitles: "").show() 
-        navigationController?.popToRootViewController(animated: true)
+        let alertVC = UIAlertController(title: "", message: "Access denied", preferredStyle: UIAlertControllerStyle.alert)
+        alertVC.addAction(okButton)
+        self.present(alertVC, animated: true, completion: nil)
     }
     
     func vkSdkShouldPresent(_ controller: UIViewController) {
-        navigationController?.topViewController?.present(controller, animated: true, completion: { _ in })
+        present(controller, animated: true, completion: nil)
     }
     
 
