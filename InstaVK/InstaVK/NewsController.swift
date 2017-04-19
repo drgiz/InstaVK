@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import VK_ios_sdk
 
 class NewsController: UITableViewController, PictureCellDelegate {
     
@@ -64,6 +65,14 @@ class NewsController: UITableViewController, PictureCellDelegate {
         navigationController?.pushViewController(commentsControler, animated: true)
     }
     
+    
+    // MARK: LogOut button for test purposes
+    @IBAction func logOut(_ sender: Any) {
+        VKSdk.forceLogout()
+        let loginScreenVC = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "LoginView")
+        let appDelegate = UIApplication.shared.delegate as! AppDelegate
+        appDelegate.window?.rootViewController = loginScreenVC
+    }
     
     
     /*

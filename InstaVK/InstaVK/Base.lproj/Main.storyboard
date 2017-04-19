@@ -60,9 +60,6 @@
                             <constraint firstItem="J1G-pO-Kw0" firstAttribute="top" secondItem="Ylo-d9-dn8" secondAttribute="bottom" constant="296" id="reM-8x-V5c"/>
                         </constraints>
                     </view>
-                    <connections>
-                        <segue destination="m4g-Ht-Vvy" kind="show" identifier="loggedSegue" id="gzj-MZ-C8g"/>
-                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="34q-9o-zeB" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
@@ -71,7 +68,7 @@
         <!--Tab Bar Controller-->
         <scene sceneID="up9-ga-P0W">
             <objects>
-                <tabBarController id="m4g-Ht-Vvy" sceneMemberID="viewController">
+                <tabBarController storyboardIdentifier="mainTabBar" id="m4g-Ht-Vvy" sceneMemberID="viewController">
                     <tabBar key="tabBar" contentMode="scaleToFill" id="UGG-vQ-iIn">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="49"/>
                         <autoresizingMask key="autoresizingMask"/>

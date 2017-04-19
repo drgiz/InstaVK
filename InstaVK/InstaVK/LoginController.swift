@@ -9,13 +9,12 @@
 import UIKit
 import VK_ios_sdk
 
-let applicationID = "5986161"
-let nextSegue: String = "loggedSegue"
-var SCOPE: [Any]? = nil
-let okButton = UIAlertAction(title: "OK", style: .destructive, handler: { (action) -> Void in }) //TO-DO move to helper class
+fileprivate let applicationID = "5986161"
+fileprivate var SCOPE: [Any]? = nil
+let okButton = UIAlertAction(title: "OK", style: .destructive, handler: nil) //TO-DO move to helper class
 
 
-class LoginController: UIViewController, VKSdkDelegate, VKSdkUIDelegate {
+class LoginController: UIViewController {
 
     override func viewDidLoad() {
         SCOPE = [VK_PER_FRIENDS, VK_PER_WALL, VK_PER_PHOTOS, VK_PER_EMAIL, VK_PER_MESSAGES]
@@ -52,29 +51,28 @@ class LoginController: UIViewController, VKSdkDelegate, VKSdkUIDelegate {
     
     
     func startWorking() {
-        performSegue(withIdentifier: nextSegue, sender: self)
+        let myTabBar = self.storyboard?.instantiateViewController(withIdentifier: "mainTabBar") as! UITabBarController
+        let appDelegate = UIApplication.shared.delegate as! AppDelegate
+        appDelegate.window?.rootViewController = myTabBar
     }
     
-    
-    func vkSdkNeedCaptchaEnter(_ captchaError: VKError) {
-        let vc = try? VKCaptchaViewController.captchaControllerWithError(captchaError)
-        vc?.present(in: navigationController?.topViewController)
-    }
     
     func vkSdkTokenHasExpired(_ expiredToken: VKAccessToken) {
         VKSdk.authorize(SCOPE)
     }
     
+}
+
+extension LoginController: VKSdkDelegate {
+    
     func vkSdkAccessAuthorizationFinished(with result: VKAuthorizationResult) {
         if (result.token != nil) {
             startWorking()
-        }
-        else if (result.error != nil) {
+        } else if (result.error != nil) {
             let alertVC = UIAlertController(title: "", message: "Access denied\n\(result.error)", preferredStyle: UIAlertControllerStyle.alert)
             alertVC.addAction(okButton)
             self.present(alertVC, animated: true, completion: nil)
         }
-        
     }
     
     func vkSdkUserAuthorizationFailed() {
@@ -82,20 +80,16 @@ class LoginController: UIViewController, VKSdkDelegate, VKSdkUIDelegate {
         alertVC.addAction(okButton)
         self.present(alertVC, animated: true, completion: nil)
     }
-    
+}
+
+extension LoginController: VKSdkUIDelegate {
     func vkSdkShouldPresent(_ controller: UIViewController) {
         present(controller, animated: true, completion: nil)
     }
     
-
-    /*
-    // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        // Get the new view controller using segue.destinationViewController.
-        // Pass the selected object to the new view controller.
+    func vkSdkNeedCaptchaEnter(_ captchaError: VKError) {
+        if let captchaVC = VKCaptchaViewController.captchaControllerWithError(captchaError) {
+            present(captchaVC, animated: true, completion: nil)
+        }
     }
-    */
-
 }
