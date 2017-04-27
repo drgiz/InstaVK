@@ -43,9 +43,11 @@ class CommentsController: UITableViewController {
     }
     
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCell(withIdentifier: commentCellIdentifier, for: indexPath) as! CommentCell
-        cell.avatarImage.image = #imageLiteral(resourceName: "Image")
-        cell.commentText.text = "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris"
+        let cell = tableView.dequeueReusableCell(withIdentifier: commentCellIdentifier, for: indexPath)
+        if let commentsCell = cell as?  CommentCell {
+            commentsCell.avatarImage.image = #imageLiteral(resourceName: "Image")
+            commentsCell.commentText.text = "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris"
+        }
         return cell
     }
     
@@ -56,7 +58,7 @@ class CommentsController: UITableViewController {
     }
     
     override func tableView(_ tableView: UITableView, estimatedHeightForRowAt indexPath: IndexPath) -> CGFloat {
-        return 100
+        return 140
     }
 
 
