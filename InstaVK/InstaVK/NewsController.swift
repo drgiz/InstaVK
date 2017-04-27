@@ -14,6 +14,7 @@ fileprivate var SCOPE: [Any]? = nil
 class NewsController: UITableViewController, PictureCellDelegate {
     
     let identifier = "PictureCell"
+    let loginScreenIdentifier = "LoginViewController"
 
 
     override func viewDidLoad() {
@@ -27,7 +28,7 @@ class NewsController: UITableViewController, PictureCellDelegate {
         SCOPE = [VK_PER_FRIENDS, VK_PER_WALL, VK_PER_PHOTOS, VK_PER_EMAIL, VK_PER_MESSAGES]
         VKSdk.wakeUpSession(SCOPE, complete: {(_ state: VKAuthorizationState, _ error: Error?) -> Void in
             if state != VKAuthorizationState.authorized {
-                let lc = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "LoginViewController")
+                let lc = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: self.loginScreenIdentifier)
                 self.present(lc, animated: true, completion: nil)
             }
             else if error != nil {
