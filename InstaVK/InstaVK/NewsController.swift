@@ -7,6 +7,9 @@
 //
 
 import UIKit
+import VK_ios_sdk
+
+fileprivate var SCOPE: [Any]? = nil
 
 class NewsController: UITableViewController, PictureCellDelegate {
     
@@ -21,8 +24,20 @@ class NewsController: UITableViewController, PictureCellDelegate {
         // Uncomment the following line to display an Edit button in the navigation bar for this view controller.
         let nib = UINib (nibName: "PictureCell", bundle: nil)
         self.tableView.register(nib, forCellReuseIdentifier: identifier)
-        //self.tableView!.register(PictureCell.self, forCellReuseIdentifier: identifier)
-        // self.navigationItem.rightBarButtonItem = self.editButtonItem()
+        SCOPE = [VK_PER_FRIENDS, VK_PER_WALL, VK_PER_PHOTOS, VK_PER_EMAIL, VK_PER_MESSAGES]
+        VKSdk.wakeUpSession(SCOPE, complete: {(_ state: VKAuthorizationState, _ error: Error?) -> Void in
+            if state != VKAuthorizationState.authorized {
+                let lc = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "LoginViewController")
+                self.present(lc, animated: true, completion: nil)
+            }
+            else if error != nil {
+                let alertVC = UIAlertController(title: "", message: error.debugDescription, preferredStyle: UIAlertControllerStyle.alert)
+                alertVC.addAction(okButton)
+                self.present(alertVC, animated: true, completion: nil)
+            }
+            
+        })
+        
     }
 
     override func didReceiveMemoryWarning() {
@@ -47,6 +62,7 @@ class NewsController: UITableViewController, PictureCellDelegate {
         let cell = tableView .dequeueReusableCell(withIdentifier: identifier, for: indexPath)
         if let newsCell = cell as? PictureCell {
         newsCell.delegate = self
+        newsCell.postUserAvatar.image = #imageLiteral(resourceName: "Image")
         newsCell.postPicture.image = #imageLiteral(resourceName: "Image")
         }
         //cell.avatarImageView.image = #imageLiteral(resourceName: "Image")
@@ -63,6 +79,17 @@ class NewsController: UITableViewController, PictureCellDelegate {
         navigationController?.pushViewController(commentsControler, animated: true)
     }
     
+    func startWorking() {
+        
+    }
+    
+    
+    // MARK: LogOut button for test purposes
+    @IBAction func logOut(_ sender: Any) {
+        VKSdk.forceLogout()
+        let lc = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "LoginViewController")
+        self.present(lc, animated: true, completion: nil)
+    }
     
     
     /*

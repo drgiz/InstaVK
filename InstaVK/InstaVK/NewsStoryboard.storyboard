@@ -32,7 +32,13 @@
                             <outlet property="delegate" destination="q9Y-4M-bxd" id="5QF-PZ-9m0"/>
                         </connections>
                     </tableView>
-                    <navigationItem key="navigationItem" title="Root View Controller" id="ihc-75-yab"/>
+                    <navigationItem key="navigationItem" title="Root View Controller" id="ihc-75-yab">
+                        <barButtonItem key="rightBarButtonItem" title="LogOut" id="BsG-SC-Ywu">
+                            <connections>
+                                <action selector="logOut:" destination="q9Y-4M-bxd" id="niD-Aw-JHT"/>
+                            </connections>
+                        </barButtonItem>
+                    </navigationItem>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="6CI-O6-oe1" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
