@@ -14,10 +14,15 @@ private let reuseIdentifier2 = "cell2"
 class ProfileController: UICollectionViewController {
     
     @IBAction func pressFollowersButton(_ sender: Any) {
-        let vs : ProfileController
-        vs = storyboard?.instantiateViewController(withIdentifier: "ProfileControllerIdentifier") as! ProfileController
-        navigationController?.pushViewController(vs, animated: true)
+        let followersController = FollowersController.init(id: "id")
+        navigationController?.pushViewController(followersController, animated: true)
+        //vs = storyboard?.instantiateViewController(withIdentifier: "ProfileControllerIdentifier") as! ProfileController
+        //navigationController?.pushViewController(vs, animated: true)
         
+    }
+    @IBAction func pressFollowingButton(_ sender: Any) {
+        let followingController = FollowingController()
+        navigationController?.pushViewController(followingController, animated: true)
     }
 
     override func viewDidLoad() {
@@ -48,7 +53,7 @@ class ProfileController: UICollectionViewController {
     }
     */
 
-    // MARK: UICollectionViewDataSource
+    //MARK: UICollectionViewDataSource
 
     override func numberOfSections(in collectionView: UICollectionView) -> Int {
         return 1
@@ -63,7 +68,9 @@ class ProfileController: UICollectionViewController {
     override func collectionView(_ collectionView: UICollectionView, viewForSupplementaryElementOfKind kind: String, at indexPath: IndexPath) -> UICollectionReusableView {
         
         let header = collectionView.dequeueReusableSupplementaryView(ofKind: UICollectionElementKindSectionHeader, withReuseIdentifier: "header", for: indexPath) as! HeaderProfileView
-        header.profileHeaderImage.image = #imageLiteral(resourceName: "Image")
+        header.profileHeaderImage.image = #imageLiteral(resourceName: "Kevin")
+        header.profileHeaderImage.layer.cornerRadius = 50.0
+        header.profileHeaderImage.clipsToBounds = true
         //header.profileHeaderImage.layer.contents = #imageLiteral(resourceName: "Image").cgImage
         //header.profileHeaderImage.layer.cornerRadius = 50
         //header.profileHeaderImage.layer.borderColor = UIColor.black.cgColor
@@ -77,6 +84,12 @@ class ProfileController: UICollectionViewController {
         cell.imageCell.image = #imageLiteral(resourceName: "Image")
         
         return cell
+    }
+    
+    override func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
+        
+        let pictureController = PictureController()
+        navigationController?.pushViewController(pictureController, animated: true)
     }
     
     
