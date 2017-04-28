@@ -29,21 +29,29 @@
                             <imageView clipsSubviews="YES" userInteractionEnabled="NO" alpha="0.90000000000000002" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="LaunchScreenImage" translatesAutoresizingMaskIntoConstraints="NO" id="BMK-Bn-5TR">
                                 <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                             </imageView>
-                            <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" translatesAutoresizingMaskIntoConstraints="NO" id="QfW-bP-f53">
-                                <rect key="frame" x="81" y="282" width="212" height="103.5"/>
+                            <visualEffectView opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="3VF-ds-Zi7">
+                                <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                                <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" id="hyl-aG-K91">
+                                    <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                                    <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                                </view>
+                                <blurEffect style="dark"/>
+                            </visualEffectView>
+                            <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="8" translatesAutoresizingMaskIntoConstraints="NO" id="QfW-bP-f53">
+                                <rect key="frame" x="81" y="270" width="212" height="127"/>
                                 <subviews>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="InstaVK" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ezV-sv-eXW">
-                                        <rect key="frame" x="0.0" y="0.0" width="212" height="33.5"/>
-                                        <fontDescription key="fontDescription" name="Billabong" family="Billabong" pointSize="27"/>
+                                        <rect key="frame" x="0.0" y="0.0" width="212" height="47"/>
+                                        <fontDescription key="fontDescription" name="Billabong" family="Billabong" pointSize="38"/>
                                         <color key="textColor" cocoaTouchSystemColor="tableCellGroupedBackgroundColor"/>
                                         <nil key="highlightedColor"/>
                                     </label>
-                                    <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="4" translatesAutoresizingMaskIntoConstraints="NO" id="Ylo-d9-dn8">
-                                        <rect key="frame" x="0.0" y="33.5" width="212" height="70"/>
+                                    <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="6" translatesAutoresizingMaskIntoConstraints="NO" id="Ylo-d9-dn8">
+                                        <rect key="frame" x="0.0" y="55" width="212" height="72"/>
                                         <subviews>
                                             <button opaque="NO" contentMode="scaleToFill" verticalHuggingPriority="249" restorationIdentifier="authViaVKButton" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Obz-yg-INY">
                                                 <rect key="frame" x="0.0" y="0.0" width="212" height="33"/>
-                                                <color key="backgroundColor" white="0.66666666666666663" alpha="0.40110585387323944" colorSpace="calibratedWhite"/>
+                                                <color key="backgroundColor" white="0.66666666666666663" alpha="0.445037411971831" colorSpace="calibratedWhite"/>
                                                 <fontDescription key="fontDescription" style="UICTFontTextStyleHeadline"/>
                                                 <state key="normal" title="Auth with VK App">
                                                     <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
@@ -58,8 +66,8 @@
                                                 </connections>
                                             </button>
                                             <button opaque="NO" contentMode="scaleToFill" restorationIdentifier="authViaSafariButton" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="71C-uo-gqk">
-                                                <rect key="frame" x="0.0" y="37" width="212" height="33"/>
-                                                <color key="backgroundColor" white="0.66666666669999997" alpha="0.40110585389999998" colorSpace="calibratedWhite"/>
+                                                <rect key="frame" x="0.0" y="39" width="212" height="33"/>
+                                                <color key="backgroundColor" white="0.66666666669999997" alpha="0.45000000000000001" colorSpace="calibratedWhite"/>
                                                 <fontDescription key="fontDescription" style="UICTFontTextStyleHeadline"/>
                                                 <state key="normal" title="  Auth with login and pass  ">
                                                     <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
@@ -83,10 +91,14 @@
                         <constraints>
                             <constraint firstAttribute="trailing" secondItem="BMK-Bn-5TR" secondAttribute="trailing" id="Fvy-V1-abs"/>
                             <constraint firstItem="BMK-Bn-5TR" firstAttribute="bottom" secondItem="J1G-pO-Kw0" secondAttribute="top" id="Gzd-KH-bCa"/>
+                            <constraint firstItem="3VF-ds-Zi7" firstAttribute="width" secondItem="BMK-Bn-5TR" secondAttribute="width" id="Khc-8C-FrA"/>
                             <constraint firstItem="QfW-bP-f53" firstAttribute="centerX" secondItem="1a9-z4-Tkj" secondAttribute="centerX" id="RiS-x8-h6T"/>
                             <constraint firstItem="BMK-Bn-5TR" firstAttribute="leading" secondItem="1a9-z4-Tkj" secondAttribute="leading" id="Tv4-gn-N4x"/>
                             <constraint firstItem="BMK-Bn-5TR" firstAttribute="top" secondItem="1a9-z4-Tkj" secondAttribute="top" id="Z3b-Gn-f0q"/>
                             <constraint firstItem="QfW-bP-f53" firstAttribute="centerY" secondItem="1a9-z4-Tkj" secondAttribute="centerY" id="eC5-ls-jjJ"/>
+                            <constraint firstItem="3VF-ds-Zi7" firstAttribute="height" secondItem="BMK-Bn-5TR" secondAttribute="height" id="xsR-hj-Lan"/>
+                            <constraint firstItem="3VF-ds-Zi7" firstAttribute="leading" secondItem="BMK-Bn-5TR" secondAttribute="leading" id="yvW-kC-6H4"/>
+                            <constraint firstItem="3VF-ds-Zi7" firstAttribute="top" secondItem="BMK-Bn-5TR" secondAttribute="top" id="znw-D0-Dee"/>
                         </constraints>
                     </view>
                 </viewController>

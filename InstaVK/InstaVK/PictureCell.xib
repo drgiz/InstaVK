@@ -25,12 +25,17 @@
                             <stackView opaque="NO" contentMode="scaleToFill" spacing="6" translatesAutoresizingMaskIntoConstraints="NO" id="cNY-gU-VO7">
                                 <rect key="frame" x="0.0" y="0.0" width="179" height="48"/>
                                 <subviews>
-                                    <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="260" verticalHuggingPriority="260" translatesAutoresizingMaskIntoConstraints="NO" id="C0R-ax-xnr">
+                                    <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="260" verticalHuggingPriority="260" translatesAutoresizingMaskIntoConstraints="NO" id="C0R-ax-xnr">
                                         <rect key="frame" x="0.0" y="0.0" width="48" height="48"/>
                                         <constraints>
                                             <constraint firstAttribute="width" constant="48" id="WVX-dA-7IN"/>
                                             <constraint firstAttribute="height" constant="48" id="dPb-N1-7HM"/>
                                         </constraints>
+                                        <userDefinedRuntimeAttributes>
+                                            <userDefinedRuntimeAttribute type="number" keyPath="layer.cornerRadius">
+                                                <integer key="value" value="20"/>
+                                            </userDefinedRuntimeAttribute>
+                                        </userDefinedRuntimeAttributes>
                                     </imageView>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="First Last Name" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="d2H-hC-x7X">
                                         <rect key="frame" x="54" y="0.0" width="125" height="48"/>
@@ -43,8 +48,8 @@
                             <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="Lcc-ww-wWc">
                                 <rect key="frame" x="0.0" y="54" width="414" height="247.5"/>
                             </imageView>
-                            <stackView opaque="NO" contentMode="scaleToFill" spacing="18" translatesAutoresizingMaskIntoConstraints="NO" id="dtm-be-Zun">
-                                <rect key="frame" x="0.0" y="307.5" width="90" height="36"/>
+                            <stackView opaque="NO" contentMode="scaleToFill" spacing="10" translatesAutoresizingMaskIntoConstraints="NO" id="dtm-be-Zun">
+                                <rect key="frame" x="0.0" y="307.5" width="82" height="36"/>
                                 <subviews>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="jAB-aO-x5x">
                                         <rect key="frame" x="0.0" y="0.0" width="36" height="36"/>
@@ -52,15 +57,15 @@
                                             <constraint firstAttribute="height" constant="36" id="U5h-hg-Nmg"/>
                                             <constraint firstAttribute="width" constant="36" id="fZq-HT-faG"/>
                                         </constraints>
-                                        <state key="normal" title="❤️" image="heartEmpty"/>
+                                        <state key="normal" image="HeartEmpty"/>
                                     </button>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="UnI-0E-lHi">
-                                        <rect key="frame" x="54" y="0.0" width="36" height="36"/>
+                                        <rect key="frame" x="46" y="0.0" width="36" height="36"/>
                                         <constraints>
                                             <constraint firstAttribute="width" constant="36" id="V58-2L-MMX"/>
                                             <constraint firstAttribute="height" constant="36" id="ahn-2g-J6m"/>
                                         </constraints>
-                                        <state key="normal" title="💬" image="chat"/>
+                                        <state key="normal" image="CommentsEmpty"/>
                                         <connections>
                                             <action selector="didTapCommentsButton:" destination="KGk-i7-Jjw" eventType="touchUpInside" id="ejv-UY-H9U"/>
                                         </connections>
@@ -86,7 +91,7 @@
         </tableViewCell>
     </objects>
     <resources>
-        <image name="chat" width="256" height="256"/>
-        <image name="heartEmpty" width="256" height="256"/>
+        <image name="CommentsEmpty" width="43" height="42"/>
+        <image name="HeartEmpty" width="42" height="37"/>
     </resources>
 </document>

@@ -1,21 +1,23 @@
-<?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="11762" systemVersion="15G31" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="DwQ-Pv-t6d">
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="12118" systemVersion="16E195" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="DwQ-Pv-t6d">
     <device id="retina4_7" orientation="portrait">
         <adaptation id="fullscreen"/>
     </device>
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="11757"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="12086"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
-        <!--Profile-->
+        <!--Navigation Controller-->
         <scene sceneID="ACz-iF-Lkx">
             <objects>
                 <navigationController id="DwQ-Pv-t6d" sceneMemberID="viewController">
-                    <tabBarItem key="tabBarItem" title="Profile" id="6v1-Xo-jK7"/>
+                    <tabBarItem key="tabBarItem" title="" image="PersonEmpty" id="6v1-Xo-jK7">
+                        <inset key="imageInsets" minX="0.0" minY="6" maxX="0.0" maxY="-6"/>
+                    </tabBarItem>
                     <simulatedTabBarMetrics key="simulatedBottomBarMetrics"/>
-                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="1w7-3P-ySB">
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" misplaced="YES" id="1w7-3P-ySB">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
                     </navigationBar>
@@ -31,7 +33,7 @@
         <scene sceneID="nLT-XL-scI">
             <objects>
                 <collectionViewController storyboardIdentifier="ProfileControllerIdentifier" id="2pQ-vl-Aiz" customClass="ProfileController" customModule="InstaVK" customModuleProvider="target" sceneMemberID="viewController">
-                    <collectionView key="view" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" dataMode="prototypes" id="Gyw-3u-S72">
+                    <collectionView key="view" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" misplaced="YES" dataMode="prototypes" id="Gyw-3u-S72">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
@@ -133,4 +135,7 @@
             <point key="canvasLocation" x="997.60000000000002" y="293.70314842578711"/>
         </scene>
     </scenes>
+    <resources>
+        <image name="PersonEmpty" width="30" height="30"/>
+    </resources>
 </document>

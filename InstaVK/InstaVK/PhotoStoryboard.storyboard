@@ -1,21 +1,23 @@
-<?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="11762" systemVersion="15G31" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="Mim-ed-NDJ">
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="12118" systemVersion="16E195" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="Mim-ed-NDJ">
     <device id="retina4_7" orientation="portrait">
         <adaptation id="fullscreen"/>
     </device>
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="11757"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="12086"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
-        <!--Photo-->
+        <!--Navigation Controller-->
         <scene sceneID="8fw-x3-pEQ">
             <objects>
                 <navigationController id="Mim-ed-NDJ" sceneMemberID="viewController">
-                    <tabBarItem key="tabBarItem" title="Photo" id="Y9w-du-Tw1"/>
+                    <tabBarItem key="tabBarItem" title="" image="PlusEmpty" id="Y9w-du-Tw1">
+                        <inset key="imageInsets" minX="0.0" minY="6" maxX="0.0" maxY="-6"/>
+                    </tabBarItem>
                     <simulatedTabBarMetrics key="simulatedBottomBarMetrics"/>
-                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="yMv-rK-D4b">
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" misplaced="YES" id="yMv-rK-D4b">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
                     </navigationBar>
@@ -31,7 +33,7 @@
         <scene sceneID="pIY-mp-9MP">
             <objects>
                 <collectionViewController id="QAh-i5-h6y" customClass="PhotoController" customModule="InstaVK" customModuleProvider="target" sceneMemberID="viewController">
-                    <collectionView key="view" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" dataMode="prototypes" id="zb5-3b-V5A">
+                    <collectionView key="view" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" misplaced="YES" dataMode="prototypes" id="zb5-3b-V5A">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
@@ -95,4 +97,7 @@
             <point key="canvasLocation" x="1029.5999999999999" y="375.56221889055473"/>
         </scene>
     </scenes>
+    <resources>
+        <image name="PlusEmpty" width="27" height="27"/>
+    </resources>
 </document>
