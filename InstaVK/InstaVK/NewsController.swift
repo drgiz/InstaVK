@@ -14,10 +14,10 @@ fileprivate var SCOPE: [Any]? = nil
 
 class NewsController: UITableViewController, PictureCellDelegate {
     
-    let identifier = "PictureCell"
+    let identifier = "PictureCellTest"
     let loginScreenIdentifier = "LoginViewController"
     
-    var imageURLs = ["http://www.pravmir.ru/wp-content/uploads/2015/11/image-original.jpg", "http://www.sostav.ru/blogs/images/posts/15/29708.jpg", "http://www.nexplorer.ru/load/Image/1113/koshki_9.jpg", "http://storyfox.ru/wp-content/uploads/2015/11/shutterstock_265075847-696x528.jpg"]
+    var imageURLs = ["http://www.pravmir.ru/wp-content/uploads/2015/11/image-original.jpg", "http://redcat7.ru/wp-content/uploads/2014/01/motivator-s-kotom-pogovori.jpg", "https://4tololo.ru/files/styles/large/public/images/20141911123228.jpg?itok=gdc3Arzv", "http://www.sostav.ru/blogs/images/posts/15/29708.jpg", "http://www.nexplorer.ru/load/Image/1113/koshki_9.jpg", "http://storyfox.ru/wp-content/uploads/2015/11/shutterstock_265075847-696x528.jpg"]
 
 
     override func viewDidLoad() {
@@ -26,8 +26,10 @@ class NewsController: UITableViewController, PictureCellDelegate {
         // Uncomment the following line to preserve selection between presentations
         // self.clearsSelectionOnViewWillAppear = false
         // Uncomment the following line to display an Edit button in the navigation bar for this view controller.
-        let nib = UINib (nibName: "PictureCell", bundle: nil)
+        let nib = UINib (nibName: "PictureCellTest", bundle: nil)
         self.tableView.register(nib, forCellReuseIdentifier: identifier)
+        tableView.rowHeight = UITableViewAutomaticDimension
+        tableView.estimatedRowHeight = 140
         SCOPE = [VK_PER_FRIENDS, VK_PER_WALL, VK_PER_PHOTOS, VK_PER_EMAIL, VK_PER_MESSAGES]
         VKSdk.wakeUpSession(SCOPE, complete: {(_ state: VKAuthorizationState, _ error: Error?) -> Void in
             if state != VKAuthorizationState.authorized {
@@ -64,23 +66,26 @@ class NewsController: UITableViewController, PictureCellDelegate {
     
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView .dequeueReusableCell(withIdentifier: identifier, for: indexPath)
-        if let newsCell = cell as? PictureCell {
+        if let newsCell = cell as? PictureCellTest {
         newsCell.delegate = self
         newsCell.postUserAvatar.image = #imageLiteral(resourceName: "avatarQuadro")
-            //TEST
-            let imageView = newsCell.postPicture!
-            imageView.setShowActivityIndicator(true)
-            imageView.setIndicatorStyle(.gray)
-            imageView.sd_setImage(with: URL(string: imageURLs[indexPath.row]))
+        //TEST
+        let imageView = newsCell.postPicture!
+        imageView.sd_setImage(
+            with: URL(string: imageURLs[indexPath.row]),
+            completed: { (image, error, cached, url) in
+            let scale : CGFloat = image!.size.width/UIScreen.main.bounds.width
+            newsCell.pictureHeight.constant = image!.size.height/scale
+            })
         }
         //cell.avatarImageView.image = #imageLiteral(resourceName: "Image")
         return cell
     }
     
-    override func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
-        let scale : CGFloat = #imageLiteral(resourceName: "Image").size.width/UIScreen.main.bounds.width
-        return #imageLiteral(resourceName: "Image").size.height/scale + 80 + 32
-    }
+//    override func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
+//        let scale : CGFloat = #imageLiteral(resourceName: "Image").size.width/UIScreen.main.bounds.width
+//        return #imageLiteral(resourceName: "Image").size.height/scale + 80 + 32
+//    }
     
     func didTapButton(sender: UITableViewCell) {
         let commentsControler = CommentsController()

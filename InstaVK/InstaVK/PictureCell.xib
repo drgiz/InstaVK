@@ -73,6 +73,10 @@
                                 </subviews>
                             </stackView>
                         </subviews>
+                        <constraints>
+                            <constraint firstAttribute="trailing" secondItem="Lcc-ww-wWc" secondAttribute="trailing" id="QkR-zz-r8V"/>
+                            <constraint firstItem="Lcc-ww-wWc" firstAttribute="leading" secondItem="cvy-ia-kaH" secondAttribute="leading" id="ds1-mE-uA9"/>
+                        </constraints>
                     </stackView>
                 </subviews>
                 <constraints>
