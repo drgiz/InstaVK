@@ -63,7 +63,7 @@ class NewsController: UITableViewController, PictureCellDelegate {
         let cell = tableView .dequeueReusableCell(withIdentifier: identifier, for: indexPath)
         if let newsCell = cell as? PictureCell {
         newsCell.delegate = self
-        newsCell.postUserAvatar.image = #imageLiteral(resourceName: "Image")
+        newsCell.postUserAvatar.image = #imageLiteral(resourceName: "avatarQuadro")
         newsCell.postPicture.image = #imageLiteral(resourceName: "Image")
         }
         //cell.avatarImageView.image = #imageLiteral(resourceName: "Image")

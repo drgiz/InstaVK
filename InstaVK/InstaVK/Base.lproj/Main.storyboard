@@ -38,7 +38,7 @@
                                 <blurEffect style="dark"/>
                             </visualEffectView>
                             <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="8" translatesAutoresizingMaskIntoConstraints="NO" id="QfW-bP-f53">
-                                <rect key="frame" x="81" y="270" width="212" height="127"/>
+                                <rect key="frame" x="81" y="270.5" width="212" height="127"/>
                                 <subviews>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="InstaVK" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ezV-sv-eXW">
                                         <rect key="frame" x="0.0" y="0.0" width="212" height="47"/>

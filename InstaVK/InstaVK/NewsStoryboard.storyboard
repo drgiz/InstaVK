@@ -9,7 +9,7 @@
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
-        <!--InstaVK-->
+        <!-- InstaVK -->
         <scene sceneID="ifS-GG-PDU">
             <objects>
                 <tableViewController id="q9Y-4M-bxd" customClass="NewsController" customModule="InstaVK" customModuleProvider="target" sceneMemberID="viewController">
@@ -32,7 +32,7 @@
                             <outlet property="delegate" destination="q9Y-4M-bxd" id="5QF-PZ-9m0"/>
                         </connections>
                     </tableView>
-                    <navigationItem key="navigationItem" title="InstaVK" id="ihc-75-yab">
+                    <navigationItem key="navigationItem" title=" InstaVK " id="ihc-75-yab">
                         <barButtonItem key="rightBarButtonItem" image="LogOutEmpty" id="BsG-SC-Ywu">
                             <color key="tintColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                             <connections>
