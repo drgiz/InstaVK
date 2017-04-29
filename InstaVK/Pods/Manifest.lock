@@ -1,12 +1,17 @@
 PODS:
+  - SDWebImage (3.8.2):
+    - SDWebImage/Core (= 3.8.2)
+  - SDWebImage/Core (3.8.2)
   - VK-ios-sdk (1.4.6)
 
 DEPENDENCIES:
+  - SDWebImage (~> 3.8)
   - VK-ios-sdk (~> 1.4)
 
 SPEC CHECKSUMS:
+  SDWebImage: 098e97e6176540799c27e804c96653ee0833d13c
   VK-ios-sdk: 7fd48bc5aaa6b96c3197c1987eb6593f2ea67331
 
-PODFILE CHECKSUM: 3875175486982cb5315573b85cb7418d4c85e00f
+PODFILE CHECKSUM: dc8e3f5e521a3efd43b49ae80732445f26a3eca7
 
 COCOAPODS: 1.2.1

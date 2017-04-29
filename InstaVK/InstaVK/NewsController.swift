@@ -8,6 +8,7 @@
 
 import UIKit
 import VK_ios_sdk
+import SDWebImage
 
 fileprivate var SCOPE: [Any]? = nil
 
@@ -15,6 +16,8 @@ class NewsController: UITableViewController, PictureCellDelegate {
     
     let identifier = "PictureCell"
     let loginScreenIdentifier = "LoginViewController"
+    
+    var imageURLs = ["http://www.pravmir.ru/wp-content/uploads/2015/11/image-original.jpg", "http://www.sostav.ru/blogs/images/posts/15/29708.jpg", "http://www.nexplorer.ru/load/Image/1113/koshki_9.jpg", "http://storyfox.ru/wp-content/uploads/2015/11/shutterstock_265075847-696x528.jpg"]
 
 
     override func viewDidLoad() {
@@ -55,7 +58,7 @@ class NewsController: UITableViewController, PictureCellDelegate {
 
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         // #warning Incomplete implementation, return the number of rows
-        return 5
+        return imageURLs.count
     }
 
     
@@ -64,7 +67,11 @@ class NewsController: UITableViewController, PictureCellDelegate {
         if let newsCell = cell as? PictureCell {
         newsCell.delegate = self
         newsCell.postUserAvatar.image = #imageLiteral(resourceName: "avatarQuadro")
-        newsCell.postPicture.image = #imageLiteral(resourceName: "Image")
+            //TEST
+            let imageView = newsCell.postPicture!
+            imageView.setShowActivityIndicator(true)
+            imageView.setIndicatorStyle(.gray)
+            imageView.sd_setImage(with: URL(string: imageURLs[indexPath.row]))
         }
         //cell.avatarImageView.image = #imageLiteral(resourceName: "Image")
         return cell
