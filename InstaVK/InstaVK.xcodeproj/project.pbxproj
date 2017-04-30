@@ -12,8 +12,6 @@
 		113CB15A1E86B4A10054B413 /* ProfileStoryboard.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 113CB1591E86B4A10054B413 /* ProfileStoryboard.storyboard */; };
 		113CB1671E89AC800054B413 /* NewsController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 113CB1661E89AC800054B413 /* NewsController.swift */; };
 		113CB1691E89ACAF0054B413 /* PhotoController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 113CB1681E89ACAF0054B413 /* PhotoController.swift */; };
-		113CB16C1E8B91C60054B413 /* PictureCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 113CB16A1E8B91C60054B413 /* PictureCell.swift */; };
-		113CB16D1E8B91C60054B413 /* PictureCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 113CB16B1E8B91C60054B413 /* PictureCell.xib */; };
 		113CB1741E8EECBC0054B413 /* ProfileController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 113CB1731E8EECBC0054B413 /* ProfileController.swift */; };
 		113CB1761E8FA8EB0054B413 /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = 113CB1751E8FA8EB0054B413 /* User.swift */; };
 		113CB1781E8FB05A0054B413 /* UserPhotoCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 113CB1771E8FB05A0054B413 /* UserPhotoCell.swift */; };
@@ -40,8 +38,8 @@
 		63A455121E93A3C2008C4D5E /* CommentCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 63A455101E93A3C2008C4D5E /* CommentCell.swift */; };
 		63A455131E93A3C2008C4D5E /* CommentCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 63A455111E93A3C2008C4D5E /* CommentCell.xib */; };
 		63A455161E93A7E1008C4D5E /* CommentsController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 63A455141E93A7E1008C4D5E /* CommentsController.swift */; };
-		63C98EC21EB4F6310042D760 /* PictureCellTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 63C98EC01EB4F6310042D760 /* PictureCellTest.swift */; };
-		63C98EC31EB4F6310042D760 /* PictureCellTest.xib in Resources */ = {isa = PBXBuildFile; fileRef = 63C98EC11EB4F6310042D760 /* PictureCellTest.xib */; };
+		63C98EC21EB4F6310042D760 /* PictureCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 63C98EC01EB4F6310042D760 /* PictureCell.swift */; };
+		63C98EC31EB4F6310042D760 /* PictureCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 63C98EC11EB4F6310042D760 /* PictureCell.xib */; };
 		75F7A72321B31287936D92E9 /* Pods_InstaVK.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 74443CE064C6470674577225 /* Pods_InstaVK.framework */; };
 /* End PBXBuildFile section */
 
@@ -52,8 +50,6 @@
 		113CB1591E86B4A10054B413 /* ProfileStoryboard.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = ProfileStoryboard.storyboard; sourceTree = "<group>"; };
 		113CB1661E89AC800054B413 /* NewsController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NewsController.swift; sourceTree = "<group>"; };
 		113CB1681E89ACAF0054B413 /* PhotoController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PhotoController.swift; sourceTree = "<group>"; };
-		113CB16A1E8B91C60054B413 /* PictureCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PictureCell.swift; sourceTree = "<group>"; };
-		113CB16B1E8B91C60054B413 /* PictureCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = PictureCell.xib; sourceTree = "<group>"; };
 		113CB1731E8EECBC0054B413 /* ProfileController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ProfileController.swift; sourceTree = "<group>"; };
 		113CB1751E8FA8EB0054B413 /* User.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = User.swift; sourceTree = "<group>"; };
 		113CB1771E8FB05A0054B413 /* UserPhotoCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UserPhotoCell.swift; sourceTree = "<group>"; };
@@ -82,8 +78,8 @@
 		63A455101E93A3C2008C4D5E /* CommentCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CommentCell.swift; sourceTree = "<group>"; };
 		63A455111E93A3C2008C4D5E /* CommentCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = CommentCell.xib; sourceTree = "<group>"; };
 		63A455141E93A7E1008C4D5E /* CommentsController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CommentsController.swift; sourceTree = "<group>"; };
-		63C98EC01EB4F6310042D760 /* PictureCellTest.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PictureCellTest.swift; sourceTree = "<group>"; };
-		63C98EC11EB4F6310042D760 /* PictureCellTest.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = PictureCellTest.xib; sourceTree = "<group>"; };
+		63C98EC01EB4F6310042D760 /* PictureCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PictureCell.swift; sourceTree = "<group>"; };
+		63C98EC11EB4F6310042D760 /* PictureCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = PictureCell.xib; sourceTree = "<group>"; };
 		74443CE064C6470674577225 /* Pods_InstaVK.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_InstaVK.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		AF8F380F8AECD515A4EA7D1F /* Pods-InstaVK.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-InstaVK.release.xcconfig"; path = "Pods/Target Support Files/Pods-InstaVK/Pods-InstaVK.release.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -138,9 +134,7 @@
 			isa = PBXGroup;
 			children = (
 				63A455101E93A3C2008C4D5E /* CommentCell.swift */,
-				113CB16A1E8B91C60054B413 /* PictureCell.swift */,
-				63C98EC01EB4F6310042D760 /* PictureCellTest.swift */,
-				63C98EC11EB4F6310042D760 /* PictureCellTest.xib */,
+				63C98EC01EB4F6310042D760 /* PictureCell.swift */,
 				1156B20D1E92D4BF00FAEA51 /* ProfileGridCell.swift */,
 				1156B21F1E9ED30400FAEA51 /* PhotoGridCell.swift */,
 				1156B2111E9C1BB800FAEA51 /* FollowerCell.swift */,
@@ -155,7 +149,7 @@
 		113CB1791E8FD8D60054B413 /* Xibs */ = {
 			isa = PBXGroup;
 			children = (
-				113CB16B1E8B91C60054B413 /* PictureCell.xib */,
+				63C98EC11EB4F6310042D760 /* PictureCell.xib */,
 				63A455111E93A3C2008C4D5E /* CommentCell.xib */,
 				1156B2121E9C1BB800FAEA51 /* FollowerCell.xib */,
 				1156B2181E9E473D00FAEA51 /* FollowingCell.xib */,
@@ -298,9 +292,8 @@
 			files = (
 				6394EB5A1EB268BF005AA9DD /* billabong.ttf in Resources */,
 				1156B2141E9C1BB800FAEA51 /* FollowerCell.xib in Resources */,
-				113CB16D1E8B91C60054B413 /* PictureCell.xib in Resources */,
 				113CB1581E86B48A0054B413 /* PhotoStoryboard.storyboard in Resources */,
-				63C98EC31EB4F6310042D760 /* PictureCellTest.xib in Resources */,
+				63C98EC31EB4F6310042D760 /* PictureCell.xib in Resources */,
 				63A455131E93A3C2008C4D5E /* CommentCell.xib in Resources */,
 				1156B21A1E9E473D00FAEA51 /* FollowingCell.xib in Resources */,
 				6394EB571EB266A0005AA9DD /* Launch Screen.storyboard in Resources */,
@@ -373,7 +366,7 @@
 				1156B2191E9E473D00FAEA51 /* FollowingCell.swift in Sources */,
 				1156B20C1E92D3DD00FAEA51 /* HeaderProfileView.swift in Sources */,
 				11FE47641E81DE1F00D57721 /* ViewController.swift in Sources */,
-				63C98EC21EB4F6310042D760 /* PictureCellTest.swift in Sources */,
+				63C98EC21EB4F6310042D760 /* PictureCell.swift in Sources */,
 				1156B21C1E9E51BC00FAEA51 /* PictureController.swift in Sources */,
 				11FE47621E81DE1F00D57721 /* AppDelegate.swift in Sources */,
 				63A455161E93A7E1008C4D5E /* CommentsController.swift in Sources */,
@@ -381,7 +374,6 @@
 				113CB1741E8EECBC0054B413 /* ProfileController.swift in Sources */,
 				1156B21E1E9ED2E000FAEA51 /* HeaderPhotoView.swift in Sources */,
 				1156B2161E9E471300FAEA51 /* FollowingController.swift in Sources */,
-				113CB16C1E8B91C60054B413 /* PictureCell.swift in Sources */,
 				1156B2201E9ED30400FAEA51 /* PhotoGridCell.swift in Sources */,
 				1156B2101E9C155F00FAEA51 /* FollowersController.swift in Sources */,
 				113CB1761E8FA8EB0054B413 /* User.swift in Sources */,
