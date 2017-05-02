@@ -124,6 +124,16 @@ class NewsController: UITableViewController, PictureCellDelegate {
     
     // MARK: LogOut button for test purposes
     @IBAction func logOut(_ sender: Any) {
+        let alertVC = UIAlertController(title: nil, message: nil, preferredStyle: UIAlertControllerStyle.actionSheet)
+        let logOutButton = UIAlertAction(title: "LogOut", style: .destructive, handler: logOutToLoginScreen)
+        let dismiss = UIAlertAction(title: "Cancel", style: UIAlertActionStyle.cancel, handler: nil)
+        alertVC.addAction(logOutButton)
+        alertVC.addAction(dismiss)
+        self.present(alertVC, animated: true, completion: nil)
+        
+    }
+    
+    func logOutToLoginScreen(alert: UIAlertAction){
         VKSdk.forceLogout()
         let lc = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "LoginViewController")
         self.present(lc, animated: true, completion: nil)
