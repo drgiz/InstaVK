@@ -15,7 +15,6 @@ fileprivate var SCOPE: [Any]? = nil
 class NewsController: UITableViewController, PictureCellDelegate {
     
     let identifier = "PictureCell"
-    let loginScreenIdentifier = "LoginViewController"
     
     var imageURLs = ["http://www.pravmir.ru/wp-content/uploads/2015/11/image-original.jpg", "http://redcat7.ru/wp-content/uploads/2014/01/motivator-s-kotom-pogovori.jpg", "https://4tololo.ru/files/styles/large/public/images/20141911123228.jpg?itok=gdc3Arzv", "http://www.sostav.ru/blogs/images/posts/15/29708.jpg", "http://www.nexplorer.ru/load/Image/1113/koshki_9.jpg", "http://storyfox.ru/wp-content/uploads/2015/11/shutterstock_265075847-696x528.jpg", "https://i.ytimg.com/vi/BhJO2Urrq94/hqdefault.jpg", "http://hitgid.com/images/коты-4.jpg", "http://catscountry.ru/wp-content/uploads/2015/10/2.jpg", "http://bm.img.com.ua/nxs/img/prikol/images/large/4/3/160134_288725.jpg"]
 
@@ -27,19 +26,17 @@ class NewsController: UITableViewController, PictureCellDelegate {
         // Uncomment the following line to display an Edit button in the navigation bar for this view controller.
         let nib = UINib (nibName: "PictureCell", bundle: nil)
         self.tableView.register(nib, forCellReuseIdentifier: identifier)
-        SCOPE = [VK_PER_FRIENDS, VK_PER_WALL, VK_PER_PHOTOS, VK_PER_EMAIL, VK_PER_MESSAGES]
-        VKSdk.wakeUpSession(SCOPE, complete: {(_ state: VKAuthorizationState, _ error: Error?) -> Void in
-            if state != VKAuthorizationState.authorized {
-                let lc = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: self.loginScreenIdentifier)
-                self.present(lc, animated: true, completion: nil)
-            }
-            else if error != nil {
-                let alertVC = UIAlertController(title: "", message: error.debugDescription, preferredStyle: UIAlertControllerStyle.alert)
-                alertVC.addAction(okButton)
-                self.present(alertVC, animated: true, completion: nil)
-            }
-            
-        })
+        
+        //TEST
+        func getUsers() {
+            let request: VKRequest = VKApi.friends().get(["order":"name", "count":3, "fields":"domain, photo_100" ])
+            request.execute(resultBlock: { (response: VKResponse<VKApiObject>?) -> Void in
+                print((response?.json as AnyObject).description)
+            },errorBlock: {(_ error: Error?) -> Void in
+                print("Error: \(error.debugDescription)")
+            })
+        }
+        getUsers()
         
         
     }
