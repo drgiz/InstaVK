@@ -49,18 +49,21 @@
         <scene sceneID="2JY-Av-jpC">
             <objects>
                 <navigationController id="2Be-fa-doG" sceneMemberID="viewController">
-                    <tabBarItem key="tabBarItem" title="" image="HouseEmpty" id="1px-Vb-ljT">
+                    <tabBarItem key="tabBarItem" title="" image="HouseEmpty" selectedImage="HouseFilled" id="1px-Vb-ljT">
                         <inset key="imageInsets" minX="0.0" minY="6" maxX="0.0" maxY="-6"/>
                         <offsetWrapper key="titlePositionAdjustment" horizontal="0.0" vertical="0.0"/>
                     </tabBarItem>
                     <simulatedTabBarMetrics key="simulatedBottomBarMetrics"/>
-                    <navigationBar key="navigationBar" contentMode="scaleToFill" misplaced="YES" id="uNL-G0-KaU">
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="uNL-G0-KaU">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
                         <textAttributes key="titleTextAttributes">
                             <fontDescription key="fontDescription" name="Billabong" family="Billabong" pointSize="32"/>
                         </textAttributes>
                     </navigationBar>
+                    <userDefinedRuntimeAttributes>
+                        <userDefinedRuntimeAttribute type="boolean" keyPath="hidesBarsOnSwipe" value="YES"/>
+                    </userDefinedRuntimeAttributes>
                     <connections>
                         <segue destination="q9Y-4M-bxd" kind="relationship" relationship="rootViewController" id="LWk-Mx-Gf9"/>
                     </connections>
@@ -72,6 +75,7 @@
     </scenes>
     <resources>
         <image name="HouseEmpty" width="30" height="30"/>
+        <image name="HouseFilled" width="30" height="30"/>
         <image name="LogOutEmpty" width="30" height="30"/>
     </resources>
 </document>

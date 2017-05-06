@@ -13,11 +13,11 @@
         <scene sceneID="8fw-x3-pEQ">
             <objects>
                 <navigationController id="Mim-ed-NDJ" sceneMemberID="viewController">
-                    <tabBarItem key="tabBarItem" title="" image="PlusEmpty" id="Y9w-du-Tw1">
+                    <tabBarItem key="tabBarItem" title="" image="PlusEmpty" selectedImage="PlusFilled" id="Y9w-du-Tw1">
                         <inset key="imageInsets" minX="0.0" minY="6" maxX="0.0" maxY="-6"/>
                     </tabBarItem>
                     <simulatedTabBarMetrics key="simulatedBottomBarMetrics"/>
-                    <navigationBar key="navigationBar" contentMode="scaleToFill" misplaced="YES" id="yMv-rK-D4b">
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="yMv-rK-D4b">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
                     </navigationBar>
@@ -33,7 +33,7 @@
         <scene sceneID="pIY-mp-9MP">
             <objects>
                 <collectionViewController id="QAh-i5-h6y" customClass="PhotoController" customModule="InstaVK" customModuleProvider="target" sceneMemberID="viewController">
-                    <collectionView key="view" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" misplaced="YES" dataMode="prototypes" id="zb5-3b-V5A">
+                    <collectionView key="view" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" dataMode="prototypes" id="zb5-3b-V5A">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
@@ -99,5 +99,6 @@
     </scenes>
     <resources>
         <image name="PlusEmpty" width="27" height="27"/>
+        <image name="PlusFilled" width="27" height="27"/>
     </resources>
 </document>

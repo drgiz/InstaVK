@@ -13,11 +13,11 @@
         <scene sceneID="ACz-iF-Lkx">
             <objects>
                 <navigationController id="DwQ-Pv-t6d" sceneMemberID="viewController">
-                    <tabBarItem key="tabBarItem" title="" image="PersonEmpty" id="6v1-Xo-jK7">
+                    <tabBarItem key="tabBarItem" title="" image="PersonEmpty" selectedImage="PersonFilled" id="6v1-Xo-jK7">
                         <inset key="imageInsets" minX="0.0" minY="6" maxX="0.0" maxY="-6"/>
                     </tabBarItem>
                     <simulatedTabBarMetrics key="simulatedBottomBarMetrics"/>
-                    <navigationBar key="navigationBar" contentMode="scaleToFill" misplaced="YES" id="1w7-3P-ySB">
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="1w7-3P-ySB">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
                     </navigationBar>
@@ -33,7 +33,7 @@
         <scene sceneID="nLT-XL-scI">
             <objects>
                 <collectionViewController storyboardIdentifier="ProfileControllerIdentifier" id="2pQ-vl-Aiz" customClass="ProfileController" customModule="InstaVK" customModuleProvider="target" sceneMemberID="viewController">
-                    <collectionView key="view" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" misplaced="YES" dataMode="prototypes" id="Gyw-3u-S72">
+                    <collectionView key="view" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" dataMode="prototypes" id="Gyw-3u-S72">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
@@ -137,5 +137,6 @@
     </scenes>
     <resources>
         <image name="PersonEmpty" width="30" height="30"/>
+        <image name="PersonFilled" width="30" height="30"/>
     </resources>
 </document>

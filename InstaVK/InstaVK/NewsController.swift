@@ -67,10 +67,11 @@ class NewsController: UITableViewController, PictureCellDelegate {
         newsCell.postUserAvatar.image = #imageLiteral(resourceName: "Image")
         //TEST
         //let imageView = newsCell.postPicture!
-
-        newsCell.postPicture.sd_setImage(
-            with: URL(string: imageURLs[indexPath.row]),
-            completed: { (image, error, cached, url) in
+            
+            //sd web cache manager что-то там
+            newsCell.postPicture.setShowActivityIndicator(true)
+            newsCell.postPicture.setIndicatorStyle(.gray)
+            newsCell.postPicture.sd_setImage(with: URL(string: imageURLs[indexPath.row]), completed: { (image, error, cached, url) in
                 if let image = image{
                     let scale : CGFloat = image.size.width/UIScreen.main.bounds.width
                     newsCell.postPictureHeight.constant = CGFloat(image.size.height/scale)
@@ -80,7 +81,7 @@ class NewsController: UITableViewController, PictureCellDelegate {
                             self.tableView.beginUpdates()
                             self.tableView.reloadRows(
                                 at: [indexPath],
-                                with: .automatic)
+                                with: .fade)
                             self.tableView.endUpdates()
                         })
                     }
@@ -112,10 +113,6 @@ class NewsController: UITableViewController, PictureCellDelegate {
     func didTapButton(sender: UITableViewCell) {
         let commentsControler = CommentsController()
         navigationController?.pushViewController(commentsControler, animated: true)
-    }
-    
-    func startWorking() {
-        
     }
     
     
