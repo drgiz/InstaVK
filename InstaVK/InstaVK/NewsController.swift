@@ -15,10 +15,16 @@ fileprivate var SCOPE: [Any]? = nil
 class NewsController: UITableViewController, PictureCellDelegate {
     
     let identifier = "PictureCell"
+
     
     var imageURLs = ["http://www.pravmir.ru/wp-content/uploads/2015/11/image-original.jpg", "http://redcat7.ru/wp-content/uploads/2014/01/motivator-s-kotom-pogovori.jpg", "https://4tololo.ru/files/styles/large/public/images/20141911123228.jpg?itok=gdc3Arzv", "http://www.sostav.ru/blogs/images/posts/15/29708.jpg", "http://www.nexplorer.ru/load/Image/1113/koshki_9.jpg", "http://storyfox.ru/wp-content/uploads/2015/11/shutterstock_265075847-696x528.jpg", "https://i.ytimg.com/vi/BhJO2Urrq94/hqdefault.jpg", "http://hitgid.com/images/коты-4.jpg", "http://catscountry.ru/wp-content/uploads/2015/10/2.jpg", "http://bm.img.com.ua/nxs/img/prikol/images/large/4/3/160134_288725.jpg"]
 
-
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        self.navigationController?.hidesBarsOnSwipe = true
+    }
+    
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         // Uncomment the following line to preserve selection between presentations
@@ -27,11 +33,12 @@ class NewsController: UITableViewController, PictureCellDelegate {
         let nib = UINib (nibName: "PictureCell", bundle: nil)
         self.tableView.register(nib, forCellReuseIdentifier: identifier)
         
-        //TEST
         func getUsers() {
             let request: VKRequest = VKApi.friends().get(["order":"name", "count":3, "fields":"domain, photo_100" ])
-            request.execute(resultBlock: { (response: VKResponse<VKApiObject>?) -> Void in
-                print((response?.json as AnyObject).description)
+            request.execute(resultBlock: { (response) -> Void in
+                if let dict = response?.json as? [String:Any] {
+                   print(dict)
+                }
             },errorBlock: {(_ error: Error?) -> Void in
                 print("Error: \(error.debugDescription)")
             })
@@ -131,6 +138,11 @@ class NewsController: UITableViewController, PictureCellDelegate {
         VKSdk.forceLogout()
         let lc = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "LoginViewController")
         self.present(lc, animated: true, completion: nil)
+    }
+    
+    override func viewWillDisappear(_ animated: Bool) {
+        super .viewWillDisappear(animated)
+        self.navigationController?.isNavigationBarHidden = false
     }
     
     

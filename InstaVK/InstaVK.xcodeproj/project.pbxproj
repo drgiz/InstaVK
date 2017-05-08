@@ -31,6 +31,7 @@
 		11FE47671E81DE1F00D57721 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 11FE47651E81DE1F00D57721 /* Main.storyboard */; };
 		11FE476A1E81DE1F00D57721 /* InstaVK.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 11FE47681E81DE1F00D57721 /* InstaVK.xcdatamodeld */; };
 		11FE476C1E81DE1F00D57721 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 11FE476B1E81DE1F00D57721 /* Assets.xcassets */; };
+		63258F5C1EC0AEE100EC7B0A /* NetworkManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 63258F5B1EC0AEE100EC7B0A /* NetworkManager.swift */; };
 		6336C9EC1EAD2B5500235933 /* VkAppUtils.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6336C9EB1EAD2B5500235933 /* VkAppUtils.swift */; };
 		633BD6951EA3EC4500378414 /* LoginController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 633BD6931EA3EC4500378414 /* LoginController.swift */; };
 		6394EB571EB266A0005AA9DD /* Launch Screen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 6394EB561EB266A0005AA9DD /* Launch Screen.storyboard */; };
@@ -71,6 +72,7 @@
 		11FE47691E81DE1F00D57721 /* InstaVK.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = InstaVK.xcdatamodel; sourceTree = "<group>"; };
 		11FE476B1E81DE1F00D57721 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		11FE47701E81DE1F00D57721 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		63258F5B1EC0AEE100EC7B0A /* NetworkManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NetworkManager.swift; sourceTree = "<group>"; };
 		6336C9EB1EAD2B5500235933 /* VkAppUtils.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = VkAppUtils.swift; sourceTree = "<group>"; };
 		633BD6931EA3EC4500378414 /* LoginController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LoginController.swift; sourceTree = "<group>"; };
 		6394EB561EB266A0005AA9DD /* Launch Screen.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = "Launch Screen.storyboard"; sourceTree = "<group>"; };
@@ -185,6 +187,7 @@
 				113CB1791E8FD8D60054B413 /* Xibs */,
 				113CB1301E86A2940054B413 /* Storyboard */,
 				11FE47631E81DE1F00D57721 /* ViewController.swift */,
+				63258F5A1EC0AE9C00EC7B0A /* Services */,
 				6336C9EA1EAD2B1E00235933 /* Utils */,
 				11FE476B1E81DE1F00D57721 /* Assets.xcassets */,
 				6394EB561EB266A0005AA9DD /* Launch Screen.storyboard */,
@@ -201,6 +204,14 @@
 				AF8F380F8AECD515A4EA7D1F /* Pods-InstaVK.release.xcconfig */,
 			);
 			name = Pods;
+			sourceTree = "<group>";
+		};
+		63258F5A1EC0AE9C00EC7B0A /* Services */ = {
+			isa = PBXGroup;
+			children = (
+				63258F5B1EC0AEE100EC7B0A /* NetworkManager.swift */,
+			);
+			name = Services;
 			sourceTree = "<group>";
 		};
 		6336C9EA1EAD2B1E00235933 /* Utils */ = {
@@ -359,6 +370,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				63258F5C1EC0AEE100EC7B0A /* NetworkManager.swift in Sources */,
 				633BD6951EA3EC4500378414 /* LoginController.swift in Sources */,
 				113CB1691E89ACAF0054B413 /* PhotoController.swift in Sources */,
 				113CB1781E8FB05A0054B413 /* UserPhotoCell.swift in Sources */,

@@ -61,9 +61,6 @@
                             <fontDescription key="fontDescription" name="Billabong" family="Billabong" pointSize="32"/>
                         </textAttributes>
                     </navigationBar>
-                    <userDefinedRuntimeAttributes>
-                        <userDefinedRuntimeAttribute type="boolean" keyPath="hidesBarsOnSwipe" value="YES"/>
-                    </userDefinedRuntimeAttributes>
                     <connections>
                         <segue destination="q9Y-4M-bxd" kind="relationship" relationship="rootViewController" id="LWk-Mx-Gf9"/>
                     </connections>
