@@ -7,5 +7,6 @@ target 'InstaVK' do
 
   # Pods for InstaVK
 	pod 'VK-ios-sdk', '~> 1.4'
+	pod 'SDWebImage', '~>3.8'
 
 end

@@ -9,7 +9,7 @@
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
-        <!--Root View Controller-->
+        <!-- InstaVK -->
         <scene sceneID="ifS-GG-PDU">
             <objects>
                 <tableViewController id="q9Y-4M-bxd" customClass="NewsController" customModule="InstaVK" customModuleProvider="target" sceneMemberID="viewController">
@@ -32,8 +32,9 @@
                             <outlet property="delegate" destination="q9Y-4M-bxd" id="5QF-PZ-9m0"/>
                         </connections>
                     </tableView>
-                    <navigationItem key="navigationItem" title="Root View Controller" id="ihc-75-yab">
-                        <barButtonItem key="rightBarButtonItem" title="LogOut" id="BsG-SC-Ywu">
+                    <navigationItem key="navigationItem" title=" InstaVK " id="ihc-75-yab">
+                        <barButtonItem key="rightBarButtonItem" image="LogOutEmpty" id="BsG-SC-Ywu">
+                            <color key="tintColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                             <connections>
                                 <action selector="logOut:" destination="q9Y-4M-bxd" id="niD-Aw-JHT"/>
                             </connections>
@@ -44,15 +45,21 @@
             </objects>
             <point key="canvasLocation" x="-114.40000000000001" y="235.23238380809596"/>
         </scene>
-        <!--News-->
+        <!--Navigation Controller-->
         <scene sceneID="2JY-Av-jpC">
             <objects>
                 <navigationController id="2Be-fa-doG" sceneMemberID="viewController">
-                    <tabBarItem key="tabBarItem" title="News" id="1px-Vb-ljT"/>
+                    <tabBarItem key="tabBarItem" title="" image="HouseEmpty" selectedImage="HouseFilled" id="1px-Vb-ljT">
+                        <inset key="imageInsets" minX="0.0" minY="6" maxX="0.0" maxY="-6"/>
+                        <offsetWrapper key="titlePositionAdjustment" horizontal="0.0" vertical="0.0"/>
+                    </tabBarItem>
                     <simulatedTabBarMetrics key="simulatedBottomBarMetrics"/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" id="uNL-G0-KaU">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
+                        <textAttributes key="titleTextAttributes">
+                            <fontDescription key="fontDescription" name="Billabong" family="Billabong" pointSize="32"/>
+                        </textAttributes>
                     </navigationBar>
                     <connections>
                         <segue destination="q9Y-4M-bxd" kind="relationship" relationship="rootViewController" id="LWk-Mx-Gf9"/>
@@ -63,4 +70,9 @@
             <point key="canvasLocation" x="-1065" y="236"/>
         </scene>
     </scenes>
+    <resources>
+        <image name="HouseEmpty" width="30" height="30"/>
+        <image name="HouseFilled" width="30" height="30"/>
+        <image name="LogOutEmpty" width="30" height="30"/>
+    </resources>
 </document>
