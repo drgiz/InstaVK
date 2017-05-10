@@ -9,7 +9,7 @@
 import Foundation
 
 struct Profile {
-    let userId: String
+    let userId: Int
     let firstName: String
     let lastname: String
     let sex: Int
@@ -19,13 +19,13 @@ struct Profile {
     let online: Int
     
     init(dictionary: [String: Any]) {
-        self.userId = dictionary["id"] as? String ?? ""
+        self.userId = dictionary["uid"] as? Int ?? 0
         self.firstName = dictionary["first_name"] as? String ?? ""
         self.lastname = dictionary["last_name"] as? String ?? ""
         self.sex = dictionary["sex"] as? Int ?? 0
         self.screenName = dictionary["screen_name"] as? String ?? ""
-        self.photo_50 = dictionary["photo_50"] as? String ?? ""
-        self.photo_100 = dictionary["photo_100"] as? String ?? ""
+        self.photo_50 = dictionary["photo"] as? String ?? ""
+        self.photo_100 = dictionary["photo_medium_rec"] as? String ?? ""
         self.online = dictionary["online"] as? Int ?? 0
     }
 }

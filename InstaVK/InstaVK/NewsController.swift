@@ -20,7 +20,7 @@ class NewsController: UITableViewController, PictureCellDelegate {
     var imageURLs = ["http://www.pravmir.ru/wp-content/uploads/2015/11/image-original.jpg", "http://redcat7.ru/wp-content/uploads/2014/01/motivator-s-kotom-pogovori.jpg", "https://4tololo.ru/files/styles/large/public/images/20141911123228.jpg?itok=gdc3Arzv", "http://www.sostav.ru/blogs/images/posts/15/29708.jpg", "http://www.nexplorer.ru/load/Image/1113/koshki_9.jpg", "http://storyfox.ru/wp-content/uploads/2015/11/shutterstock_265075847-696x528.jpg", "https://i.ytimg.com/vi/BhJO2Urrq94/hqdefault.jpg", "http://hitgid.com/images/коты-4.jpg", "http://catscountry.ru/wp-content/uploads/2015/10/2.jpg", "http://bm.img.com.ua/nxs/img/prikol/images/large/4/3/160134_288725.jpg"]
     
     var posts = [Post]()
-    var profiles = [Profile]()
+    var profiles = [Int:Profile]()
 
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
@@ -74,9 +74,9 @@ class NewsController: UITableViewController, PictureCellDelegate {
                 guard let responseDict = jsonDict["response"] as? [String: Any] else { return }
                 guard let profilesDict = responseDict["profiles"] as? [[String: Any]] else { return }
                 for profile in profilesDict {
-                    //print(profile)
-                    let profile = Profile(dictionary: profile)
-                    self.profiles.append(profile)
+                    if let profileId = profile["uid"] as? Int {
+                        self.profiles[profileId] = Profile(dictionary: profile)
+                    }
                 }
                 print(self.profiles)
                 guard let itemsDict = responseDict["items"] as? [[String: Any]] else { return }
@@ -84,7 +84,8 @@ class NewsController: UITableViewController, PictureCellDelegate {
                     guard let photosArray = item["photos"] as? [Any] else { return }
                     guard let photosDict = photosArray[1] as? [String: Any] else { return }
                     guard let photoUrl = photosDict["src_xbig"] else { return }
-                    let post = Post(imageUrl: photoUrl as! String)
+                    guard let ownerId = photosDict["owner_id"] else { return }
+                    let post = Post(imageUrl: photoUrl as! String, ownerId: ownerId as! Int) //TO-DO: Fix it like Profile struct
                     self.posts.append(post)
                 }
                 DispatchQueue.main.async(execute: { () -> Void in
