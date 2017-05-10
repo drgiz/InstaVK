@@ -55,18 +55,11 @@ class NewsController: UITableViewController, PictureCellDelegate {
         })
     }
     
-    //FORCED to use api request vs sdk dut to unavailable newsfeed method in sdk
+    //FORCED to use api request vs sdk due to unavailable newsfeed method in sdk
     func fetchPosts() {
-        let components = NSURLComponents()
-        components.scheme = "https"
-        components.host = "api.vk.com"
-        components.path = "/method/newsfeed.get"
-        let filtersItem = URLQueryItem(name: "filters", value: "photo")
-        let countItem = URLQueryItem(name: "count", value: "10")
-        let accessToken = URLQueryItem(name: "access_token", value: VKSdk.accessToken().accessToken)
-        components.queryItems = [accessToken, countItem, filtersItem]
-        guard let url = components.url else { return }
-        //print(url)
+        guard let url = vkApiUrlBuilder(vkApiMethod: "newsfeed.get", queryItems: ["filters":"photo", "count":"10", "access_token":VKSdk.accessToken().accessToken]) else {
+            return
+        }
         
         URLSession.shared.dataTask(with: url, completionHandler: { (data, response, error) in
             if error != nil {
@@ -93,6 +86,25 @@ class NewsController: UITableViewController, PictureCellDelegate {
                 print(jsonError)
             }
         }) .resume()
+    }
+    
+    func vkApiUrlBuilder(vkApiMethod: String, queryItems: [String:String]...) -> URL? {
+        let components = NSURLComponents()
+        components.scheme = "https"
+        components.host = "api.vk.com"
+        components.path = "/method/"+vkApiMethod
+        var items = [URLQueryItem]()
+        for item in queryItems {
+            for (name, value) in item {
+                items.append(URLQueryItem(name: name, value: value))
+            }
+        }
+        components.queryItems = items
+        if let url = components.url {
+            return url
+        } else {
+            return nil
+        }
     }
     
     
