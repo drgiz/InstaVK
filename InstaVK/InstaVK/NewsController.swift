@@ -192,7 +192,7 @@ class NewsController: UITableViewController, PictureCellDelegate {
     }
     
     override func viewWillDisappear(_ animated: Bool) {
-        super .viewWillDisappear(animated)
+        super.viewWillDisappear(animated)
         self.navigationController?.isNavigationBarHidden = false
     }
     
