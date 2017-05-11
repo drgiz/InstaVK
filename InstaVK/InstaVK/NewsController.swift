@@ -141,6 +141,9 @@ class NewsController: UITableViewController, PictureCellDelegate {
         if let newsCell = cell as? PictureCell {
         newsCell.delegate = self
         newsCell.postUserAvatar.image = #imageLiteral(resourceName: "Image")
+        //Attention, unsafe unwrapping, only for test!
+        newsCell.postUserFirstNameLastName.text = (profiles[posts[indexPath.row].ownerId]?.firstName)! + " " + (profiles[posts[indexPath.row].ownerId]?.lastName)!
+        newsCell.postUserAvatar.sd_setImage(with: URL(string: (profiles[posts[indexPath.row].ownerId]?.photo_50)!))
         //TEST
         //let imageView = newsCell.postPicture!
             

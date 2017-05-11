@@ -11,7 +11,7 @@ import Foundation
 struct Profile {
     let userId: Int
     let firstName: String
-    let lastname: String
+    let lastName: String
     let sex: Int
     let screenName: String
     let photo_50: String
@@ -21,7 +21,7 @@ struct Profile {
     init(dictionary: [String: Any]) {
         self.userId = dictionary["uid"] as? Int ?? 0
         self.firstName = dictionary["first_name"] as? String ?? ""
-        self.lastname = dictionary["last_name"] as? String ?? ""
+        self.lastName = dictionary["last_name"] as? String ?? ""
         self.sex = dictionary["sex"] as? Int ?? 0
         self.screenName = dictionary["screen_name"] as? String ?? ""
         self.photo_50 = dictionary["photo"] as? String ?? ""
