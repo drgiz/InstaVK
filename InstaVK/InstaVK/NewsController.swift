@@ -46,7 +46,6 @@ class NewsController: UITableViewController, PictureCellDelegate {
         let request: VKRequest = VKApi.friends().get(["order":"name", "count":3, "fields":"domain, photo_100" ])
         request.execute(resultBlock: { (response) -> Void in
             guard let dictionaries = response?.json as? [String:Any] else { return }
-            //print(dictionaries)
             dictionaries.forEach({ (key, value) in
                 guard let dictionary = value as? [String: Any] else { return }
                 print(dictionary)
@@ -69,23 +68,23 @@ class NewsController: UITableViewController, PictureCellDelegate {
             }
             
             do {
+                //в JSONе приходит отдельный словарь на профайлы и отдельный на фотографии
                 let json = try JSONSerialization.jsonObject(with: data!, options: .mutableContainers)
                 guard let jsonDict = json as? [String: Any] else { return }
                 guard let responseDict = jsonDict["response"] as? [String: Any] else { return }
                 guard let profilesDict = responseDict["profiles"] as? [[String: Any]] else { return }
+                //добавляем профайл в словарь наших профайлов чтобы подтягивать оттуда информацию о пользователе
                 for profile in profilesDict {
                     if let profileId = profile["uid"] as? Int {
                         self.profiles[profileId] = Profile(dictionary: profile)
                     }
                 }
-                print(self.profiles)
                 guard let itemsDict = responseDict["items"] as? [[String: Any]] else { return }
+                //из items вытягиваем информацию о постах и добавляем в наш массив постов
                 for item in itemsDict {
                     guard let photosArray = item["photos"] as? [Any] else { return }
                     guard let photosDict = photosArray[1] as? [String: Any] else { return }
-                    guard let photoUrl = photosDict["src_xbig"] else { return }
-                    guard let ownerId = photosDict["owner_id"] else { return }
-                    let post = Post(imageUrl: photoUrl as! String, ownerId: ownerId as! Int) //TO-DO: Fix it like Profile struct
+                    let post = Post(dictionary: photosDict)
                     self.posts.append(post)
                 }
                 DispatchQueue.main.async(execute: { () -> Void in
@@ -149,7 +148,7 @@ class NewsController: UITableViewController, PictureCellDelegate {
             newsCell.postPicture.setShowActivityIndicator(true)
             newsCell.postPicture.setIndicatorStyle(.gray)
             newsCell.postPicture.contentMode = .scaleAspectFit
-            newsCell.postPicture.sd_setImage(with: URL(string: posts[indexPath.row].imageUrl), completed: { (image, error, cached, url) in
+            newsCell.postPicture.sd_setImage(with: URL(string: posts[indexPath.row].imageUrl_604), completed: { (image, error, cached, url) in
                 if let image = image{
                     let scale : CGFloat = image.size.width/UIScreen.main.bounds.width
                     newsCell.postPictureHeight.constant = CGFloat(image.size.height/scale)
