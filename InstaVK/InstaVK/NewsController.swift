@@ -40,21 +40,7 @@ class NewsController: UITableViewController, PictureCellDelegate {
         
         
     }
-    
-    //TEST
-    func getUsers() {
-        let request: VKRequest = VKApi.friends().get(["order":"name", "count":3, "fields":"domain, photo_100" ])
-        request.execute(resultBlock: { (response) -> Void in
-            guard let dictionaries = response?.json as? [String:Any] else { return }
-            dictionaries.forEach({ (key, value) in
-                guard let dictionary = value as? [String: Any] else { return }
-                print(dictionary)
-            })
-        },errorBlock: {(_ error: Error?) -> Void in
-            print("Error: \(error.debugDescription)")
-        })
-    }
-    
+        
     //FORCED to use api request vs sdk due to unavailable newsfeed method in sdk
     func fetchPosts() {
         guard let url = vkApiUrlBuilder(vkApiMethod: "newsfeed.get", queryItems: ["filters":"photo", "count":"10", "access_token":VKSdk.accessToken().accessToken]) else {
@@ -96,27 +82,7 @@ class NewsController: UITableViewController, PictureCellDelegate {
         }) .resume()
     }
     
-    func vkApiUrlBuilder(vkApiMethod: String, queryItems: [String:String]...) -> URL? {
-        let components = NSURLComponents()
-        components.scheme = "https"
-        components.host = "api.vk.com"
-        components.path = "/method/"+vkApiMethod
-        var items = [URLQueryItem]()
-        for item in queryItems {
-            for (name, value) in item {
-                items.append(URLQueryItem(name: name, value: value))
-            }
-        }
-        components.queryItems = items
-        if let url = components.url {
-            return url
-        } else {
-            return nil
-        }
-    }
     
-    
-
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
@@ -141,9 +107,17 @@ class NewsController: UITableViewController, PictureCellDelegate {
         if let newsCell = cell as? PictureCell {
         newsCell.delegate = self
         newsCell.postUserAvatar.image = #imageLiteral(resourceName: "Image")
-        //Attention, unsafe unwrapping, only for test!
-        newsCell.postUserFirstNameLastName.text = (profiles[posts[indexPath.row].ownerId]?.firstName)! + " " + (profiles[posts[indexPath.row].ownerId]?.lastName)!
-        newsCell.postUserAvatar.sd_setImage(with: URL(string: (profiles[posts[indexPath.row].ownerId]?.photo_50)!))
+        if let postOwnerFirstName = profiles[posts[indexPath.row].ownerId]?.firstName, let postOwnerSecondName = profiles[posts[indexPath.row].ownerId]?.lastName {
+            newsCell.postUserFirstNameLastName.text = postOwnerFirstName + " " + postOwnerSecondName
+        } else {
+            newsCell.postUserFirstNameLastName.text = "Unawailable"
+        }
+        if let postOwnerAvatarUrl = profiles[posts[indexPath.row].ownerId]?.photo_50 {
+            newsCell.postUserAvatar.sd_setImage(with: URL(string: postOwnerAvatarUrl))
+        } else {
+            newsCell.postUserAvatar.image = #imageLiteral(resourceName: "error404")
+        }
+        
         //TEST
         //let imageView = newsCell.postPicture!
             
