@@ -14,8 +14,8 @@ struct Profile {
     let lastName: String
     let sex: Int
     let screenName: String
-    let photo_50: String
-    let photo_100: String
+    let photoUrl_50: String
+    let photoUrl_100: String
     let online: Int
     
     init(dictionary: [String: Any]) {
@@ -24,8 +24,8 @@ struct Profile {
         self.lastName = dictionary["last_name"] as? String ?? ""
         self.sex = dictionary["sex"] as? Int ?? 0
         self.screenName = dictionary["screen_name"] as? String ?? ""
-        self.photo_50 = dictionary["photo"] as? String ?? ""
-        self.photo_100 = dictionary["photo_medium_rec"] as? String ?? ""
+        self.photoUrl_50 = dictionary["photo"] as? String ?? ""
+        self.photoUrl_100 = dictionary["photo_medium_rec"] as? String ?? ""
         self.online = dictionary["online"] as? Int ?? 0
     }
 }

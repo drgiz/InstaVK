@@ -14,7 +14,7 @@ fileprivate var SCOPE: [Any]? = nil
 
 class NewsController: UITableViewController, PictureCellDelegate {
     
-    let identifier = "PictureCell"
+    let pictureCellIdentifier = "PictureCell"
 
     //Array of cats to make the day, actually for test purposes here
     var imageURLs = ["http://www.pravmir.ru/wp-content/uploads/2015/11/image-original.jpg", "http://redcat7.ru/wp-content/uploads/2014/01/motivator-s-kotom-pogovori.jpg", "https://4tololo.ru/files/styles/large/public/images/20141911123228.jpg?itok=gdc3Arzv", "http://www.sostav.ru/blogs/images/posts/15/29708.jpg", "http://www.nexplorer.ru/load/Image/1113/koshki_9.jpg", "http://storyfox.ru/wp-content/uploads/2015/11/shutterstock_265075847-696x528.jpg", "https://i.ytimg.com/vi/BhJO2Urrq94/hqdefault.jpg", "http://hitgid.com/images/коты-4.jpg", "http://catscountry.ru/wp-content/uploads/2015/10/2.jpg", "http://bm.img.com.ua/nxs/img/prikol/images/large/4/3/160134_288725.jpg"]
@@ -34,7 +34,7 @@ class NewsController: UITableViewController, PictureCellDelegate {
         // self.clearsSelectionOnViewWillAppear = false
         // Uncomment the following line to display an Edit button in the navigation bar for this view controller.
         let nib = UINib (nibName: "PictureCell", bundle: nil)
-        self.tableView.register(nib, forCellReuseIdentifier: identifier)
+        self.tableView.register(nib, forCellReuseIdentifier: pictureCellIdentifier)
         
         fetchPosts()
         
@@ -43,7 +43,10 @@ class NewsController: UITableViewController, PictureCellDelegate {
         
     //FORCED to use api request vs sdk due to unavailable newsfeed method in sdk
     func fetchPosts() {
-        guard let url = vkApiUrlBuilder(vkApiMethod: "newsfeed.get", queryItems: ["filters":"photo", "count":"10", "access_token":VKSdk.accessToken().accessToken]) else {
+        guard let vkAccessToken = VKSdk.accessToken().accessToken else {
+            return
+        }
+        guard let url = vkApiUrlBuilder(vkApiMethod: "newsfeed.get", queryItems: ["filters":"photo", "count":"10", "access_token":vkAccessToken]) else {
             return
         }
         
@@ -103,20 +106,22 @@ class NewsController: UITableViewController, PictureCellDelegate {
 
     
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = tableView .dequeueReusableCell(withIdentifier: identifier, for: indexPath)
+        let cell = tableView .dequeueReusableCell(withIdentifier: pictureCellIdentifier, for: indexPath)
         if let newsCell = cell as? PictureCell {
         newsCell.delegate = self
-        newsCell.postUserAvatar.image = #imageLiteral(resourceName: "Image")
         if let postOwnerFirstName = profiles[posts[indexPath.row].ownerId]?.firstName, let postOwnerSecondName = profiles[posts[indexPath.row].ownerId]?.lastName {
             newsCell.postUserFirstNameLastName.text = postOwnerFirstName + " " + postOwnerSecondName
         } else {
             newsCell.postUserFirstNameLastName.text = "Unawailable"
         }
-        if let postOwnerAvatarUrl = profiles[posts[indexPath.row].ownerId]?.photo_50 {
+        if let postOwnerAvatarUrl = profiles[posts[indexPath.row].ownerId]?.photoUrl_50 {
+            newsCell.postUserAvatar.setShowActivityIndicator(true)
+            newsCell.postUserAvatar.setIndicatorStyle(.gray)
             newsCell.postUserAvatar.sd_setImage(with: URL(string: postOwnerAvatarUrl))
         } else {
             newsCell.postUserAvatar.image = #imageLiteral(resourceName: "error404")
         }
+        //if let postLikedByUser = profiles[posts[indexPath.row].likes[]
         
         //TEST
         //let imageView = newsCell.postPicture!
@@ -124,15 +129,19 @@ class NewsController: UITableViewController, PictureCellDelegate {
             //sd web cache manager что-то там
             newsCell.postPicture.setShowActivityIndicator(true)
             newsCell.postPicture.setIndicatorStyle(.gray)
-            newsCell.postPicture.contentMode = .scaleAspectFit
+//            newsCell.postPicture.contentMode = .scaleAspectFit
+            let scale: CGFloat = CGFloat(posts[indexPath.row].imageWidth)/UIScreen.main.bounds.width
+//            print(scale)
+            newsCell.postPictureHeight.constant = CGFloat(posts[indexPath.row].imageHeight)/scale
             newsCell.postPicture.sd_setImage(with: URL(string: posts[indexPath.row].imageUrl_604), completed: { (image, error, cached, url) in
                 if let image = image{
-                    let scale : CGFloat = image.size.width/UIScreen.main.bounds.width
-                    newsCell.postPictureHeight.constant = CGFloat(image.size.height/scale)
-                    newsCell.postPicture.contentMode = .scaleToFill
+//                    let scale : CGFloat = image.size.width/UIScreen.main.bounds.width
+////                    newsCell.postPictureHeight.constant = CGFloat(image.size.height/scale)
+//                    newsCell.postPicture.contentMode = .scaleToFill
                     //print(cached.hashValue)
                     if cached.rawValue == 1 {
                         DispatchQueue.main.async(execute: { () -> Void in
+                            //self.tableView.reloadData()
                             self.tableView.beginUpdates()
                             self.tableView.reloadRows(
                                 at: [indexPath],

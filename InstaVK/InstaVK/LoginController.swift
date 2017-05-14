@@ -13,7 +13,12 @@ fileprivate var SCOPE: [Any]? = nil
 let okButton = UIAlertAction(title: "OK", style: .destructive, handler: nil) //TO-DO move to helper class
 
 
+let mainTabBarIdentifier = "mainTabBar"
+
+
 class LoginController: UIViewController {
+    
+    var window: UIWindow?
 
     override func viewDidLoad() {
         SCOPE = [VK_PER_FRIENDS, VK_PER_WALL, VK_PER_PHOTOS, VK_PER_EMAIL, VK_PER_MESSAGES]
@@ -47,9 +52,8 @@ extension LoginController: VKSdkDelegate {
     
     func vkSdkAccessAuthorizationFinished(with result: VKAuthorizationResult) {
         if (result.token != nil) {
-            print("trying to dismiss")
-            self.presentingViewController?.dismiss(animated: true, completion: nil)
-            //self.dismiss(animated: true, completion: nil)
+            let viewController = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: mainTabBarIdentifier) as! UITabBarController
+            UIApplication.shared.keyWindow?.rootViewController = viewController
         } else if (result.error != nil) {
             let alertVC = UIAlertController(title: "", message: "Access denied\n\(result.error)", preferredStyle: UIAlertControllerStyle.alert)
             alertVC.addAction(okButton)
