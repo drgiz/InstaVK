@@ -153,9 +153,14 @@ class NewsController: UITableViewController, PictureCellDelegate {
                     newsCell.postPicture.image = #imageLiteral(resourceName: "error404")
                 }
             })
+            //TO-DO: Fix reusable element
+            if let userLikesPost = posts[indexPath.row].likes["user_likes"] {
+                if userLikesPost == 1 {
+                    newsCell.postLikeButton.setImage(#imageLiteral(resourceName: "HeartFilled"), for: .normal)
+                }
             }
+        }
         
-        //if let
         return cell
     }
     
