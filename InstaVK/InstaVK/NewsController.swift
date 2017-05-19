@@ -153,7 +153,6 @@ class NewsController: UITableViewController, PictureCellDelegate {
                     newsCell.postPicture.image = #imageLiteral(resourceName: "error404")
                 }
             })
-            //TO-DO: Fix reusable element
             if let userLikesPost = posts[indexPath.row].likes["user_likes"] {
                 if userLikesPost == 1 {
                     newsCell.postLikeButton.setImage(#imageLiteral(resourceName: "HeartFilled"), for: .normal)
@@ -194,6 +193,12 @@ class NewsController: UITableViewController, PictureCellDelegate {
         self.present(alertVC, animated: true, completion: nil)
         
     }
+    
+    @IBAction func handleCamera(_ sender: Any) {
+        let cameraController = CameraController()
+        present(cameraController, animated: true, completion: nil)
+    }
+    
     
     func logOutToLoginScreen(alert: UIAlertAction){
         VKSdk.forceLogout()
