@@ -3,10 +3,11 @@
 //  InstaVK
 //
 //  Created by Svyatoslav Bykov on 20.05.17.
-//  Copyright © 2017 Nikita Susoev. All rights reserved.
+//  Copyright © 2017 InstaVK. All rights reserved.
 //
 
 import UIKit
+import Photos
 
 class PreviewPhotoView: UIView {
     
@@ -31,6 +32,51 @@ class PreviewPhotoView: UIView {
     
     func handleSave() {
         print("Trying to save")
+        
+        guard let previewImage = previewImageView.image else {
+            return
+        }
+        
+        let library = PHPhotoLibrary.shared()
+        
+        library.performChanges({ 
+            PHAssetChangeRequest.creationRequestForAsset(from: previewImage)
+        }) { (success, error) in
+            if let error = error {
+                print("Failed to save image to library", error)
+            }
+            print("Successfull saved image to library")
+            
+            DispatchQueue.main.async {
+                let savedLabel = UILabel()
+                savedLabel.text = "Saved Successfully"
+                savedLabel.font = UIFont.boldSystemFont(ofSize: 18)
+                savedLabel.textColor = .white
+                savedLabel.textAlignment = .center
+                savedLabel.numberOfLines = 0
+                savedLabel.layer.cornerRadius = 5
+                savedLabel.layer.masksToBounds = true
+                savedLabel.backgroundColor = UIColor(white: 0, alpha: 0.3)
+                
+                savedLabel.frame = CGRect(x: 0, y: 0, width: 160, height: 80)
+                savedLabel.center = self.center
+                
+                self.addSubview(savedLabel)
+                
+                savedLabel.layer.transform = CATransform3DMakeScale(0, 0, 0)
+                
+                UIView.animate(withDuration: 0.5, delay: 0, usingSpringWithDamping: 0.5, initialSpringVelocity: 0.5, options: .curveEaseOut, animations: {
+                    savedLabel.layer.transform = CATransform3DMakeScale(1, 1, 1)
+                }, completion: { (completed) in
+                    UIView.animate(withDuration: 0.5, delay: 0.75, usingSpringWithDamping: 0.5, initialSpringVelocity: 0.5, options: .curveEaseOut, animations: { 
+                        savedLabel.layer.transform = CATransform3DMakeScale(0.1, 0.1, 0.1)
+                        savedLabel.alpha = 0
+                    }, completion: { (_) in
+                        savedLabel.removeFromSuperview()
+                    })
+                })
+            }
+        }
     }
     
     func handleCancel() {
