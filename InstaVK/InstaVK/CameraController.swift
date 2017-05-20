@@ -38,13 +38,17 @@ class CameraController: UIViewController,AVCapturePhotoCaptureDelegate {
         
     }
     
+    override var prefersStatusBarHidden: Bool {
+        return true
+    }
+    
     fileprivate func setupButtons() {
         view.addSubview(makePhotoButton)
         makePhotoButton.anchor(top: nil, left: nil, bottom: view.bottomAnchor, right: nil, paddingTop: 0, paddingLeft: 0, paddingBottom: 24, paddingRight: 0, width: 80, height: 80)
         makePhotoButton.centerXAnchor.constraint(equalTo: view.centerXAnchor).isActive = true
         
         view.addSubview(dismissButton)
-        dismissButton.anchor(top: view.topAnchor, left: view.leftAnchor, bottom: nil, right: nil, paddingTop: 18, paddingLeft: 6, paddingBottom: 0, paddingRight: 0, width: 50, height: 50)
+        dismissButton.anchor(top: view.topAnchor, left: view.leftAnchor, bottom: nil, right: nil, paddingTop: 12, paddingLeft: 6, paddingBottom: 0, paddingRight: 0, width: 50, height: 50)
     }
     
     func handleCapturePhoto() {
@@ -67,11 +71,16 @@ class CameraController: UIViewController,AVCapturePhotoCaptureDelegate {
         
         let previewImage = UIImage(data: imageData!)
         
-        let previewImageView = UIImageView(image: previewImage)
-        view.addSubview(previewImageView)
-        previewImageView.anchor(top: view.topAnchor, left: view.leftAnchor, bottom: view.bottomAnchor, right: view.rightAnchor, paddingTop: 0, paddingLeft: 0, paddingBottom: 0, paddingRight: 0, width: 0, height: 0)
+        let containerView = PreviewPhotoView()
+        containerView.previewImageView.image = previewImage
+        view.addSubview(containerView)
+        containerView.anchor(top: view.topAnchor, left: view.leftAnchor, bottom: view.bottomAnchor, right: view.rightAnchor, paddingTop: 0, paddingLeft: 0, paddingBottom: 0, paddingRight: 0, width: 0, height: 0)
         
-        print("Finish photo processing")
+//        let previewImageView = UIImageView(image: previewImage)
+//        view.addSubview(previewImageView)
+//        previewImageView.anchor(top: view.topAnchor, left: view.leftAnchor, bottom: view.bottomAnchor, right: view.rightAnchor, paddingTop: 0, paddingLeft: 0, paddingBottom: 0, paddingRight: 0, width: 0, height: 0)
+//        
+//        print("Finish photo processing")
     }
     
     let output = AVCapturePhotoOutput()
