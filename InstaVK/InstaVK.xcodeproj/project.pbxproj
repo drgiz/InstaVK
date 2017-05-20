@@ -42,6 +42,8 @@
 		63A455161E93A7E1008C4D5E /* CommentsController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 63A455141E93A7E1008C4D5E /* CommentsController.swift */; };
 		63C98EC21EB4F6310042D760 /* PictureCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 63C98EC01EB4F6310042D760 /* PictureCell.swift */; };
 		63C98EC31EB4F6310042D760 /* PictureCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 63C98EC11EB4F6310042D760 /* PictureCell.xib */; };
+		63E3C8E51ED052C6006C6A61 /* PreviewPhotoView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 63E3C8E41ED052C6006C6A61 /* PreviewPhotoView.swift */; };
+		63EE85871ECF97CF00B79D22 /* CameraController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 63EE85861ECF97CF00B79D22 /* CameraController.swift */; };
 		75F7A72321B31287936D92E9 /* Pods_InstaVK.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 74443CE064C6470674577225 /* Pods_InstaVK.framework */; };
 /* End PBXBuildFile section */
 
@@ -84,6 +86,8 @@
 		63A455141E93A7E1008C4D5E /* CommentsController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CommentsController.swift; sourceTree = "<group>"; };
 		63C98EC01EB4F6310042D760 /* PictureCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PictureCell.swift; sourceTree = "<group>"; };
 		63C98EC11EB4F6310042D760 /* PictureCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = PictureCell.xib; sourceTree = "<group>"; };
+		63E3C8E41ED052C6006C6A61 /* PreviewPhotoView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PreviewPhotoView.swift; sourceTree = "<group>"; };
+		63EE85861ECF97CF00B79D22 /* CameraController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CameraController.swift; sourceTree = "<group>"; };
 		74443CE064C6470674577225 /* Pods_InstaVK.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_InstaVK.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		AF8F380F8AECD515A4EA7D1F /* Pods-InstaVK.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-InstaVK.release.xcconfig"; path = "Pods/Target Support Files/Pods-InstaVK/Pods-InstaVK.release.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -131,6 +135,7 @@
 				1156B2151E9E471300FAEA51 /* FollowingController.swift */,
 				63A455141E93A7E1008C4D5E /* CommentsController.swift */,
 				1156B21B1E9E51BC00FAEA51 /* PictureController.swift */,
+				63EE85861ECF97CF00B79D22 /* CameraController.swift */,
 			);
 			name = Controller;
 			sourceTree = "<group>";
@@ -147,6 +152,7 @@
 				113CB1771E8FB05A0054B413 /* UserPhotoCell.swift */,
 				1156B20B1E92D3DD00FAEA51 /* HeaderProfileView.swift */,
 				1156B21D1E9ED2E000FAEA51 /* HeaderPhotoView.swift */,
+				63E3C8E41ED052C6006C6A61 /* PreviewPhotoView.swift */,
 			);
 			name = View;
 			sourceTree = "<group>";
@@ -277,6 +283,7 @@
 				TargetAttributes = {
 					11FE475D1E81DE1F00D57721 = {
 						CreatedOnToolsVersion = 8.2.1;
+						DevelopmentTeam = LBW34LLWG3;
 						ProvisioningStyle = Automatic;
 					};
 				};
@@ -383,8 +390,10 @@
 				1156B20C1E92D3DD00FAEA51 /* HeaderProfileView.swift in Sources */,
 				11FE47641E81DE1F00D57721 /* ViewController.swift in Sources */,
 				63C98EC21EB4F6310042D760 /* PictureCell.swift in Sources */,
+				63E3C8E51ED052C6006C6A61 /* PreviewPhotoView.swift in Sources */,
 				1156B21C1E9E51BC00FAEA51 /* PictureController.swift in Sources */,
 				11FE47621E81DE1F00D57721 /* AppDelegate.swift in Sources */,
+				63EE85871ECF97CF00B79D22 /* CameraController.swift in Sources */,
 				63A455161E93A7E1008C4D5E /* CommentsController.swift in Sources */,
 				113CB1671E89AC800054B413 /* NewsController.swift in Sources */,
 				113CB1741E8EECBC0054B413 /* ProfileController.swift in Sources */,
@@ -512,6 +521,7 @@
 			baseConfigurationReference = 024B0E2205A7B9203B0D2A6A /* Pods-InstaVK.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				DEVELOPMENT_TEAM = LBW34LLWG3;
 				INFOPLIST_FILE = InstaVK/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = NikitaSusoev.InstaVK;
@@ -525,6 +535,7 @@
 			baseConfigurationReference = AF8F380F8AECD515A4EA7D1F /* Pods-InstaVK.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				DEVELOPMENT_TEAM = LBW34LLWG3;
 				INFOPLIST_FILE = InstaVK/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = NikitaSusoev.InstaVK;

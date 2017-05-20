@@ -71,10 +71,14 @@ class NewsController: UITableViewController, PictureCellDelegate {
                 guard let itemsDict = responseDict["items"] as? [[String: Any]] else { return }
                 //из items вытягиваем информацию о постах и добавляем в наш массив постов
                 for item in itemsDict {
-                    guard let photosArray = item["photos"] as? [Any] else { return }
-                    guard let photosDict = photosArray[1] as? [String: Any] else { return }
-                    let post = Post(dictionary: photosDict)
-                    self.posts.append(post)
+                    if let photosArray = item["photos"] as? [Any] {
+                        for photo in photosArray {
+                            if let photoDictionary = photo as? [String : Any] {
+                                let post = Post(dictionary: photoDictionary)
+                                self.posts.append(post)
+                            }
+                        }
+                    }
                 }
                 DispatchQueue.main.async(execute: { () -> Void in
                     self.tableView?.reloadData()
@@ -134,11 +138,7 @@ class NewsController: UITableViewController, PictureCellDelegate {
 //            print(scale)
             newsCell.postPictureHeight.constant = CGFloat(posts[indexPath.row].imageHeight)/scale
             newsCell.postPicture.sd_setImage(with: URL(string: posts[indexPath.row].imageUrl_604), completed: { (image, error, cached, url) in
-                if let image = image{
-//                    let scale : CGFloat = image.size.width/UIScreen.main.bounds.width
-////                    newsCell.postPictureHeight.constant = CGFloat(image.size.height/scale)
-//                    newsCell.postPicture.contentMode = .scaleToFill
-                    //print(cached.hashValue)
+                if image != nil{
                     if cached.rawValue == 1 {
                         DispatchQueue.main.async(execute: { () -> Void in
                             //self.tableView.reloadData()
@@ -152,11 +152,14 @@ class NewsController: UITableViewController, PictureCellDelegate {
                 } else {
                     newsCell.postPicture.image = #imageLiteral(resourceName: "error404")
                 }
-                
-                
             })
-        //newsCell.postPicture.sd_setImage(with: URL(string: imageURLs[indexPath.row]))
+            if let userLikesPost = posts[indexPath.row].likes["user_likes"] {
+                if userLikesPost == 1 {
+                    newsCell.postLikeButton.setImage(#imageLiteral(resourceName: "HeartFilled"), for: .normal)
+                }
+            }
         }
+        
         return cell
     }
     
@@ -190,6 +193,12 @@ class NewsController: UITableViewController, PictureCellDelegate {
         self.present(alertVC, animated: true, completion: nil)
         
     }
+    
+    @IBAction func handleCamera(_ sender: Any) {
+        let cameraController = CameraController()
+        present(cameraController, animated: true, completion: nil)
+    }
+    
     
     func logOutToLoginScreen(alert: UIAlertAction){
         VKSdk.forceLogout()

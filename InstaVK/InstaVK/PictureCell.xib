@@ -86,6 +86,7 @@
                 </constraints>
             </tableViewCellContentView>
             <connections>
+                <outlet property="postLikeButton" destination="7JR-Bq-SWA" id="bfl-CF-w5J"/>
                 <outlet property="postPicture" destination="wQi-KJ-iL2" id="YeQ-Qd-Bjp"/>
                 <outlet property="postPictureHeight" destination="Kpr-Uo-gbT" id="ci3-8R-Cso"/>
                 <outlet property="postUserAvatar" destination="lmP-rM-6IJ" id="Isq-Ox-p0T"/>
