@@ -14,12 +14,13 @@ fileprivate var SCOPE: [Any]? = nil
 
 class NewsController: UITableViewController, PictureCellDelegate {
     
-    let identifier = "PictureCell"
+    let pictureCellIdentifier = "PictureCell"
 
     //Array of cats to make the day, actually for test purposes here
     var imageURLs = ["http://www.pravmir.ru/wp-content/uploads/2015/11/image-original.jpg", "http://redcat7.ru/wp-content/uploads/2014/01/motivator-s-kotom-pogovori.jpg", "https://4tololo.ru/files/styles/large/public/images/20141911123228.jpg?itok=gdc3Arzv", "http://www.sostav.ru/blogs/images/posts/15/29708.jpg", "http://www.nexplorer.ru/load/Image/1113/koshki_9.jpg", "http://storyfox.ru/wp-content/uploads/2015/11/shutterstock_265075847-696x528.jpg", "https://i.ytimg.com/vi/BhJO2Urrq94/hqdefault.jpg", "http://hitgid.com/images/коты-4.jpg", "http://catscountry.ru/wp-content/uploads/2015/10/2.jpg", "http://bm.img.com.ua/nxs/img/prikol/images/large/4/3/160134_288725.jpg"]
     
     var posts = [Post]()
+    var profiles = [Int:Profile]()
 
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
@@ -33,40 +34,21 @@ class NewsController: UITableViewController, PictureCellDelegate {
         // self.clearsSelectionOnViewWillAppear = false
         // Uncomment the following line to display an Edit button in the navigation bar for this view controller.
         let nib = UINib (nibName: "PictureCell", bundle: nil)
-        self.tableView.register(nib, forCellReuseIdentifier: identifier)
+        self.tableView.register(nib, forCellReuseIdentifier: pictureCellIdentifier)
         
         fetchPosts()
         
         
     }
-    
-    //TEST
-    func getUsers() {
-        let request: VKRequest = VKApi.friends().get(["order":"name", "count":3, "fields":"domain, photo_100" ])
-        request.execute(resultBlock: { (response) -> Void in
-            guard let dictionaries = response?.json as? [String:Any] else { return }
-            //print(dictionaries)
-            dictionaries.forEach({ (key, value) in
-                guard let dictionary = value as? [String: Any] else { return }
-                print(dictionary)
-            })
-        },errorBlock: {(_ error: Error?) -> Void in
-            print("Error: \(error.debugDescription)")
-        })
-    }
-    
-    //FORCED to use api request vs sdk dut to unavailable newsfeed method in sdk
+        
+    //FORCED to use api request vs sdk due to unavailable newsfeed method in sdk
     func fetchPosts() {
-        let components = NSURLComponents()
-        components.scheme = "https"
-        components.host = "api.vk.com"
-        components.path = "/method/newsfeed.get"
-        let filtersItem = URLQueryItem(name: "filters", value: "photo")
-        let countItem = URLQueryItem(name: "count", value: "10")
-        let accessToken = URLQueryItem(name: "access_token", value: VKSdk.accessToken().accessToken)
-        components.queryItems = [accessToken, countItem, filtersItem]
-        guard let url = components.url else { return }
-        //print(url)
+        guard let vkAccessToken = VKSdk.accessToken().accessToken else {
+            return
+        }
+        guard let url = vkApiUrlBuilder(vkApiMethod: "newsfeed.get", queryItems: ["filters":"photo", "count":"10", "access_token":vkAccessToken]) else {
+            return
+        }
         
         URLSession.shared.dataTask(with: url, completionHandler: { (data, response, error) in
             if error != nil {
@@ -75,15 +57,23 @@ class NewsController: UITableViewController, PictureCellDelegate {
             }
             
             do {
+                //в JSONе приходит отдельный словарь на профайлы и отдельный на фотографии
                 let json = try JSONSerialization.jsonObject(with: data!, options: .mutableContainers)
                 guard let jsonDict = json as? [String: Any] else { return }
                 guard let responseDict = jsonDict["response"] as? [String: Any] else { return }
+                guard let profilesDict = responseDict["profiles"] as? [[String: Any]] else { return }
+                //добавляем профайл в словарь наших профайлов чтобы подтягивать оттуда информацию о пользователе
+                for profile in profilesDict {
+                    if let profileId = profile["uid"] as? Int {
+                        self.profiles[profileId] = Profile(dictionary: profile)
+                    }
+                }
                 guard let itemsDict = responseDict["items"] as? [[String: Any]] else { return }
+                //из items вытягиваем информацию о постах и добавляем в наш массив постов
                 for item in itemsDict {
                     guard let photosArray = item["photos"] as? [Any] else { return }
                     guard let photosDict = photosArray[1] as? [String: Any] else { return }
-                    guard let photoUrl = photosDict["src_xbig"] else { return }
-                    let post = Post(imageUrl: photoUrl as! String)
+                    let post = Post(dictionary: photosDict)
                     self.posts.append(post)
                 }
                 DispatchQueue.main.async(execute: { () -> Void in
@@ -96,7 +86,6 @@ class NewsController: UITableViewController, PictureCellDelegate {
     }
     
     
-
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
@@ -117,25 +106,42 @@ class NewsController: UITableViewController, PictureCellDelegate {
 
     
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = tableView .dequeueReusableCell(withIdentifier: identifier, for: indexPath)
+        let cell = tableView .dequeueReusableCell(withIdentifier: pictureCellIdentifier, for: indexPath)
         if let newsCell = cell as? PictureCell {
         newsCell.delegate = self
-        newsCell.postUserAvatar.image = #imageLiteral(resourceName: "Image")
+        if let postOwnerFirstName = profiles[posts[indexPath.row].ownerId]?.firstName, let postOwnerSecondName = profiles[posts[indexPath.row].ownerId]?.lastName {
+            newsCell.postUserFirstNameLastName.text = postOwnerFirstName + " " + postOwnerSecondName
+        } else {
+            newsCell.postUserFirstNameLastName.text = "Unawailable"
+        }
+        if let postOwnerAvatarUrl = profiles[posts[indexPath.row].ownerId]?.photoUrl_50 {
+            newsCell.postUserAvatar.setShowActivityIndicator(true)
+            newsCell.postUserAvatar.setIndicatorStyle(.gray)
+            newsCell.postUserAvatar.sd_setImage(with: URL(string: postOwnerAvatarUrl))
+        } else {
+            newsCell.postUserAvatar.image = #imageLiteral(resourceName: "error404")
+        }
+        //if let postLikedByUser = profiles[posts[indexPath.row].likes[]
+        
         //TEST
         //let imageView = newsCell.postPicture!
             
             //sd web cache manager что-то там
             newsCell.postPicture.setShowActivityIndicator(true)
             newsCell.postPicture.setIndicatorStyle(.gray)
-            newsCell.postPicture.contentMode = .scaleAspectFit
-            newsCell.postPicture.sd_setImage(with: URL(string: posts[indexPath.row].imageUrl), completed: { (image, error, cached, url) in
+//            newsCell.postPicture.contentMode = .scaleAspectFit
+            let scale: CGFloat = CGFloat(posts[indexPath.row].imageWidth)/UIScreen.main.bounds.width
+//            print(scale)
+            newsCell.postPictureHeight.constant = CGFloat(posts[indexPath.row].imageHeight)/scale
+            newsCell.postPicture.sd_setImage(with: URL(string: posts[indexPath.row].imageUrl_604), completed: { (image, error, cached, url) in
                 if let image = image{
-                    let scale : CGFloat = image.size.width/UIScreen.main.bounds.width
-                    newsCell.postPictureHeight.constant = CGFloat(image.size.height/scale)
-                    newsCell.postPicture.contentMode = .scaleToFill
+//                    let scale : CGFloat = image.size.width/UIScreen.main.bounds.width
+////                    newsCell.postPictureHeight.constant = CGFloat(image.size.height/scale)
+//                    newsCell.postPicture.contentMode = .scaleToFill
                     //print(cached.hashValue)
                     if cached.rawValue == 1 {
                         DispatchQueue.main.async(execute: { () -> Void in
+                            //self.tableView.reloadData()
                             self.tableView.beginUpdates()
                             self.tableView.reloadRows(
                                 at: [indexPath],
