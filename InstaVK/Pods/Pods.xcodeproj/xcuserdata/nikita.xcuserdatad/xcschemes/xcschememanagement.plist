@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>SchemeUserState</key>
+	<dict>
+		<key>Pods-InstaVK.xcscheme</key>
+		<dict>
+			<key>isShown</key>
+			<false/>
+		</dict>
+		<key>SDWebImage.xcscheme</key>
+		<dict>
+			<key>isShown</key>
+			<false/>
+		</dict>
+		<key>VK-ios-sdk-VKSdkResources.xcscheme</key>
+		<dict>
+			<key>isShown</key>
+			<false/>
+		</dict>
+		<key>VK-ios-sdk.xcscheme</key>
+		<dict>
+			<key>isShown</key>
+			<false/>
+		</dict>
+	</dict>
+	<key>SuppressBuildableAutocreation</key>
+	<dict>
+		<key>1C646D1FCB90349FCD1B6A002F208C46</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
+		<key>A2FB8C540E899DBB6B7406689A52840B</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
+		<key>B5BECAC4419F6105B544EA069C68688F</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
+		<key>E979D3EFE711F9AE3077D9EBE23FF25A</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
+	</dict>
+</dict>
+</plist>
