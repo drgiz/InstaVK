@@ -1,0 +1,86 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="12118" systemVersion="16E195" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" launchScreen="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="01J-lp-oVM">
+    <device id="retina4_7" orientation="portrait">
+        <adaptation id="fullscreen"/>
+    </device>
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="12086"/>
+        <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <customFonts key="customFonts">
+        <array key="billabong.ttf">
+            <string>Billabong</string>
+        </array>
+    </customFonts>
+    <scenes>
+        <!--View Controller-->
+        <scene sceneID="EHf-IW-A2E">
+            <objects>
+                <viewController id="01J-lp-oVM" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="Llm-lL-Icb"/>
+                        <viewControllerLayoutGuide type="bottom" id="xb3-aO-Qok"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="Ze5-6b-2t3">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <imageView userInteractionEnabled="NO" alpha="0.90000000000000002" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="LaunchScreenImage" translatesAutoresizingMaskIntoConstraints="NO" id="Frf-4B-bgu">
+                                <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                            </imageView>
+                            <visualEffectView opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="67a-sz-eaH">
+                                <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                                <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" id="GoK-WF-r3T">
+                                    <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                                    <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                                </view>
+                                <blurEffect style="light"/>
+                            </visualEffectView>
+                            <stackView opaque="NO" contentMode="scaleToFill" spacing="16" translatesAutoresizingMaskIntoConstraints="NO" id="rZf-XH-WxT">
+                                <rect key="frame" x="74" y="297" width="228" height="73"/>
+                                <subviews>
+                                    <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="LogoGlyph" translatesAutoresizingMaskIntoConstraints="NO" id="gnd-d1-t1B">
+                                        <rect key="frame" x="0.0" y="0.0" width="73" height="73"/>
+                                        <constraints>
+                                            <constraint firstAttribute="height" constant="73" id="5z8-ZF-dGm"/>
+                                            <constraint firstAttribute="width" constant="73" id="usm-aD-uQJ"/>
+                                        </constraints>
+                                    </imageView>
+                                    <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="InstaVK" textAlignment="center" lineBreakMode="middleTruncation" baselineAdjustment="alignBaselines" minimumFontSize="20" translatesAutoresizingMaskIntoConstraints="NO" id="GJd-Yh-RWb">
+                                        <rect key="frame" x="89" y="0.0" width="139" height="73"/>
+                                        <fontDescription key="fontDescription" name="Billabong" family="Billabong" pointSize="53"/>
+                                        <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                </subviews>
+                            </stackView>
+                        </subviews>
+                        <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                        <constraints>
+                            <constraint firstItem="Frf-4B-bgu" firstAttribute="bottom" secondItem="xb3-aO-Qok" secondAttribute="top" id="0D1-Je-49d"/>
+                            <constraint firstAttribute="trailingMargin" secondItem="rZf-XH-WxT" secondAttribute="trailing" constant="57.5" id="3RZ-5E-D60"/>
+                            <constraint firstItem="Frf-4B-bgu" firstAttribute="top" secondItem="Ze5-6b-2t3" secondAttribute="top" id="4qy-4g-TUs"/>
+                            <constraint firstItem="67a-sz-eaH" firstAttribute="top" secondItem="Frf-4B-bgu" secondAttribute="top" id="8oU-LS-h7C"/>
+                            <constraint firstItem="rZf-XH-WxT" firstAttribute="top" secondItem="Llm-lL-Icb" secondAttribute="bottom" constant="277" id="CXk-q5-vJI"/>
+                            <constraint firstItem="Frf-4B-bgu" firstAttribute="leading" secondItem="Ze5-6b-2t3" secondAttribute="leading" id="FeI-O4-EIW"/>
+                            <constraint firstItem="rZf-XH-WxT" firstAttribute="leading" secondItem="Ze5-6b-2t3" secondAttribute="leadingMargin" constant="58" id="TbC-2q-AKw"/>
+                            <constraint firstItem="67a-sz-eaH" firstAttribute="leading" secondItem="Frf-4B-bgu" secondAttribute="leading" id="jfs-Jl-Lq4"/>
+                            <constraint firstAttribute="trailing" secondItem="Frf-4B-bgu" secondAttribute="trailing" id="rhy-1Q-QmP"/>
+                            <constraint firstItem="67a-sz-eaH" firstAttribute="width" secondItem="Ze5-6b-2t3" secondAttribute="width" id="uZC-5x-7EJ"/>
+                            <constraint firstItem="67a-sz-eaH" firstAttribute="height" secondItem="Ze5-6b-2t3" secondAttribute="height" id="upu-2L-WYS"/>
+                            <constraint firstItem="xb3-aO-Qok" firstAttribute="top" secondItem="rZf-XH-WxT" secondAttribute="bottom" constant="297" id="xM5-J3-buD"/>
+                        </constraints>
+                    </view>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="iYj-Kq-Ea1" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="52" y="374.66266866566718"/>
+        </scene>
+    </scenes>
+    <resources>
+        <image name="LaunchScreenImage" width="540" height="960"/>
+        <image name="LogoGlyph" width="504" height="504"/>
+    </resources>
+</document>

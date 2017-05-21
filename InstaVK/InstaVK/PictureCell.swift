@@ -2,7 +2,7 @@
 //  PictureCell.swift
 //  InstaVK
 //
-//  Created by Никита on 29.03.17.
+//  Created by Svyatoslav Bykov on 29.04.17.
 //  Copyright © 2017 Nikita Susoev. All rights reserved.
 //
 
@@ -14,12 +14,17 @@ protocol PictureCellDelegate {
 
 class PictureCell: UITableViewCell {
 
+    
+
     @IBOutlet weak var postPicture: UIImageView!
+    @IBOutlet weak var postPictureHeight: NSLayoutConstraint!
     @IBOutlet weak var postUserAvatar: UIImageView!
     @IBOutlet weak var postUserFirstNameLastName: UILabel!
+    @IBOutlet weak var postLikeButton: UIButton!
     
-//    #TO-DO
-//    Figure out why you should make outlet to PostPicture, but not to File's owner (causes crash at NewsScreen)
+    //    #TO-DO
+    //    Figure out why you should make outlet to PostPicture, but not to File's owner (causes crash at NewsScreen)
+
     
     var delegate: PictureCellDelegate?
     
@@ -28,10 +33,10 @@ class PictureCell: UITableViewCell {
         // Initialization code
     }
     
-
+    
     override func setSelected(_ selected: Bool, animated: Bool) {
         super.setSelected(selected, animated: animated)
-
+        
         // Configure the view for the selected state
     }
     
@@ -39,5 +44,9 @@ class PictureCell: UITableViewCell {
         if let delegate = self.delegate {
             delegate.didTapButton(sender: self)
         }
+    }
+    
+    override func prepareForReuse() {
+        postLikeButton.setImage(#imageLiteral(resourceName: "HeartEmpty"), for: .normal)
     }
 }

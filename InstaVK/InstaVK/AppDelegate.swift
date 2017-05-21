@@ -10,17 +10,39 @@ import UIKit
 import CoreData
 import VK_ios_sdk
 
-
+fileprivate var SCOPE: [Any]? = nil
 
 @UIApplicationMain
 class AppDelegate: UIResponder, UIApplicationDelegate {
 
     var window: UIWindow?
-
+    let loginScreenIdentifier = "LoginViewController"
+    let mainTabBarIdentifier = "mainTabBar"
 
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplicationLaunchOptionsKey: Any]?) -> Bool {
         VKSdk.initialize(withAppId: applicationID) // Initialize VK SDK with our app id (5986161)
         // Override point for customization after application launch.
+        
+        SCOPE = [VK_PER_FRIENDS, VK_PER_WALL, VK_PER_PHOTOS, VK_PER_EMAIL, VK_PER_MESSAGES]
+        VKSdk.wakeUpSession(SCOPE, complete: {(_ state: VKAuthorizationState, _ error: Error?) -> Void in
+            if error != nil {
+                let alertVC = UIAlertController(title: "", message: error.debugDescription, preferredStyle: UIAlertControllerStyle.alert)
+                alertVC.addAction(okButton)
+                self.window?.rootViewController?.present(alertVC, animated: true, completion: nil)
+            }
+            else if state == VKAuthorizationState.authorized{
+                let lc = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: self.mainTabBarIdentifier)
+                self.window?.rootViewController = lc
+
+            }
+            else if state != VKAuthorizationState.authorized {
+                let lc = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: self.loginScreenIdentifier)
+                self.window?.rootViewController = lc
+                //self.present(lc, animated: true, completion: nil)
+            }
+        })
+        
+        
         return true
     }
     

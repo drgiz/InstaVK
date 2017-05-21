@@ -8,38 +8,92 @@
 
 import UIKit
 import VK_ios_sdk
+import SDWebImage
 
 fileprivate var SCOPE: [Any]? = nil
 
 class NewsController: UITableViewController, PictureCellDelegate {
     
-    let identifier = "PictureCell"
+    let pictureCellIdentifier = "PictureCell"
 
+    //Array of cats to make the day, actually for test purposes here
+    var imageURLs = ["http://www.pravmir.ru/wp-content/uploads/2015/11/image-original.jpg", "http://redcat7.ru/wp-content/uploads/2014/01/motivator-s-kotom-pogovori.jpg", "https://4tololo.ru/files/styles/large/public/images/20141911123228.jpg?itok=gdc3Arzv", "http://www.sostav.ru/blogs/images/posts/15/29708.jpg", "http://www.nexplorer.ru/load/Image/1113/koshki_9.jpg", "http://storyfox.ru/wp-content/uploads/2015/11/shutterstock_265075847-696x528.jpg", "https://i.ytimg.com/vi/BhJO2Urrq94/hqdefault.jpg", "http://hitgid.com/images/коты-4.jpg", "http://catscountry.ru/wp-content/uploads/2015/10/2.jpg", "http://bm.img.com.ua/nxs/img/prikol/images/large/4/3/160134_288725.jpg"]
+    
+    var posts = [Post]()
+    var profiles = [Int:Profile]()
 
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        self.navigationController?.hidesBarsOnSwipe = true
+    }
+    
+    
     override func viewDidLoad() {
         super.viewDidLoad()
+<<<<<<< HEAD
         
+=======
+>>>>>>> master
         // Uncomment the following line to preserve selection between presentations
         // self.clearsSelectionOnViewWillAppear = false
         // Uncomment the following line to display an Edit button in the navigation bar for this view controller.
         let nib = UINib (nibName: "PictureCell", bundle: nil)
-        self.tableView.register(nib, forCellReuseIdentifier: identifier)
-        SCOPE = [VK_PER_FRIENDS, VK_PER_WALL, VK_PER_PHOTOS, VK_PER_EMAIL, VK_PER_MESSAGES]
-        VKSdk.wakeUpSession(SCOPE, complete: {(_ state: VKAuthorizationState, _ error: Error?) -> Void in
-            if state != VKAuthorizationState.authorized {
-                let lc = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "LoginViewController")
-                self.present(lc, animated: true, completion: nil)
-            }
-            else if error != nil {
-                let alertVC = UIAlertController(title: "", message: error.debugDescription, preferredStyle: UIAlertControllerStyle.alert)
-                alertVC.addAction(okButton)
-                self.present(alertVC, animated: true, completion: nil)
-            }
-            
-        })
+        self.tableView.register(nib, forCellReuseIdentifier: pictureCellIdentifier)
+        
+        fetchPosts()
+        
         
     }
-
+        
+    //FORCED to use api request vs sdk due to unavailable newsfeed method in sdk
+    func fetchPosts() {
+        guard let vkAccessToken = VKSdk.accessToken().accessToken else {
+            return
+        }
+        guard let url = vkApiUrlBuilder(vkApiMethod: "newsfeed.get", queryItems: ["filters":"photo", "count":"10", "access_token":vkAccessToken]) else {
+            return
+        }
+        
+        URLSession.shared.dataTask(with: url, completionHandler: { (data, response, error) in
+            if error != nil {
+                print(error ?? "")
+                return
+            }
+            
+            do {
+                //в JSONе приходит отдельный словарь на профайлы и отдельный на фотографии
+                let json = try JSONSerialization.jsonObject(with: data!, options: .mutableContainers)
+                guard let jsonDict = json as? [String: Any] else { return }
+                guard let responseDict = jsonDict["response"] as? [String: Any] else { return }
+                guard let profilesDict = responseDict["profiles"] as? [[String: Any]] else { return }
+                //добавляем профайл в словарь наших профайлов чтобы подтягивать оттуда информацию о пользователе
+                for profile in profilesDict {
+                    if let profileId = profile["uid"] as? Int {
+                        self.profiles[profileId] = Profile(dictionary: profile)
+                    }
+                }
+                guard let itemsDict = responseDict["items"] as? [[String: Any]] else { return }
+                //из items вытягиваем информацию о постах и добавляем в наш массив постов
+                for item in itemsDict {
+                    if let photosArray = item["photos"] as? [Any] {
+                        for photo in photosArray {
+                            if let photoDictionary = photo as? [String : Any] {
+                                let post = Post(dictionary: photoDictionary)
+                                self.posts.append(post)
+                            }
+                        }
+                    }
+                }
+                DispatchQueue.main.async(execute: { () -> Void in
+                    self.tableView?.reloadData()
+                })
+            } catch let jsonError {
+                print(jsonError)
+            }
+        }) .resume()
+    }
+    
+    
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
@@ -54,24 +108,81 @@ class NewsController: UITableViewController, PictureCellDelegate {
 
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         // #warning Incomplete implementation, return the number of rows
-        return 5
+        return posts.count
     }
+    
 
     
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+<<<<<<< HEAD
         let cell = tableView.dequeueReusableCell(withIdentifier: identifier, for: indexPath)
+=======
+        let cell = tableView .dequeueReusableCell(withIdentifier: pictureCellIdentifier, for: indexPath)
+>>>>>>> master
         if let newsCell = cell as? PictureCell {
         newsCell.delegate = self
-        newsCell.postUserAvatar.image = #imageLiteral(resourceName: "Image")
-        newsCell.postPicture.image = #imageLiteral(resourceName: "Image")
+        if let postOwnerFirstName = profiles[posts[indexPath.row].ownerId]?.firstName, let postOwnerSecondName = profiles[posts[indexPath.row].ownerId]?.lastName {
+            newsCell.postUserFirstNameLastName.text = postOwnerFirstName + " " + postOwnerSecondName
+        } else {
+            newsCell.postUserFirstNameLastName.text = "Unawailable"
         }
-        //cell.avatarImageView.image = #imageLiteral(resourceName: "Image")
+        if let postOwnerAvatarUrl = profiles[posts[indexPath.row].ownerId]?.photoUrl_50 {
+            newsCell.postUserAvatar.setShowActivityIndicator(true)
+            newsCell.postUserAvatar.setIndicatorStyle(.gray)
+            newsCell.postUserAvatar.sd_setImage(with: URL(string: postOwnerAvatarUrl))
+        } else {
+            newsCell.postUserAvatar.image = #imageLiteral(resourceName: "error404")
+        }
+        //if let postLikedByUser = profiles[posts[indexPath.row].likes[]
+        
+        //TEST
+        //let imageView = newsCell.postPicture!
+            
+            //sd web cache manager что-то там
+            newsCell.postPicture.setShowActivityIndicator(true)
+            newsCell.postPicture.setIndicatorStyle(.gray)
+//            newsCell.postPicture.contentMode = .scaleAspectFit
+            let scale: CGFloat = CGFloat(posts[indexPath.row].imageWidth)/UIScreen.main.bounds.width
+//            print(scale)
+            newsCell.postPictureHeight.constant = CGFloat(posts[indexPath.row].imageHeight)/scale
+            newsCell.postPicture.sd_setImage(with: URL(string: posts[indexPath.row].imageUrl_604), completed: { (image, error, cached, url) in
+                if image != nil{
+                    if cached.rawValue == 1 {
+                        DispatchQueue.main.async(execute: { () -> Void in
+                            //self.tableView.reloadData()
+                            self.tableView.beginUpdates()
+                            self.tableView.reloadRows(
+                                at: [indexPath],
+                                with: .fade)
+                            self.tableView.endUpdates()
+                        })
+                    }
+                } else {
+                    newsCell.postPicture.image = #imageLiteral(resourceName: "error404")
+                }
+            })
+            if let userLikesPost = posts[indexPath.row].likes["user_likes"] {
+                if userLikesPost == 1 {
+                    newsCell.postLikeButton.setImage(#imageLiteral(resourceName: "HeartFilled"), for: .normal)
+                }
+            }
+        }
+        
         return cell
     }
     
+//    override func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
+//        let scale : CGFloat = #imageLiteral(resourceName: "Image").size.width/UIScreen.main.bounds.width
+//        return #imageLiteral(resourceName: "Image").size.height/scale + 80 + 32
+//    }
+    
     override func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
-        let scale : CGFloat = #imageLiteral(resourceName: "Image").size.width/UIScreen.main.bounds.width
-        return #imageLiteral(resourceName: "Image").size.height/scale + 80 + 32
+        return UITableViewAutomaticDimension
+        
+    }
+    
+    override func tableView(_ tableView: UITableView, estimatedHeightForRowAt indexPath: IndexPath) -> CGFloat {
+        return 300
     }
     
     func didTapButton(sender: UITableViewCell) {
@@ -79,16 +190,33 @@ class NewsController: UITableViewController, PictureCellDelegate {
         navigationController?.pushViewController(commentsControler, animated: true)
     }
     
-    func startWorking() {
-        
-    }
-    
     
     // MARK: LogOut button for test purposes
     @IBAction func logOut(_ sender: Any) {
+        let alertVC = UIAlertController(title: nil, message: nil, preferredStyle: UIAlertControllerStyle.actionSheet)
+        let logOutButton = UIAlertAction(title: "LogOut", style: .destructive, handler: logOutToLoginScreen)
+        let dismiss = UIAlertAction(title: "Cancel", style: UIAlertActionStyle.cancel, handler: nil)
+        alertVC.addAction(logOutButton)
+        alertVC.addAction(dismiss)
+        self.present(alertVC, animated: true, completion: nil)
+        
+    }
+    
+    @IBAction func handleCamera(_ sender: Any) {
+        let cameraController = CameraController()
+        present(cameraController, animated: true, completion: nil)
+    }
+    
+    
+    func logOutToLoginScreen(alert: UIAlertAction){
         VKSdk.forceLogout()
         let lc = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "LoginViewController")
         self.present(lc, animated: true, completion: nil)
+    }
+    
+    override func viewWillDisappear(_ animated: Bool) {
+        super.viewWillDisappear(animated)
+        self.navigationController?.isNavigationBarHidden = false
     }
     
     
