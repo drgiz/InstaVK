@@ -65,7 +65,7 @@ class FollowersController: UITableViewController {
     }
 
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return self.followers.count
+        return 5//self.followers.count
     }
 
     
@@ -77,7 +77,7 @@ class FollowersController: UITableViewController {
         cell.followerImageView.image = #imageLiteral(resourceName: "Image")
         cell.followerImageView.layer.cornerRadius = 40
         cell.followerImageView.clipsToBounds = true
-        cell.fistAndLastNameLabel.text = self.followers[indexPath.row].lastName
+        //cell.fistAndLastNameLabel.text = self.followers[indexPath.row].lastName
         
              // Configure the cell...
 

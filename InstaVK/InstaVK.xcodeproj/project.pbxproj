@@ -25,6 +25,7 @@
 		1156B21C1E9E51BC00FAEA51 /* PictureController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1156B21B1E9E51BC00FAEA51 /* PictureController.swift */; };
 		1156B21E1E9ED2E000FAEA51 /* HeaderPhotoView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1156B21D1E9ED2E000FAEA51 /* HeaderPhotoView.swift */; };
 		1156B2201E9ED30400FAEA51 /* PhotoGridCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1156B21F1E9ED30400FAEA51 /* PhotoGridCell.swift */; };
+		117D09011ED0471B0092378F /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = 117D09001ED0471B0092378F /* User.swift */; };
 		11FE47621E81DE1F00D57721 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 11FE47611E81DE1F00D57721 /* AppDelegate.swift */; };
 		11FE47641E81DE1F00D57721 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 11FE47631E81DE1F00D57721 /* ViewController.swift */; };
 		11FE47671E81DE1F00D57721 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 11FE47651E81DE1F00D57721 /* Main.storyboard */; };
@@ -65,6 +66,7 @@
 		1156B21B1E9E51BC00FAEA51 /* PictureController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PictureController.swift; sourceTree = "<group>"; };
 		1156B21D1E9ED2E000FAEA51 /* HeaderPhotoView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HeaderPhotoView.swift; sourceTree = "<group>"; };
 		1156B21F1E9ED30400FAEA51 /* PhotoGridCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PhotoGridCell.swift; sourceTree = "<group>"; };
+		117D09001ED0471B0092378F /* User.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = User.swift; sourceTree = "<group>"; };
 		11FE475E1E81DE1F00D57721 /* InstaVK.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = InstaVK.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		11FE47611E81DE1F00D57721 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		11FE47631E81DE1F00D57721 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
@@ -115,6 +117,7 @@
 			isa = PBXGroup;
 			children = (
 				63258F5D1EC0C36100EC7B0A /* Post.swift */,
+				117D09001ED0471B0092378F /* User.swift */,
 				63258F5F1EC3A7F900EC7B0A /* Profile.swift */,
 			);
 			name = Model;
@@ -376,6 +379,7 @@
 				63258F5C1EC0AEE100EC7B0A /* NetworkManager.swift in Sources */,
 				633BD6951EA3EC4500378414 /* LoginController.swift in Sources */,
 				113CB1691E89ACAF0054B413 /* PhotoController.swift in Sources */,
+				117D09011ED0471B0092378F /* User.swift in Sources */,
 				63258F5E1EC0C36100EC7B0A /* Post.swift in Sources */,
 				113CB1781E8FB05A0054B413 /* UserPhotoCell.swift in Sources */,
 				1156B2131E9C1BB800FAEA51 /* FollowerCell.swift in Sources */,
