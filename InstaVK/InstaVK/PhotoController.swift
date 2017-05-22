@@ -36,6 +36,8 @@ class PhotoController: UICollectionViewController {
         
         let fetchResult: PHFetchResult = PHAsset.fetchAssets(with: PHAssetMediaType.image, options: fetchOptions)
         
+        if fetchResult.count > 0 {
+        
         imgManager.requestImage(for: fetchResult.object(at: self.tempIndex), targetSize: view.frame.size, contentMode: PHImageContentMode.aspectFill, options: requestOptions, resultHandler: { (image, _) in
             
             self.images.add(image ?? #imageLiteral(resourceName: "Image-1"))
@@ -49,7 +51,7 @@ class PhotoController: UICollectionViewController {
         })
         
         //if let fetchResult: PHFetchResult = PHAsset.fetchAssetsWithMediaType(PHAssetMediaType.Image, options: fetchOptions) {
-            
+        }
         }
         // Do any additional setup after loading the view.
         //imagePicker.delegate = self
