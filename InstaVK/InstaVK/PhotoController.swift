@@ -7,38 +7,86 @@
 //
 
 import UIKit
+import Photos
 
 class PhotoController: UICollectionViewController {
    
-    
+    //let imagePicker = UIImagePickerController()
     let headerIdentifier = "headerPhoto"
     let cellIdentifier = "photoGridCell"
+    let imageViews = [UIImageView]()
+    var images = NSMutableArray()
+    var tempIndex = Int()
 
     override func viewDidLoad() {
         super.viewDidLoad()
-
+        self.tempIndex = 0
+        self.fetchPhotos(index: self.tempIndex)
+        }
+            
+    func fetchPhotos(index:Int){
+        
+        
+        let imgManager = PHImageManager.default()
+        let requestOptions = PHImageRequestOptions()
+        requestOptions.isSynchronous = true
+        
+        let fetchOptions = PHFetchOptions()
+        fetchOptions.sortDescriptors = [NSSortDescriptor(key:"creationDate", ascending: true)]
+        
+        let fetchResult: PHFetchResult = PHAsset.fetchAssets(with: PHAssetMediaType.image, options: fetchOptions)
+        
+        imgManager.requestImage(for: fetchResult.object(at: self.tempIndex), targetSize: view.frame.size, contentMode: PHImageContentMode.aspectFill, options: requestOptions, resultHandler: { (image, _) in
+            
+            self.images.add(image ?? #imageLiteral(resourceName: "Image-1"))
+            //print(fetchResult.count)
+            
+            if self.tempIndex < fetchResult.count - 1 {
+                
+                self.tempIndex = self.tempIndex + 1
+                self.fetchPhotos(index: self.tempIndex)
+            }
+        })
+        
+        //if let fetchResult: PHFetchResult = PHAsset.fetchAssetsWithMediaType(PHAssetMediaType.Image, options: fetchOptions) {
+            
+        }
         // Do any additional setup after loading the view.
-    }
+        //imagePicker.delegate = self
+        //imagePicker.allowsEditing = false
+       // imagePicker.sourceType = .savedPhotosAlbum
+        //imagePicker.
+        //present(imagePicker, animated: true, completion: nil)
+    
+    func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [String : Any]) {
+        //if let pickedImage = info[UIImagePickerControllerOriginalImage] as? UIImage {
+            //imageView.contentMode = .ScaleAspectFit
+            //imageView.image = pickedImage
+        //}
+        
+       // imageViews = info[]
+        
+        //dismiss(animated: true, completion: nil)
+}
 
-    override func didReceiveMemoryWarning() {
-        super.didReceiveMemoryWarning()
-        // Dispose of any resources that can be recreated.
+    func imagePickerControllerDidCancel(_ picker: UIImagePickerController) {
+        
     }
     
     override func numberOfSections(in collectionView: UICollectionView) -> Int {
         return 1
     }
-    
+
     
     override func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         
-        return 10
+        return images.count
     }
     
     override func collectionView(_ collectionView: UICollectionView, viewForSupplementaryElementOfKind kind: String, at indexPath: IndexPath) -> UICollectionReusableView {
         
         let header = collectionView.dequeueReusableSupplementaryView(ofKind: UICollectionElementKindSectionHeader, withReuseIdentifier: headerIdentifier, for: indexPath) as! HeaderPhotoView
-        header.mainPhotoImageView.image = #imageLiteral(resourceName: "Image")
+        header.mainPhotoImageView.image = self.images.firstObject as? UIImage
         //header.profileHeaderImage.layer.contents = #imageLiteral(resourceName: "Image").cgImage
         //header.profileHeaderImage.layer.cornerRadius = 50
         //header.profileHeaderImage.layer.borderColor = UIColor.black.cgColor
@@ -50,11 +98,13 @@ class PhotoController: UICollectionViewController {
         
         let  cell = collectionView.dequeueReusableCell(withReuseIdentifier: cellIdentifier, for: indexPath) as! PhotoGridCell
         
-        if arc4random() % 2 == 1 {
+        cell.photoImageView.image = images.object(at: indexPath.row) as? UIImage
+        
+        /*if arc4random() % 2 == 1 {
             cell.photoImageView.image = #imageLiteral(resourceName: "Image-1")
         } else {
             cell.photoImageView.image = #imageLiteral(resourceName: "Image")
-        }
+        }*/
         
         return cell
     }

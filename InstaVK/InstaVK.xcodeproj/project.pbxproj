@@ -26,6 +26,8 @@
 		1156B21E1E9ED2E000FAEA51 /* HeaderPhotoView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1156B21D1E9ED2E000FAEA51 /* HeaderPhotoView.swift */; };
 		1156B2201E9ED30400FAEA51 /* PhotoGridCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1156B21F1E9ED30400FAEA51 /* PhotoGridCell.swift */; };
 		117D09011ED0471B0092378F /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = 117D09001ED0471B0092378F /* User.swift */; };
+		11970FDF1ED24A5D00FF1151 /* UserPhoto.swift in Sources */ = {isa = PBXBuildFile; fileRef = 11970FDE1ED24A5D00FF1151 /* UserPhoto.swift */; };
+		11970FE11ED2EC7500FF1151 /* Photos.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 11970FE01ED2EC7500FF1151 /* Photos.framework */; };
 		11FE47621E81DE1F00D57721 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 11FE47611E81DE1F00D57721 /* AppDelegate.swift */; };
 		11FE47641E81DE1F00D57721 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 11FE47631E81DE1F00D57721 /* ViewController.swift */; };
 		11FE47671E81DE1F00D57721 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 11FE47651E81DE1F00D57721 /* Main.storyboard */; };
@@ -69,6 +71,8 @@
 		1156B21D1E9ED2E000FAEA51 /* HeaderPhotoView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HeaderPhotoView.swift; sourceTree = "<group>"; };
 		1156B21F1E9ED30400FAEA51 /* PhotoGridCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PhotoGridCell.swift; sourceTree = "<group>"; };
 		117D09001ED0471B0092378F /* User.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = User.swift; sourceTree = "<group>"; };
+		11970FDE1ED24A5D00FF1151 /* UserPhoto.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UserPhoto.swift; sourceTree = "<group>"; };
+		11970FE01ED2EC7500FF1151 /* Photos.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Photos.framework; path = System/Library/Frameworks/Photos.framework; sourceTree = SDKROOT; };
 		11FE475E1E81DE1F00D57721 /* InstaVK.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = InstaVK.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		11FE47611E81DE1F00D57721 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		11FE47631E81DE1F00D57721 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
@@ -99,6 +103,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				11970FE11ED2EC7500FF1151 /* Photos.framework in Frameworks */,
 				75F7A72321B31287936D92E9 /* Pods_InstaVK.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -121,6 +126,7 @@
 			isa = PBXGroup;
 			children = (
 				63258F5D1EC0C36100EC7B0A /* Post.swift */,
+				11970FDE1ED24A5D00FF1151 /* UserPhoto.swift */,
 				117D09001ED0471B0092378F /* User.swift */,
 				63258F5F1EC3A7F900EC7B0A /* Profile.swift */,
 			);
@@ -246,6 +252,7 @@
 		8860831C7826514BD6BA9E7F /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				11970FE01ED2EC7500FF1151 /* Photos.framework */,
 				74443CE064C6470674577225 /* Pods_InstaVK.framework */,
 			);
 			name = Frameworks;
@@ -280,13 +287,15 @@
 		11FE47561E81DE1F00D57721 /* Project object */ = {
 			isa = PBXProject;
 			attributes = {
+				KnownAssetTags = (
+					New,
+				);
 				LastSwiftUpdateCheck = 0820;
 				LastUpgradeCheck = 0820;
 				ORGANIZATIONNAME = "Nikita Susoev";
 				TargetAttributes = {
 					11FE475D1E81DE1F00D57721 = {
 						CreatedOnToolsVersion = 8.2.1;
-						DevelopmentTeam = LBW34LLWG3;
 						ProvisioningStyle = Automatic;
 					};
 				};
@@ -398,6 +407,7 @@
 				1156B21C1E9E51BC00FAEA51 /* PictureController.swift in Sources */,
 				11FE47621E81DE1F00D57721 /* AppDelegate.swift in Sources */,
 				63EE85871ECF97CF00B79D22 /* CameraController.swift in Sources */,
+				11970FDF1ED24A5D00FF1151 /* UserPhoto.swift in Sources */,
 				63A455161E93A7E1008C4D5E /* CommentsController.swift in Sources */,
 				113CB1671E89AC800054B413 /* NewsController.swift in Sources */,
 				113CB1741E8EECBC0054B413 /* ProfileController.swift in Sources */,
@@ -525,7 +535,7 @@
 			baseConfigurationReference = 024B0E2205A7B9203B0D2A6A /* Pods-InstaVK.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
-				DEVELOPMENT_TEAM = LBW34LLWG3;
+				DEVELOPMENT_TEAM = "";
 				INFOPLIST_FILE = InstaVK/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = NikitaSusoev.InstaVK;
@@ -539,7 +549,7 @@
 			baseConfigurationReference = AF8F380F8AECD515A4EA7D1F /* Pods-InstaVK.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
-				DEVELOPMENT_TEAM = LBW34LLWG3;
+				DEVELOPMENT_TEAM = "";
 				INFOPLIST_FILE = InstaVK/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = NikitaSusoev.InstaVK;

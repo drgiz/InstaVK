@@ -30,10 +30,7 @@ class NewsController: UITableViewController, PictureCellDelegate {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-<<<<<<< HEAD
-        
-=======
->>>>>>> master
+
         // Uncomment the following line to preserve selection between presentations
         // self.clearsSelectionOnViewWillAppear = false
         // Uncomment the following line to display an Edit button in the navigation bar for this view controller.
@@ -114,11 +111,11 @@ class NewsController: UITableViewController, PictureCellDelegate {
 
     
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-<<<<<<< HEAD
-        let cell = tableView.dequeueReusableCell(withIdentifier: identifier, for: indexPath)
-=======
+
+        //let cell = tableView.dequeueReusableCell(withIdentifier: identifier, for: indexPath)
+
         let cell = tableView .dequeueReusableCell(withIdentifier: pictureCellIdentifier, for: indexPath)
->>>>>>> master
+
         if let newsCell = cell as? PictureCell {
         newsCell.delegate = self
         if let postOwnerFirstName = profiles[posts[indexPath.row].ownerId]?.firstName, let postOwnerSecondName = profiles[posts[indexPath.row].ownerId]?.lastName {
