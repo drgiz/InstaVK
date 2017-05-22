@@ -30,9 +30,6 @@ class NewsController: UITableViewController, PictureCellDelegate {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        // Uncomment the following line to preserve selection between presentations
-        // self.clearsSelectionOnViewWillAppear = false
-        // Uncomment the following line to display an Edit button in the navigation bar for this view controller.
         let nib = UINib (nibName: "PictureCell", bundle: nil)
         self.tableView.register(nib, forCellReuseIdentifier: pictureCellIdentifier)
         
@@ -92,18 +89,15 @@ class NewsController: UITableViewController, PictureCellDelegate {
     
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
-        // Dispose of any resources that can be recreated.
     }
 
     // MARK: - Table view data source
 
     override func numberOfSections(in tableView: UITableView) -> Int {
-        // #warning Incomplete implementation, return the number of sections
         return 1
     }
 
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        // #warning Incomplete implementation, return the number of rows
         return posts.count
     }
     
@@ -125,19 +119,18 @@ class NewsController: UITableViewController, PictureCellDelegate {
         } else {
             newsCell.postUserAvatar.image = #imageLiteral(resourceName: "error404")
         }
-        //if let postLikedByUser = profiles[posts[indexPath.row].likes[]
-        
-        //TEST
-        //let imageView = newsCell.postPicture!
             
+        //TEST
+            //TO-DO: replace 404image with placeholder
             //sd web cache manager что-то там
             newsCell.postPicture.setShowActivityIndicator(true)
             newsCell.postPicture.setIndicatorStyle(.gray)
-//            newsCell.postPicture.contentMode = .scaleAspectFit
             let scale: CGFloat = CGFloat(posts[indexPath.row].imageWidth)/UIScreen.main.bounds.width
-//            print(scale)
             newsCell.postPictureHeight.constant = CGFloat(posts[indexPath.row].imageHeight)/scale
-            newsCell.postPicture.sd_setImage(with: URL(string: posts[indexPath.row].imageUrl_604), completed: { (image, error, cached, url) in
+            newsCell.postPicture.sd_setImage(with: URL(string: posts[indexPath.row].imageUrl_604),
+                                             placeholderImage: #imageLiteral(resourceName: "error404"),
+                                             options: [],
+                                             completed: { (image, error, cached, url) in
                 if image != nil{
                     if cached.rawValue == 1 {
                         DispatchQueue.main.async(execute: { () -> Void in
@@ -153,6 +146,22 @@ class NewsController: UITableViewController, PictureCellDelegate {
                     newsCell.postPicture.image = #imageLiteral(resourceName: "error404")
                 }
             })
+//            newsCell.postPicture.sd_setImage(with: URL(string: posts[indexPath.row].imageUrl_604), completed: { (image, error, cached, url) in
+//                if image != nil{
+//                    if cached.rawValue == 1 {
+//                        DispatchQueue.main.async(execute: { () -> Void in
+//                            //self.tableView.reloadData()
+//                            self.tableView.beginUpdates()
+//                            self.tableView.reloadRows(
+//                                at: [indexPath],
+//                                with: .fade)
+//                            self.tableView.endUpdates()
+//                        })
+//                    }
+//                } else {
+//                    newsCell.postPicture.image = #imageLiteral(resourceName: "error404")
+//                }
+//            })
             if let userLikesPost = posts[indexPath.row].likes["user_likes"] {
                 if userLikesPost == 1 {
                     newsCell.postLikeButton.setImage(#imageLiteral(resourceName: "HeartFilled"), for: .normal)
@@ -162,11 +171,6 @@ class NewsController: UITableViewController, PictureCellDelegate {
         
         return cell
     }
-    
-//    override func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
-//        let scale : CGFloat = #imageLiteral(resourceName: "Image").size.width/UIScreen.main.bounds.width
-//        return #imageLiteral(resourceName: "Image").size.height/scale + 80 + 32
-//    }
     
     override func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
         return UITableViewAutomaticDimension
@@ -210,51 +214,4 @@ class NewsController: UITableViewController, PictureCellDelegate {
         super .viewWillDisappear(animated)
         self.navigationController?.isNavigationBarHidden = false
     }
-    
-    
-    /*
-    // Override to support conditional editing of the table view.
-    override func tableView(_ tableView: UITableView, canEditRowAt indexPath: IndexPath) -> Bool {
-        // Return false if you do not want the specified item to be editable.
-        return true
-    }
-    */
-
-    /*
-    // Override to support editing the table view.
-    override func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCellEditingStyle, forRowAt indexPath: IndexPath) {
-        if editingStyle == .delete {
-            // Delete the row from the data source
-            tableView.deleteRows(at: [indexPath], with: .fade)
-        } else if editingStyle == .insert {
-            // Create a new instance of the appropriate class, insert it into the array, and add a new row to the table view
-        }    
-    }
-    */
-
-    /*
-    // Override to support rearranging the table view.
-    override func tableView(_ tableView: UITableView, moveRowAt fromIndexPath: IndexPath, to: IndexPath) {
-
-    }
-    */
-
-    /*
-    // Override to support conditional rearranging of the table view.
-    override func tableView(_ tableView: UITableView, canMoveRowAt indexPath: IndexPath) -> Bool {
-        // Return false if you do not want the item to be re-orderable.
-        return true
-    }
-    */
-
-    /*
-    // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        // Get the new view controller using segue.destinationViewController.
-        // Pass the selected object to the new view controller.
-    }
-    */
-
 }
