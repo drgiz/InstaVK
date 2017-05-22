@@ -22,10 +22,10 @@ class NewsController: UITableViewController, PictureCellDelegate {
     var posts = [Post]()
     var profiles = [Int:Profile]()
 
-    override func viewWillAppear(_ animated: Bool) {
-        super.viewWillAppear(animated)
-        self.navigationController?.hidesBarsOnSwipe = true
-    }
+//    override func viewWillAppear(_ animated: Bool) {
+//        super.viewWillAppear(animated)
+//        self.navigationController?.hidesBarsOnSwipe = true
+//    }
     
     
     override func viewDidLoad() {
@@ -106,6 +106,7 @@ class NewsController: UITableViewController, PictureCellDelegate {
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView .dequeueReusableCell(withIdentifier: pictureCellIdentifier, for: indexPath)
         if let newsCell = cell as? PictureCell {
+        newsCell.post = posts[indexPath.row]
         newsCell.delegate = self
         if let postOwnerFirstName = profiles[posts[indexPath.row].ownerId]?.firstName, let postOwnerSecondName = profiles[posts[indexPath.row].ownerId]?.lastName {
             newsCell.postUserFirstNameLastName.text = postOwnerFirstName + " " + postOwnerSecondName
@@ -179,8 +180,11 @@ class NewsController: UITableViewController, PictureCellDelegate {
         return 300
     }
     
-    func didTapButton(sender: UITableViewCell) {
+    func didTapCommentsButton(sender: PictureCell) {
         let commentsControler = CommentsController()
+        if let post = sender.post {
+            commentsControler.post = post
+        }
         navigationController?.pushViewController(commentsControler, animated: true)
     }
     
@@ -208,8 +212,8 @@ class NewsController: UITableViewController, PictureCellDelegate {
         self.present(lc, animated: true, completion: nil)
     }
     
-    override func viewWillDisappear(_ animated: Bool) {
-        super .viewWillDisappear(animated)
-        self.navigationController?.isNavigationBarHidden = false
-    }
+//    override func viewWillDisappear(_ animated: Bool) {
+//        super .viewWillDisappear(animated)
+//        self.navigationController?.isNavigationBarHidden = false
+//    }
 }

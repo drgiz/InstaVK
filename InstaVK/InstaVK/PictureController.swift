@@ -8,7 +8,9 @@
 
 import UIKit
 
-class PictureController: UITableViewController, PictureCellDelegate {
+//removed PictureCellDelegate protocol reference until DelegateFix
+
+class PictureController: UITableViewController {
     
     let pictureCellIdentifier = "pictureCell"
 
@@ -44,7 +46,7 @@ class PictureController: UITableViewController, PictureCellDelegate {
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: pictureCellIdentifier, for: indexPath) as! PictureCell
         cell.postPicture.image = #imageLiteral(resourceName: "Image")
-        cell.delegate = self
+//        cell.delegate = self
 
         // Configure the cell...
 
@@ -56,10 +58,10 @@ class PictureController: UITableViewController, PictureCellDelegate {
         return #imageLiteral(resourceName: "Image").size.height/scale + 80 + 32
     }
     
-    func didTapButton(sender: UITableViewCell) {
-        let commentsController = CommentsController()
-        navigationController?.pushViewController(commentsController, animated: true)
-    }
+//    func didTapCommentsButton(sender: PictureCell) {
+//        let commentsController = CommentsController()
+//        navigationController?.pushViewController(commentsController, animated: true)
+//    }
     
 
     /*

@@ -9,12 +9,12 @@
 import UIKit
 
 protocol PictureCellDelegate {
-    func didTapButton(sender: UITableViewCell)
+    func didTapCommentsButton(sender: PictureCell)
 }
 
 class PictureCell: UITableViewCell {
 
-    
+    var post: Post?
 
     @IBOutlet weak var postPicture: UIImageView!
     @IBOutlet weak var postPictureHeight: NSLayoutConstraint!
@@ -42,7 +42,7 @@ class PictureCell: UITableViewCell {
     
     @IBAction func didTapCommentsButton(_ sender: UIButton) {
         if let delegate = self.delegate {
-            delegate.didTapButton(sender: self)
+            delegate.didTapCommentsButton(sender: self)
         }
     }
     
