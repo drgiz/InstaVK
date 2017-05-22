@@ -57,7 +57,7 @@
                                     <constraint firstAttribute="height" constant="36" id="Sc1-Iu-aKy"/>
                                     <constraint firstAttribute="width" constant="36" id="vlI-16-e2O"/>
                                 </constraints>
-                                <state key="normal" image="HeartEmpty"/>
+                                <state key="normal" image="heartEmpty"/>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="ZlA-mB-3tb">
                                 <rect key="frame" x="46" y="0.0" width="36" height="36"/>
@@ -97,6 +97,6 @@
     </objects>
     <resources>
         <image name="CommentsEmpty" width="43" height="42"/>
-        <image name="HeartEmpty" width="42" height="37"/>
+        <image name="heartEmpty" width="42" height="37"/>
     </resources>
 </document>
