@@ -66,6 +66,7 @@ extension LoginController: VKSdkDelegate {
         alertVC.addAction(okButton)
         self.present(alertVC, animated: true, completion: nil)
     }
+    
 }
 
 extension LoginController: VKSdkUIDelegate {

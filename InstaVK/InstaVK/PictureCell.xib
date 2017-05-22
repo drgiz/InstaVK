@@ -42,7 +42,7 @@
                             </label>
                         </subviews>
                     </stackView>
-                    <imageView userInteractionEnabled="NO" contentMode="scaleToFill" verticalCompressionResistancePriority="749" translatesAutoresizingMaskIntoConstraints="NO" id="wQi-KJ-iL2">
+                    <imageView userInteractionEnabled="NO" contentMode="scaleAspectFill" verticalCompressionResistancePriority="749" translatesAutoresizingMaskIntoConstraints="NO" id="wQi-KJ-iL2">
                         <rect key="frame" x="0.0" y="64" width="360" height="194.5"/>
                         <constraints>
                             <constraint firstAttribute="height" priority="999" constant="300" id="Kpr-Uo-gbT"/>

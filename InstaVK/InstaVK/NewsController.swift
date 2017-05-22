@@ -116,7 +116,7 @@ class NewsController: UITableViewController, PictureCellDelegate {
         if let postOwnerFirstName = profiles[posts[indexPath.row].ownerId]?.firstName, let postOwnerSecondName = profiles[posts[indexPath.row].ownerId]?.lastName {
             newsCell.postUserFirstNameLastName.text = postOwnerFirstName + " " + postOwnerSecondName
         } else {
-            newsCell.postUserFirstNameLastName.text = "Unawailable"
+            newsCell.postUserFirstNameLastName.text = "Unavailable"
         }
         if let postOwnerAvatarUrl = profiles[posts[indexPath.row].ownerId]?.photoUrl_50 {
             newsCell.postUserAvatar.setShowActivityIndicator(true)

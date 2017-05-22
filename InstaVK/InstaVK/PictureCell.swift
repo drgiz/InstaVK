@@ -48,5 +48,7 @@ class PictureCell: UITableViewCell {
     
     override func prepareForReuse() {
         postLikeButton.setImage(#imageLiteral(resourceName: "HeartEmpty"), for: .normal)
+        postPicture.image = #imageLiteral(resourceName: "error404")
+        postPictureHeight.constant = 300
     }
 }
