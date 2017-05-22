@@ -163,9 +163,7 @@ class NewsController: UITableViewController, PictureCellDelegate {
 //                }
 //            })
             if let userLikesPost = posts[indexPath.row].likes["user_likes"] {
-                if userLikesPost == 1 {
-                    newsCell.postLikeButton.setImage(#imageLiteral(resourceName: "HeartFilled"), for: .normal)
-                }
+                newsCell.postLikeButton.setImage(userLikesPost == 1 ? #imageLiteral(resourceName: "HeartFilled") : #imageLiteral(resourceName: "HeartEmpty"), for: .normal)
             }
         }
         
