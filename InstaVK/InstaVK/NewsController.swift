@@ -43,9 +43,14 @@ class NewsController: UITableViewController, PictureCellDelegate {
         guard let vkAccessToken = VKSdk.accessToken().accessToken else {
             return
         }
-        guard let url = vkApiUrlBuilder(vkApiMethod: "newsfeed.get", queryItems: ["filters":"photo", "count":"10", "access_token":vkAccessToken]) else {
+        guard let url = vkApiUrlBuilder(vkApiMethod: "newsfeed.get",
+                                        queryItems: ["filters":"wall_photo",
+                                                     "count":"10",
+                                                     "access_token":vkAccessToken])
+            else {
             return
         }
+        //print(url)
         
         URLSession.shared.dataTask(with: url, completionHandler: { (data, response, error) in
             if error != nil {
@@ -113,7 +118,7 @@ class NewsController: UITableViewController, PictureCellDelegate {
         } else {
             newsCell.postUserFirstNameLastName.text = "Unavailable"
         }
-        if let postOwnerAvatarUrl = profiles[posts[indexPath.row].ownerId]?.photoUrl_50 {
+        if let postOwnerAvatarUrl = profiles[posts[indexPath.row].ownerId]?.photoUrl {
             newsCell.postUserAvatar.setShowActivityIndicator(true)
             newsCell.postUserAvatar.setIndicatorStyle(.gray)
             newsCell.postUserAvatar.sd_setImage(with: URL(string: postOwnerAvatarUrl))

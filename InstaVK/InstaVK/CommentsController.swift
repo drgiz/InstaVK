@@ -13,6 +13,7 @@ class CommentsController: UITableViewController {
     
     var post: Post?
     var comments = [Comment]()
+    var profiles = [Int:Profile]()
     
     let commentCellIdentifier = "CommentCell"
 
@@ -44,8 +45,6 @@ class CommentsController: UITableViewController {
             return
         }
         
-        print(url)
-        
         URLSession.shared.dataTask(with: url, completionHandler: { (data, response, error) in
             if error != nil {
                 print(error ?? "")
@@ -56,7 +55,20 @@ class CommentsController: UITableViewController {
                 let json = try JSONSerialization.jsonObject(with: data!, options: .mutableContainers)
                 guard let jsonDict = json as? [String: Any] else { return }
                 guard let responseDict = jsonDict["response"] as? [String: Any] else { return }
-                print(responseDict)
+                guard let profilesDict = responseDict["profiles"] as? [[String: Any]] else { return }
+                for profile in profilesDict {
+                    if let profileId = profile["id"] as? Int {
+                        self.profiles[profileId] = Profile(dictionary: profile)
+                    }
+                }
+                guard let commentsDict = responseDict["items"] as? [[String:Any]] else { return }
+                for comment in commentsDict {
+                        let comment = Comment(dictionary: comment)
+                        self.comments.append(comment)
+                }
+                DispatchQueue.main.async(execute: { () -> Void in
+                    self.tableView?.reloadData()
+                })
             } catch let jsonError {
                 print(jsonError)
             }
@@ -74,14 +86,26 @@ class CommentsController: UITableViewController {
     }
 
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return 5
+        return comments.count
     }
     
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: commentCellIdentifier, for: indexPath)
         if let commentsCell = cell as?  CommentCell {
-            commentsCell.avatarImage.image = #imageLiteral(resourceName: "Image")
-            commentsCell.commentText.text = "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris"
+            if let postOwnerAvatarUrl = profiles[comments[indexPath.row].ownerId]?.photoUrl_50 {
+                commentsCell.avatarImage.setShowActivityIndicator(true)
+                commentsCell.avatarImage.setIndicatorStyle(.gray)
+                commentsCell.avatarImage.sd_setImage(with: URL(string: postOwnerAvatarUrl))
+            } else {
+                commentsCell.avatarImage.image = #imageLiteral(resourceName: "error404")
+            }
+            if let commentOwnerFirstName = profiles[comments[indexPath.row].ownerId]?.firstName, let commentOwnerSecondName = profiles[comments[indexPath.row].ownerId]?.lastName {
+                commentsCell.userFirstLastName.setTitle(commentOwnerFirstName + " " + commentOwnerSecondName, for: .normal)
+            } else {
+                commentsCell.userFirstLastName.setTitle("Unavailable", for: .normal)
+            }
+            
+            commentsCell.commentText.text = comments[indexPath.row].text
         }
         return cell
     }
