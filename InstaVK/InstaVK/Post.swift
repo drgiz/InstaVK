@@ -28,6 +28,8 @@ struct Post {
     let can_comment: Int
     let can_repost: Int
     
+    var userLiked = 0
+    
     
     init(dictionary: [String: Any]) {
         self.postId = dictionary["pid"] as? Int ?? 0

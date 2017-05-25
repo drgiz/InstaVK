@@ -10,6 +10,7 @@ import UIKit
 
 protocol PictureCellDelegate {
     func didTapCommentsButton(sender: PictureCell)
+    func didTapLikeButton(sender: PictureCell)
 }
 
 class PictureCell: UITableViewCell {
@@ -45,6 +46,13 @@ class PictureCell: UITableViewCell {
             delegate.didTapCommentsButton(sender: self)
         }
     }
+    
+    @IBAction func didTapLikeButton(_ sender: UIButton) {
+        if let delegate = self.delegate {
+            delegate.didTapLikeButton(sender: self)
+        }
+    }
+    
     
     override func prepareForReuse() {
         postLikeButton.setImage(#imageLiteral(resourceName: "HeartEmpty"), for: .normal)
