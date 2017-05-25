@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import VK_ios_sdk
 
 private let reuseIdentifier1 = "cell1"
 private let reuseIdentifier2 = "cell2"
@@ -15,6 +16,10 @@ class ProfileController: UICollectionViewController {
     
     @IBAction func pressFollowersButton(_ sender: Any) {
         let followersController = FollowersController.init(id: "id")
+        //VKRequest *request =
+        
+        
+        
         navigationController?.pushViewController(followersController, animated: true)
         //vs = storyboard?.instantiateViewController(withIdentifier: "ProfileControllerIdentifier") as! ProfileController
         //navigationController?.pushViewController(vs, animated: true)

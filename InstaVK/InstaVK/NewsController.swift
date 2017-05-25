@@ -109,7 +109,11 @@ class NewsController: UITableViewController, PictureCellDelegate {
     
     
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+
+        //let cell = tableView.dequeueReusableCell(withIdentifier: identifier, for: indexPath)
+
         let cell = tableView .dequeueReusableCell(withIdentifier: pictureCellIdentifier, for: indexPath)
+
         if let newsCell = cell as? PictureCell {
             newsCell.post = posts[indexPath.row]
             newsCell.delegate = self
