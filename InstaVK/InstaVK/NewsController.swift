@@ -167,9 +167,7 @@ class NewsController: UITableViewController, PictureCellDelegate {
             //                    newsCell.postPicture.image = #imageLiteral(resourceName: "error404")
             //                }
             //            })
-            if let userLikesPost = posts[indexPath.row].likes["user_likes"] {
-                newsCell.postLikeButton.setImage(userLikesPost == 1 ? #imageLiteral(resourceName: "HeartFilled") : #imageLiteral(resourceName: "HeartEmpty"), for: .normal)
-            }
+            newsCell.postLikeButton.setImage(posts[indexPath.row].userLikes == 1 ? #imageLiteral(resourceName: "HeartFilled") : #imageLiteral(resourceName: "HeartEmpty"), for: .normal)
         }
         
         return cell
@@ -194,32 +192,30 @@ class NewsController: UITableViewController, PictureCellDelegate {
     
     func didTapLikeButton(sender: PictureCell) {
         
-        
+        guard let indexPath = tableView.indexPath(for: sender) else { return }
+        var post = self.posts[indexPath.item]
         guard let owner_id = sender.post?.ownerId else { return }
         guard let item_id = sender.post?.postId else { return }
         guard let access_key = sender.post?.access_key else { return }
         
         var url: URL?
         
-        if let likeStatus = sender.post?.likes["user_likes"] {
-            url = (likeStatus == 0 ?
-                vkApiUrlBuilder(vkApiMethod: "likes.add",
-                                queryItems: ["type":"photo",
-                                             "owner_id": String(owner_id),
-                                             "item_id": String(item_id),
-                                             "access_key": String(access_key),
-                                             "access_token":VKSdk.accessToken().accessToken])
-                :
-                vkApiUrlBuilder(vkApiMethod: "likes.delete",
-                                queryItems: ["type":"photo",
-                                             "owner_id": String(owner_id),
-                                             "item_id": String(item_id),
-                                             "access_key": String(access_key),
-                                             "access_token":VKSdk.accessToken().accessToken]))
-            
+        if post.userLikes == 0 {
+            url = vkApiUrlBuilder(vkApiMethod: "likes.add",
+                                  queryItems: ["type":"photo",
+                                               "owner_id": String(owner_id),
+                                               "item_id": String(item_id),
+                                               "access_key": String(access_key),
+                                               "access_token":VKSdk.accessToken().accessToken])
         }
-        
-        print(url)
+        else {
+            url = vkApiUrlBuilder(vkApiMethod: "likes.delete",
+                                  queryItems: ["type":"photo",
+                                               "owner_id": String(owner_id),
+                                               "item_id": String(item_id),
+                                               "access_key": String(access_key),
+                                               "access_token":VKSdk.accessToken().accessToken])
+        }
         
         if let url = url {
             URLSession.shared.dataTask(with: url, completionHandler: { (data, response, error) in
@@ -227,6 +223,12 @@ class NewsController: UITableViewController, PictureCellDelegate {
                     print(error ?? "")
                     return
                 }
+                post.userLikes = 1 - post.userLikes
+                self.posts[indexPath.item] = post
+                
+                DispatchQueue.main.async(execute: { () -> Void in
+                    self.tableView?.reloadRows(at: [indexPath], with: .none)
+                })
                 
             }).resume()
         }
