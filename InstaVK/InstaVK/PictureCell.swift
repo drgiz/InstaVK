@@ -9,12 +9,13 @@
 import UIKit
 
 protocol PictureCellDelegate {
-    func didTapButton(sender: UITableViewCell)
+    func didTapCommentsButton(sender: PictureCell)
+    func didTapLikeButton(sender: PictureCell)
 }
 
 class PictureCell: UITableViewCell {
 
-    
+    var post: Post?
 
     @IBOutlet weak var postPicture: UIImageView!
     @IBOutlet weak var postPictureHeight: NSLayoutConstraint!
@@ -42,11 +43,20 @@ class PictureCell: UITableViewCell {
     
     @IBAction func didTapCommentsButton(_ sender: UIButton) {
         if let delegate = self.delegate {
-            delegate.didTapButton(sender: self)
+            delegate.didTapCommentsButton(sender: self)
         }
     }
     
+    @IBAction func didTapLikeButton(_ sender: UIButton) {
+        if let delegate = self.delegate {
+            delegate.didTapLikeButton(sender: self)
+        }
+    }
+    
+    
     override func prepareForReuse() {
         postLikeButton.setImage(#imageLiteral(resourceName: "HeartEmpty"), for: .normal)
+        postPicture.image = #imageLiteral(resourceName: "error404")
+        postPictureHeight.constant = 300
     }
 }

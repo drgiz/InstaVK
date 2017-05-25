@@ -28,6 +28,8 @@ struct Post {
     let can_comment: Int
     let can_repost: Int
     
+    var userLikes: Int
+    
     
     init(dictionary: [String: Any]) {
         self.postId = dictionary["pid"] as? Int ?? 0
@@ -45,6 +47,7 @@ struct Post {
         self.date = dictionary["date"] as? Int ?? 0
         self.access_key = dictionary["access_key"] as? String ?? ""
         self.likes = dictionary["likes"] as? [String:Int] ?? [String:Int]()
+        self.userLikes = self.likes["user_likes"] ?? 0
         self.comments = dictionary["comments"] as? [String:Int] ?? [String:Int]()
         self.can_comment = dictionary["can_comment"] as? Int ?? 0
         self.can_repost = dictionary["can_repost"] as? Int ?? 0
