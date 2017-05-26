@@ -23,7 +23,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         VKSdk.initialize(withAppId: applicationID) // Initialize VK SDK with our app id (5986161)
         // Override point for customization after application launch.
         
-        SCOPE = [VK_PER_FRIENDS, VK_PER_WALL, VK_PER_PHOTOS, VK_PER_EMAIL, VK_PER_MESSAGES]
+        SCOPE = [VK_PER_FRIENDS, VK_PER_WALL, VK_PER_PHOTOS, VK_PER_EMAIL, VK_PER_MESSAGES, VK_PER_OFFLINE]
         VKSdk.wakeUpSession(SCOPE, complete: {(_ state: VKAuthorizationState, _ error: Error?) -> Void in
             if error != nil {
                 let alertVC = UIAlertController(title: "", message: error.debugDescription, preferredStyle: UIAlertControllerStyle.alert)

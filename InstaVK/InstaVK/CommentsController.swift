@@ -16,11 +16,12 @@ class CommentsController: UITableViewController {
     var profiles = [Int:Profile]()
     
     let commentCellIdentifier = "CommentCell"
-
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         let nib = UINib (nibName: "CommentCell", bundle: nil)
         self.tableView.register(nib, forCellReuseIdentifier: commentCellIdentifier)
+        self.tableView.tableFooterView = UIView()
         
         fetchComments()
     }
@@ -42,7 +43,7 @@ class CommentsController: UITableViewController {
                                                      "sort": "asc",
                                                      "v": "5.58"])
             else {
-            return
+                return
         }
         
         URLSession.shared.dataTask(with: url, completionHandler: { (data, response, error) in
@@ -63,8 +64,8 @@ class CommentsController: UITableViewController {
                 }
                 guard let commentsDict = responseDict["items"] as? [[String:Any]] else { return }
                 for comment in commentsDict {
-                        let comment = Comment(dictionary: comment)
-                        self.comments.append(comment)
+                    let comment = Comment(dictionary: comment)
+                    self.comments.append(comment)
                 }
                 DispatchQueue.main.async(execute: { () -> Void in
                     self.tableView?.reloadData()
@@ -74,17 +75,17 @@ class CommentsController: UITableViewController {
             }
         }).resume()
     }
-
+    
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
     }
-
+    
     // MARK: - Table view data source
-
+    
     override func numberOfSections(in tableView: UITableView) -> Int {
         return 1
     }
-
+    
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return comments.count
     }

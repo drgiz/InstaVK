@@ -21,7 +21,7 @@ class LoginController: UIViewController {
     var window: UIWindow?
 
     override func viewDidLoad() {
-        SCOPE = [VK_PER_FRIENDS, VK_PER_WALL, VK_PER_PHOTOS, VK_PER_EMAIL, VK_PER_MESSAGES]
+        SCOPE = [VK_PER_FRIENDS, VK_PER_WALL, VK_PER_PHOTOS, VK_PER_EMAIL, VK_PER_MESSAGES, VK_PER_OFFLINE]
         super.viewDidLoad()
         VKSdk.instance().register(self) 
         VKSdk.instance().uiDelegate = self

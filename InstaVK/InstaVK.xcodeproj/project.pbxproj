@@ -38,6 +38,7 @@
 		63258F601EC3A7F900EC7B0A /* Profile.swift in Sources */ = {isa = PBXBuildFile; fileRef = 63258F5F1EC3A7F900EC7B0A /* Profile.swift */; };
 		6336C9EC1EAD2B5500235933 /* VkAppUtils.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6336C9EB1EAD2B5500235933 /* VkAppUtils.swift */; };
 		633BD6951EA3EC4500378414 /* LoginController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 633BD6931EA3EC4500378414 /* LoginController.swift */; };
+		636862A21ED7B2F700C8A7AA /* SDWebImage.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 636862A11ED7B2F700C8A7AA /* SDWebImage.framework */; };
 		636BEE171ED3974E001B790B /* Comment.swift in Sources */ = {isa = PBXBuildFile; fileRef = 636BEE161ED3974E001B790B /* Comment.swift */; };
 		6394EB571EB266A0005AA9DD /* Launch Screen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 6394EB561EB266A0005AA9DD /* Launch Screen.storyboard */; };
 		6394EB5A1EB268BF005AA9DD /* billabong.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 6394EB591EB268BF005AA9DD /* billabong.ttf */; };
@@ -86,6 +87,7 @@
 		63258F5F1EC3A7F900EC7B0A /* Profile.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Profile.swift; sourceTree = "<group>"; };
 		6336C9EB1EAD2B5500235933 /* VkAppUtils.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = VkAppUtils.swift; sourceTree = "<group>"; };
 		633BD6931EA3EC4500378414 /* LoginController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LoginController.swift; sourceTree = "<group>"; };
+		636862A11ED7B2F700C8A7AA /* SDWebImage.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SDWebImage.framework; path = "../../../Library/Developer/Xcode/DerivedData/InstaVK-egphfzwsnzljqoboqwhujwhrckwt/Build/Products/Debug-iphoneos/SDWebImage/SDWebImage.framework"; sourceTree = "<group>"; };
 		636BEE161ED3974E001B790B /* Comment.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Comment.swift; sourceTree = "<group>"; };
 		6394EB561EB266A0005AA9DD /* Launch Screen.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = "Launch Screen.storyboard"; sourceTree = "<group>"; };
 		6394EB591EB268BF005AA9DD /* billabong.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = billabong.ttf; sourceTree = "<group>"; };
@@ -105,6 +107,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				636862A21ED7B2F700C8A7AA /* SDWebImage.framework in Frameworks */,
 				11970FE11ED2EC7500FF1151 /* Photos.framework in Frameworks */,
 				75F7A72321B31287936D92E9 /* Pods_InstaVK.framework in Frameworks */,
 			);
@@ -255,6 +258,7 @@
 		8860831C7826514BD6BA9E7F /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				636862A11ED7B2F700C8A7AA /* SDWebImage.framework */,
 				11970FE01ED2EC7500FF1151 /* Photos.framework */,
 				74443CE064C6470674577225 /* Pods_InstaVK.framework */,
 			);
