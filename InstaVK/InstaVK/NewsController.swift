@@ -171,7 +171,7 @@ class NewsController: UITableViewController, PictureCellDelegate {
             //                    newsCell.postPicture.image = #imageLiteral(resourceName: "error404")
             //                }
             //            })
-            newsCell.postLikeButton.setImage(posts[indexPath.row].userLikes == 1 ? #imageLiteral(resourceName: "HeartFilled") : #imageLiteral(resourceName: "HeartEmpty"), for: .normal)
+            newsCell.postLikeButton.setImage(posts[indexPath.row].userLikes == 1 ? #imageLiteral(resourceName: "HeartFilledRed") : #imageLiteral(resourceName: "HeartEmpty"), for: .normal)
         }
         
         return cell
