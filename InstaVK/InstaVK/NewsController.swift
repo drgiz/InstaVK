@@ -16,17 +16,8 @@ class NewsController: UITableViewController, PictureCellDelegate {
     
     let pictureCellIdentifier = "PictureCell"
     
-    //Array of cats to make the day, actually for test purposes here
-    var imageURLs = ["http://www.pravmir.ru/wp-content/uploads/2015/11/image-original.jpg", "http://redcat7.ru/wp-content/uploads/2014/01/motivator-s-kotom-pogovori.jpg", "https://4tololo.ru/files/styles/large/public/images/20141911123228.jpg?itok=gdc3Arzv", "http://www.sostav.ru/blogs/images/posts/15/29708.jpg", "http://www.nexplorer.ru/load/Image/1113/koshki_9.jpg", "http://storyfox.ru/wp-content/uploads/2015/11/shutterstock_265075847-696x528.jpg", "https://i.ytimg.com/vi/BhJO2Urrq94/hqdefault.jpg", "http://hitgid.com/images/коты-4.jpg", "http://catscountry.ru/wp-content/uploads/2015/10/2.jpg", "http://bm.img.com.ua/nxs/img/prikol/images/large/4/3/160134_288725.jpg"]
-    
     var posts = [Post]()
     var profiles = [Int:Profile]()
-    
-    //    override func viewWillAppear(_ animated: Bool) {
-    //        super.viewWillAppear(animated)
-    //        self.navigationController?.hidesBarsOnSwipe = true
-    //    }
-    
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -50,7 +41,6 @@ class NewsController: UITableViewController, PictureCellDelegate {
             else {
                 return
         }
-        //print(url)
         
         URLSession.shared.dataTask(with: url, completionHandler: { (data, response, error) in
             if error != nil {
@@ -110,8 +100,6 @@ class NewsController: UITableViewController, PictureCellDelegate {
     
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
 
-        //let cell = tableView.dequeueReusableCell(withIdentifier: identifier, for: indexPath)
-
         let cell = tableView .dequeueReusableCell(withIdentifier: pictureCellIdentifier, for: indexPath)
 
         if let newsCell = cell as? PictureCell {
@@ -132,7 +120,7 @@ class NewsController: UITableViewController, PictureCellDelegate {
             
             //TEST
             //TO-DO: replace 404image with placeholder
-            //sd web cache manager что-то там
+            
             newsCell.postPicture.setShowActivityIndicator(true)
             newsCell.postPicture.setIndicatorStyle(.gray)
             let scale: CGFloat = CGFloat(posts[indexPath.row].imageWidth)/UIScreen.main.bounds.width
@@ -155,22 +143,7 @@ class NewsController: UITableViewController, PictureCellDelegate {
                                                     newsCell.postPicture.image = #imageLiteral(resourceName: "error404")
                                                 }
             })
-            //            newsCell.postPicture.sd_setImage(with: URL(string: posts[indexPath.row].imageUrl_604), completed: { (image, error, cached, url) in
-            //                if image != nil{
-            //                    if cached.rawValue == 1 {
-            //                        DispatchQueue.main.async(execute: { () -> Void in
-            //                            //self.tableView.reloadData()
-            //                            self.tableView.beginUpdates()
-            //                            self.tableView.reloadRows(
-            //                                at: [indexPath],
-            //                                with: .fade)
-            //                            self.tableView.endUpdates()
-            //                        })
-            //                    }
-            //                } else {
-            //                    newsCell.postPicture.image = #imageLiteral(resourceName: "error404")
-            //                }
-            //            })
+
             newsCell.postLikeButton.setImage(posts[indexPath.row].userLikes == 1 ? #imageLiteral(resourceName: "HeartFilledRed") : #imageLiteral(resourceName: "HeartEmpty"), for: .normal)
         }
         
@@ -186,6 +159,7 @@ class NewsController: UITableViewController, PictureCellDelegate {
         return 300
     }
     
+    // MARK: TapCommentsButton
     func didTapCommentsButton(sender: PictureCell) {
         let commentsControler = CommentsController()
         if let post = sender.post {
@@ -194,6 +168,7 @@ class NewsController: UITableViewController, PictureCellDelegate {
         navigationController?.pushViewController(commentsControler, animated: true)
     }
     
+    // MARK: TapLikeButton
     func didTapLikeButton(sender: PictureCell) {
         
         guard let indexPath = tableView.indexPath(for: sender) else { return }
@@ -239,7 +214,7 @@ class NewsController: UITableViewController, PictureCellDelegate {
     }
     
     
-    // MARK: LogOut button for test purposes
+    // MARK: LogOut
     @IBAction func logOut(_ sender: Any) {
         let alertVC = UIAlertController(title: nil, message: nil, preferredStyle: UIAlertControllerStyle.actionSheet)
         let logOutButton = UIAlertAction(title: "LogOut", style: .destructive, handler: logOutToLoginScreen)
@@ -256,18 +231,9 @@ class NewsController: UITableViewController, PictureCellDelegate {
         self.present(lc, animated: true, completion: nil)
     }
     
+    // MARK: HandleCamera
     @IBAction func handleCamera(_ sender: Any) {
         let cameraController = CameraController()
         present(cameraController, animated: true, completion: nil)
     }
-    
-    
-    
-    
-    
-    
-    //    override func viewWillDisappear(_ animated: Bool) {
-    //        super .viewWillDisappear(animated)
-    //        self.navigationController?.isNavigationBarHidden = false
-    //    }
 }
