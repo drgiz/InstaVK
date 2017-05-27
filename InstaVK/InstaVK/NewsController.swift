@@ -24,9 +24,21 @@ class NewsController: UITableViewController, PictureCellDelegate {
         let nib = UINib (nibName: "PictureCell", bundle: nil)
         self.tableView.register(nib, forCellReuseIdentifier: pictureCellIdentifier)
         
+        let refreshControl = UIRefreshControl()
+        refreshControl.addTarget(self, action: #selector(handleRefresh), for: .valueChanged)
+        tableView.refreshControl = refreshControl
+        
         fetchPosts()
         
         
+    }
+    
+    func handleRefresh() {
+        print("Attempting to refresh feed")
+        //TO-DO: fix post data duplication via replacing array of post with dictionary
+        //posts.removeAll()
+        //profiles.removeAll()
+        fetchPosts()
     }
     
     //FORCED to use api request vs sdk due to unavailable newsfeed method in sdk
@@ -72,6 +84,7 @@ class NewsController: UITableViewController, PictureCellDelegate {
                         }
                     }
                 }
+                self.tableView.refreshControl?.endRefreshing()
                 DispatchQueue.main.async(execute: { () -> Void in
                     self.tableView?.reloadData()
                 })
