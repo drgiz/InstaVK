@@ -10,5 +10,7 @@ import UIKit
 
 class ProfileGridCell: UICollectionViewCell {
     
+    var post:Post?
+    
     @IBOutlet weak var imageCell: UIImageView!
 }

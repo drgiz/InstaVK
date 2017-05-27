@@ -28,6 +28,7 @@
 		117D09011ED0471B0092378F /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = 117D09001ED0471B0092378F /* User.swift */; };
 		11970FDF1ED24A5D00FF1151 /* UserPhoto.swift in Sources */ = {isa = PBXBuildFile; fileRef = 11970FDE1ED24A5D00FF1151 /* UserPhoto.swift */; };
 		11970FE11ED2EC7500FF1151 /* Photos.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 11970FE01ED2EC7500FF1151 /* Photos.framework */; };
+		11BF56261ED876DC00BA8A7E /* ProfilePhoto.swift in Sources */ = {isa = PBXBuildFile; fileRef = 11BF56251ED876DC00BA8A7E /* ProfilePhoto.swift */; };
 		11FE47621E81DE1F00D57721 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 11FE47611E81DE1F00D57721 /* AppDelegate.swift */; };
 		11FE47641E81DE1F00D57721 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 11FE47631E81DE1F00D57721 /* ViewController.swift */; };
 		11FE47671E81DE1F00D57721 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 11FE47651E81DE1F00D57721 /* Main.storyboard */; };
@@ -75,6 +76,7 @@
 		117D09001ED0471B0092378F /* User.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = User.swift; sourceTree = "<group>"; };
 		11970FDE1ED24A5D00FF1151 /* UserPhoto.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UserPhoto.swift; sourceTree = "<group>"; };
 		11970FE01ED2EC7500FF1151 /* Photos.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Photos.framework; path = System/Library/Frameworks/Photos.framework; sourceTree = SDKROOT; };
+		11BF56251ED876DC00BA8A7E /* ProfilePhoto.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ProfilePhoto.swift; sourceTree = "<group>"; };
 		11FE475E1E81DE1F00D57721 /* InstaVK.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = InstaVK.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		11FE47611E81DE1F00D57721 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		11FE47631E81DE1F00D57721 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
@@ -131,6 +133,7 @@
 			isa = PBXGroup;
 			children = (
 				63258F5D1EC0C36100EC7B0A /* Post.swift */,
+				11BF56251ED876DC00BA8A7E /* ProfilePhoto.swift */,
 				11970FDE1ED24A5D00FF1151 /* UserPhoto.swift */,
 				117D09001ED0471B0092378F /* User.swift */,
 				63258F5F1EC3A7F900EC7B0A /* Profile.swift */,
@@ -414,6 +417,7 @@
 				63E3C8E51ED052C6006C6A61 /* PreviewPhotoView.swift in Sources */,
 				1156B21C1E9E51BC00FAEA51 /* PictureController.swift in Sources */,
 				11FE47621E81DE1F00D57721 /* AppDelegate.swift in Sources */,
+				11BF56261ED876DC00BA8A7E /* ProfilePhoto.swift in Sources */,
 				63EE85871ECF97CF00B79D22 /* CameraController.swift in Sources */,
 				11970FDF1ED24A5D00FF1151 /* UserPhoto.swift in Sources */,
 				63A455161E93A7E1008C4D5E /* CommentsController.swift in Sources */,

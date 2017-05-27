@@ -12,7 +12,12 @@ import VK_ios_sdk
 private let reuseIdentifier1 = "cell1"
 private let reuseIdentifier2 = "cell2"
 
+
 class ProfileController: UICollectionViewController {
+    
+    var posts = [Post]()
+    var profiles = [Int:Profile]()
+
     
     @IBAction func pressFollowersButton(_ sender: Any) {
         let followersController = FollowersController.init(id: "id")
@@ -41,6 +46,59 @@ class ProfileController: UICollectionViewController {
         //self.collectionView!.register(UICollectionViewCell.self, forCellWithReuseIdentifier: reuseIdentifier2)
 
         // Do any additional setup after loading the view.
+        fetchPosts()
+    }
+    
+    func fetchPosts() {
+        guard let vkAccessToken = VKSdk.accessToken().accessToken else {
+            return
+        }
+        guard let url = vkApiUrlBuilder(vkApiMethod: "photos.get",
+                                        queryItems: ["album_id":"profile",
+                                                     "count":"10",
+                                                     "access_token":vkAccessToken])
+            else {
+                return
+        }
+        
+        URLSession.shared.dataTask(with: url, completionHandler: { (data, response, error) in
+            if error != nil {
+                print(error ?? "")
+                return
+            }
+            
+            do {
+                //в JSONе приходит отдельный словарь на профайлы и отдельный на фотографии
+                let json = try JSONSerialization.jsonObject(with: data!, options: .mutableContainers)
+                print(json)
+                guard let jsonDict = json as? [String: Any] else { return }
+               // guard let responseDict = jsonDict["response"] as? [String: Any] else { return }
+                //guard let itemsDict = responseDict["items"] as? [[String: Any]] else { return }
+                //добавляем профайл в словарь наших профайлов чтобы подтягивать оттуда информацию о пользователе
+                //for item in itemsDict {
+                //    if let profileId = item["uid"] as? Int {
+                //        self.profiles[profileId] = Profile(dictionary: profile)
+                //    }
+               // }
+                guard let itemsDict = jsonDict["response"] as? [[String: Any]] else { return }
+                //из items вытягиваем информацию о постах и добавляем в наш массив постов
+                for item in itemsDict {
+                    //if let photosArray = item["photo_130"] as? [Any] {
+                        //for photo in photosArray {
+                            if let itemDictionary = item as? [String : Any] {
+                                let post = Post(dictionary: itemDictionary)
+                                self.posts.append(post)
+                            //}
+                        //}
+                    }
+                }
+                DispatchQueue.main.async(execute: { () -> Void in
+                    self.collectionView?.reloadData()
+                })
+            } catch let jsonError {
+                print(jsonError)
+            }
+        }) .resume()
     }
 
     override func didReceiveMemoryWarning() {
@@ -67,7 +125,7 @@ class ProfileController: UICollectionViewController {
 
     override func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         
-        return 50
+        return self.posts.count
     }
     
     override func collectionView(_ collectionView: UICollectionView, viewForSupplementaryElementOfKind kind: String, at indexPath: IndexPath) -> UICollectionReusableView {
@@ -85,10 +143,29 @@ class ProfileController: UICollectionViewController {
 
     override func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
             
-          let  cell = collectionView.dequeueReusableCell(withReuseIdentifier: reuseIdentifier1, for: indexPath) as! ProfileGridCell
-        cell.imageCell.image = #imageLiteral(resourceName: "Image")
+          let  cell = collectionView.dequeueReusableCell(withReuseIdentifier: reuseIdentifier1, for: indexPath) as? ProfileGridCell
+        cell?.imageCell.sd_setImage(with: URL(string: posts[indexPath.row].imageUrl_130))
+        //let cell = collectionView.dequeueReusableCell(withReuseIdentifier: reuseIdentifier1, for: indexPath)
         
-        return cell
+        //if let newsCell = cell as? ProfileGridCell {
+        //    newsCell.post = posts[indexPath.row]
+        //}
+           // newsCell.delegate = self
+           // if let postOwnerFirstName = profiles[posts[indexPath.row].ownerId]?.firstName, let postOwnerSecondName = profiles[posts[indexPath.row].ownerId]?.lastName {
+            //    newsCell.postUserFirstNameLastName.text = postOwnerFirstName + " " + postOwnerSecondName
+            //} else {
+             //   newsCell.postUserFirstNameLastName.text = "Unavailable"
+           // }
+           // if let postOwnerAvatarUrl = profiles[posts[indexPath.row].ownerId]?.photoUrl {
+           //     newsCell.postUserAvatar.setShowActivityIndicator(true)
+           //     newsCell.postUserAvatar.setIndicatorStyle(.gray)
+           //     newsCell.postUserAvatar.sd_setImage(with: URL(string: postOwnerAvatarUrl))
+           // } else {
+           //     newsCell.postUserAvatar.image = #imageLiteral(resourceName: "error404")
+           // }
+
+        
+        return cell!
     }
     
     override func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {

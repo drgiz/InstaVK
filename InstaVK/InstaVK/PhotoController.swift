@@ -17,38 +17,48 @@ class PhotoController: UICollectionViewController {
     let imageViews = [UIImageView]()
     var images = NSMutableArray()
     var tempIndex = Int()
+    let offset = 10
 
     override func viewDidLoad() {
         super.viewDidLoad()
         self.tempIndex = 0
-        self.fetchPhotos(index: self.tempIndex)
+        self.fetchPhotos()
         }
             
-    func fetchPhotos(index:Int){
-        
+    func fetchPhotos(){
+        //var tempIndex = 0;
         
         let imgManager = PHImageManager.default()
         let requestOptions = PHImageRequestOptions()
         requestOptions.isSynchronous = true
         
         let fetchOptions = PHFetchOptions()
-        fetchOptions.sortDescriptors = [NSSortDescriptor(key:"creationDate", ascending: true)]
+        fetchOptions.sortDescriptors = [NSSortDescriptor(key:"creationDate", ascending: false)]
         
         let fetchResult: PHFetchResult = PHAsset.fetchAssets(with: PHAssetMediaType.image, options: fetchOptions)
         
         if fetchResult.count > 0 {
-        
-        imgManager.requestImage(for: fetchResult.object(at: self.tempIndex), targetSize: view.frame.size, contentMode: PHImageContentMode.aspectFill, options: requestOptions, resultHandler: { (image, _) in
             
-            self.images.add(image ?? #imageLiteral(resourceName: "Image-1"))
-            //print(fetchResult.count)
+            var indexWithOffset = self.tempIndex + self.offset
             
-            if self.tempIndex < fetchResult.count - 1 {
-                
-                self.tempIndex = self.tempIndex + 1
-                self.fetchPhotos(index: self.tempIndex)
+            if indexWithOffset > fetchResult.count {
+                indexWithOffset = fetchResult.count
             }
-        })
+            
+            if self.tempIndex == fetchResult.count {
+                
+                return
+            }
+            
+            while self.tempIndex < indexWithOffset {
+                imgManager.requestImage(for: fetchResult.object(at: self.tempIndex), targetSize: view.frame.size, contentMode: PHImageContentMode.aspectFill, options: requestOptions, resultHandler: { (image, _) in
+                    
+                    self.images.add(image ?? #imageLiteral(resourceName: "Image-1"))
+                    self.tempIndex += 1
+                })
+            }
+        
+       
         
         //if let fetchResult: PHFetchResult = PHAsset.fetchAssetsWithMediaType(PHAssetMediaType.Image, options: fetchOptions) {
         }
@@ -120,6 +130,12 @@ class PhotoController: UICollectionViewController {
         header.mainPhotoImageView.image = cell.photoImageView.image
     }
     
+    override func collectionView(_ collectionView: UICollectionView, willDisplay cell: UICollectionViewCell, forItemAt indexPath: IndexPath) {
+        if indexPath.row == images.count {
+            fetchPhotos()
+            collectionView.reloadData()
+        }
+    }
 
     /*
     // MARK: - Navigation
