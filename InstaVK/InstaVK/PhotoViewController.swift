@@ -14,7 +14,7 @@ enum FetchMode {
     case manyPhotosFetchMode
 }
 
-class PhotoViewController: UIViewController, UICollectionViewDelegate, UICollectionViewDataSource {
+class PhotoViewController: UIViewController, UICollectionViewDelegate, UICollectionViewDataSource, UICollectionViewDelegateFlowLayout {
     
     @IBOutlet weak var collectionView: PhotoCollectionView!
     @IBOutlet weak var mainImageView: UIImageView!
@@ -113,12 +113,17 @@ class PhotoViewController: UIViewController, UICollectionViewDelegate, UICollect
     }
     */
     
+    
      func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let  cell = collectionView.dequeueReusableCell(withReuseIdentifier: cellIdentifier, for: indexPath) as! PhotoGridCell
         
         cell.photoImageView.image = images.object(at: indexPath.row) as? UIImage
         
         return cell
+    }
+    
+    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
+        return CGSize(width: collectionView.frame.width/3 - 1, height: collectionView.frame.width/3 - 1)
     }
     
      func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
