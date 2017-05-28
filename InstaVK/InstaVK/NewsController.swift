@@ -139,24 +139,25 @@ class NewsController: UITableViewController, PictureCellDelegate {
             newsCell.postPicture.setIndicatorStyle(.gray)
             let scale: CGFloat = CGFloat(posts[indexPath.row].imageWidth)/UIScreen.main.bounds.width
             newsCell.postPictureHeight.constant = CGFloat(posts[indexPath.row].imageHeight)/scale
-            newsCell.postPicture.sd_setImage(with: URL(string: posts[indexPath.row].imageUrl_604),
-                                             placeholderImage: #imageLiteral(resourceName: "error404"),
-                                             options: [],
-                                             completed: { (image, error, cached, url) in
-                                                if image != nil{
-                                                    if cached.rawValue == 1 {
-                                                        DispatchQueue.main.async(execute: { () -> Void in
-                                                            self.tableView.beginUpdates()
-                                                            self.tableView.reloadRows(
-                                                                at: [indexPath],
-                                                                with: .fade)
-                                                            self.tableView.endUpdates()
-                                                        })
-                                                    }
-                                                } else {
-                                                    newsCell.postPicture.image = #imageLiteral(resourceName: "error404")
-                                                }
-            })
+//            newsCell.postPicture.sd_setImage(with: URL(string: posts[indexPath.row].imageUrl_604),
+//                                             placeholderImage: #imageLiteral(resourceName: "error404"),
+//                                             options: [],
+//                                             completed: { (image, error, cached, url) in
+//                                                if image != nil{
+//                                                    if cached.rawValue == 1 {
+//                                                        DispatchQueue.main.async(execute: { () -> Void in
+//                                                            self.tableView.beginUpdates()
+//                                                            self.tableView.reloadRows(
+//                                                                at: [indexPath],
+//                                                                with: .fade)
+//                                                            self.tableView.endUpdates()
+//                                                        })
+//                                                    }
+//                                                } else {
+//                                                    newsCell.postPicture.image = #imageLiteral(resourceName: "error404")
+//                                                }
+//            })
+            newsCell.postPicture.sd_setImage(with: URL(string: posts[indexPath.row].imageUrl_604), placeholderImage: #imageLiteral(resourceName: "error404"))
 
             newsCell.postLikeButton.setImage(posts[indexPath.row].userLikes == 1 ? #imageLiteral(resourceName: "HeartFilledRed") : #imageLiteral(resourceName: "HeartEmpty"), for: .normal)
         }
