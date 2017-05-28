@@ -24,7 +24,7 @@ class PhotoViewController: UIViewController, UICollectionViewDelegate, UICollect
     var images = NSMutableArray()
     var tempIndex = Int()
     let offset = 20
-    
+    var indexPath = IndexPath()
     
     //var header = HeaderPhotoView()
     //var indexPath123 = IndexPath()
@@ -37,6 +37,7 @@ class PhotoViewController: UIViewController, UICollectionViewDelegate, UICollect
     override func viewWillAppear(_ animated: Bool) {
         
         self.tempIndex = 0
+        self.fetchPhotos(mode: FetchMode.onePhotoFetchMode, index: 0)
         self.fetchPhotos(mode: FetchMode.manyPhotosFetchMode, index: 0)
     }
     
@@ -124,14 +125,39 @@ class PhotoViewController: UIViewController, UICollectionViewDelegate, UICollect
     
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
         
-       let th = collectionView.frame.width
         return CGSize(width: collectionView.frame.width/4 - 1, height: collectionView.frame.width/4 - 1)
     }
     
      func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
-        //let cell = collectionView.cellForItem(at: indexPath) as! PhotoGridCell
+        
+        let selectedCell = collectionView.cellForItem(at: indexPath) as! PhotoGridCell
+        selectedCell.photoImageView.alpha = 0.5
+        
         fetchPhotos(mode: FetchMode.onePhotoFetchMode, index: indexPath.row)
         //self.mainImageView.image = cell.photoImageView.image
     }
+    
+    func collectionView(_ collectionView: UICollectionView, didDeselectItemAt indexPath: IndexPath) {
+       
+            let deselectedCell = collectionView.cellForItem(at: indexPath) as! PhotoGridCell
+            deselectedCell.photoImageView.alpha = 1
+        
+        //let rt = indexPath
+        //let cell = collectionView.cellForItem(at: indexPath) as? PhotoGridCell
+        //cell?.photoImageView.alpha = 1
+    }
+    
+    
+     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        
+        if segue.identifier == "segueForSent" {
+            let controller = segue.destination as! SentPhotoTableViewController
+            controller.img = self.mainImageView.image!
+            //controller.commentTextView.text = "hello world!!!"
+            //controller.sentPhoto.image = self.mainImageView.image
+            //controller.sentPhoto.image = #imageLiteral(resourceName: "Image-1")//self.images.object(at: (collectionView.indexPathsForSelectedItems?.first?.row)!) as! UIImage
+        }
+    }
+    
     
     }

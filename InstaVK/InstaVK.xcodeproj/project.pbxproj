@@ -31,6 +31,7 @@
 		11BF56261ED876DC00BA8A7E /* ProfilePhoto.swift in Sources */ = {isa = PBXBuildFile; fileRef = 11BF56251ED876DC00BA8A7E /* ProfilePhoto.swift */; };
 		11BF562A1EDB1C0500BA8A7E /* PhotoCollectionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 11BF56291EDB1C0500BA8A7E /* PhotoCollectionView.swift */; };
 		11BF562C1EDB224000BA8A7E /* PhotoViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 11BF562B1EDB224000BA8A7E /* PhotoViewController.swift */; };
+		11BF562E1EDB7BD500BA8A7E /* SentPhotoTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 11BF562D1EDB7BD500BA8A7E /* SentPhotoTableViewController.swift */; };
 		11FE47621E81DE1F00D57721 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 11FE47611E81DE1F00D57721 /* AppDelegate.swift */; };
 		11FE47641E81DE1F00D57721 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 11FE47631E81DE1F00D57721 /* ViewController.swift */; };
 		11FE47671E81DE1F00D57721 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 11FE47651E81DE1F00D57721 /* Main.storyboard */; };
@@ -81,6 +82,7 @@
 		11BF56251ED876DC00BA8A7E /* ProfilePhoto.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ProfilePhoto.swift; sourceTree = "<group>"; };
 		11BF56291EDB1C0500BA8A7E /* PhotoCollectionView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PhotoCollectionView.swift; sourceTree = "<group>"; };
 		11BF562B1EDB224000BA8A7E /* PhotoViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PhotoViewController.swift; sourceTree = "<group>"; };
+		11BF562D1EDB7BD500BA8A7E /* SentPhotoTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SentPhotoTableViewController.swift; sourceTree = "<group>"; };
 		11FE475E1E81DE1F00D57721 /* InstaVK.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = InstaVK.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		11FE47611E81DE1F00D57721 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		11FE47631E81DE1F00D57721 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
@@ -153,6 +155,7 @@
 				113CB1661E89AC800054B413 /* NewsController.swift */,
 				113CB1681E89ACAF0054B413 /* PhotoController.swift */,
 				11BF562B1EDB224000BA8A7E /* PhotoViewController.swift */,
+				11BF562D1EDB7BD500BA8A7E /* SentPhotoTableViewController.swift */,
 				113CB1731E8EECBC0054B413 /* ProfileController.swift */,
 				1156B20F1E9C155F00FAEA51 /* FollowersController.swift */,
 				1156B2151E9E471300FAEA51 /* FollowingController.swift */,
@@ -410,6 +413,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				63258F5C1EC0AEE100EC7B0A /* NetworkManager.swift in Sources */,
+				11BF562E1EDB7BD500BA8A7E /* SentPhotoTableViewController.swift in Sources */,
 				633BD6951EA3EC4500378414 /* LoginController.swift in Sources */,
 				113CB1691E89ACAF0054B413 /* PhotoController.swift in Sources */,
 				117D09011ED0471B0092378F /* User.swift in Sources */,
