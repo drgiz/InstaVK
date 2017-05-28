@@ -1,0 +1,130 @@
+//
+//  PhotoViewController.swift
+//  InstaVK
+//
+//  Created by Никита on 28.05.17.
+//  Copyright © 2017 Nikita Susoev. All rights reserved.
+//
+
+import UIKit
+import Photos
+
+enum FetchMode {
+    case onePhotoFetchMode
+    case manyPhotosFetchMode
+}
+
+class PhotoViewController: UIViewController, UICollectionViewDelegate, UICollectionViewDataSource {
+    
+    @IBOutlet weak var collectionView: PhotoCollectionView!
+    @IBOutlet weak var mainImageView: UIImageView!
+    let headerIdentifier = "headerPhoto"
+    let cellIdentifier = "photoGridCell"
+    let imageViews = [UIImageView]()
+    var images = NSMutableArray()
+    var tempIndex = Int()
+    let offset = 20
+    
+    
+    //var header = HeaderPhotoView()
+    //var indexPath123 = IndexPath()
+    
+    override func viewDidLoad() {
+        super.viewDidLoad()
+        
+    }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        
+        self.tempIndex = 0
+        self.fetchPhotos(mode: FetchMode.manyPhotosFetchMode, index: 0)
+    }
+    
+    func fetchPhotos(mode: FetchMode, index: Int){
+        var tempIndex = index
+        let imgManager = PHCachingImageManager.default()
+        let requestOptions = PHImageRequestOptions()
+        requestOptions.isSynchronous = true
+        
+        let fetchOptions = PHFetchOptions()
+        fetchOptions.sortDescriptors = [NSSortDescriptor(key:"creationDate", ascending: false)]
+        
+        let fetchResult: PHFetchResult = PHAsset.fetchAssets(with: PHAssetMediaType.image, options: fetchOptions)
+        
+        if fetchResult.count > 0 {
+            /*var indexWithOffset = self.tempIndex + self.offset
+             
+             if indexWithOffset > fetchResult.count {
+             indexWithOffset = fetchResult.count
+             }
+             
+             if self.tempIndex == fetchResult.count {
+             return
+             }*/
+            
+            switch mode {
+                
+            case .onePhotoFetchMode:
+                imgManager.requestImage(for: fetchResult.object(at: tempIndex), targetSize: view.frame.size, contentMode: PHImageContentMode.aspectFill, options: requestOptions, resultHandler: { (image, _) in
+                    
+                    self.mainImageView.image = image
+                    //self.images.add(image ?? #imageLiteral(resourceName: "Image"))
+                })
+                break
+                
+            case .manyPhotosFetchMode:
+                while tempIndex < fetchResult.count {
+                    imgManager.requestImage(for: fetchResult.object(at: tempIndex), targetSize: CGSize.init(width:100, height:100), contentMode: PHImageContentMode.aspectFill, options: requestOptions, resultHandler: { (image, _) in
+                        
+                        self.images.add(image ?? #imageLiteral(resourceName: "Image"))
+                        tempIndex += 1
+                    })}
+                break
+            
+            //self.collectionView?.reloadData()
+        }
+        }
+    }
+    
+     func numberOfSections(in collectionView: UICollectionView) -> Int {
+        return 1
+    }
+    
+    
+     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
+        
+        return images.count
+    }
+    
+    /*    func collectionView(_ collectionView: UICollectionView, viewForSupplementaryElementOfKind kind: String, at indexPath: IndexPath) -> UICollectionReusableView {
+        
+        switch kind{
+        case UICollectionElementKindSectionHeader:
+            
+            let header = collectionView.dequeueReusableSupplementaryView(ofKind: kind, withReuseIdentifier: headerIdentifier, for: indexPath) as! HeaderPhotoView
+            
+            header.mainPhotoImageView.image = self.images.firstObject as? UIImage
+            return header
+            
+        default:
+            
+            assert(false, "unexpected element kind")
+        }
+    }
+    */
+    
+     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
+        let  cell = collectionView.dequeueReusableCell(withReuseIdentifier: cellIdentifier, for: indexPath) as! PhotoGridCell
+        
+        cell.photoImageView.image = images.object(at: indexPath.row) as? UIImage
+        
+        return cell
+    }
+    
+     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
+        //let cell = collectionView.cellForItem(at: indexPath) as! PhotoGridCell
+        fetchPhotos(mode: FetchMode.onePhotoFetchMode, index: indexPath.row)
+        //self.mainImageView.image = cell.photoImageView.image
+    }
+    
+    }

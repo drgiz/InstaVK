@@ -29,6 +29,8 @@
 		11970FDF1ED24A5D00FF1151 /* UserPhoto.swift in Sources */ = {isa = PBXBuildFile; fileRef = 11970FDE1ED24A5D00FF1151 /* UserPhoto.swift */; };
 		11970FE11ED2EC7500FF1151 /* Photos.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 11970FE01ED2EC7500FF1151 /* Photos.framework */; };
 		11BF56261ED876DC00BA8A7E /* ProfilePhoto.swift in Sources */ = {isa = PBXBuildFile; fileRef = 11BF56251ED876DC00BA8A7E /* ProfilePhoto.swift */; };
+		11BF562A1EDB1C0500BA8A7E /* PhotoCollectionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 11BF56291EDB1C0500BA8A7E /* PhotoCollectionView.swift */; };
+		11BF562C1EDB224000BA8A7E /* PhotoViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 11BF562B1EDB224000BA8A7E /* PhotoViewController.swift */; };
 		11FE47621E81DE1F00D57721 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 11FE47611E81DE1F00D57721 /* AppDelegate.swift */; };
 		11FE47641E81DE1F00D57721 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 11FE47631E81DE1F00D57721 /* ViewController.swift */; };
 		11FE47671E81DE1F00D57721 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 11FE47651E81DE1F00D57721 /* Main.storyboard */; };
@@ -77,6 +79,8 @@
 		11970FDE1ED24A5D00FF1151 /* UserPhoto.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UserPhoto.swift; sourceTree = "<group>"; };
 		11970FE01ED2EC7500FF1151 /* Photos.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Photos.framework; path = System/Library/Frameworks/Photos.framework; sourceTree = SDKROOT; };
 		11BF56251ED876DC00BA8A7E /* ProfilePhoto.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ProfilePhoto.swift; sourceTree = "<group>"; };
+		11BF56291EDB1C0500BA8A7E /* PhotoCollectionView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PhotoCollectionView.swift; sourceTree = "<group>"; };
+		11BF562B1EDB224000BA8A7E /* PhotoViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PhotoViewController.swift; sourceTree = "<group>"; };
 		11FE475E1E81DE1F00D57721 /* InstaVK.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = InstaVK.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		11FE47611E81DE1F00D57721 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		11FE47631E81DE1F00D57721 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
@@ -148,6 +152,7 @@
 				633BD6931EA3EC4500378414 /* LoginController.swift */,
 				113CB1661E89AC800054B413 /* NewsController.swift */,
 				113CB1681E89ACAF0054B413 /* PhotoController.swift */,
+				11BF562B1EDB224000BA8A7E /* PhotoViewController.swift */,
 				113CB1731E8EECBC0054B413 /* ProfileController.swift */,
 				1156B20F1E9C155F00FAEA51 /* FollowersController.swift */,
 				1156B2151E9E471300FAEA51 /* FollowingController.swift */,
@@ -171,6 +176,7 @@
 				1156B20B1E92D3DD00FAEA51 /* HeaderProfileView.swift */,
 				1156B21D1E9ED2E000FAEA51 /* HeaderPhotoView.swift */,
 				63E3C8E41ED052C6006C6A61 /* PreviewPhotoView.swift */,
+				11BF56291EDB1C0500BA8A7E /* PhotoCollectionView.swift */,
 			);
 			name = View;
 			sourceTree = "<group>";
@@ -430,7 +436,9 @@
 				11FE476A1E81DE1F00D57721 /* InstaVK.xcdatamodeld in Sources */,
 				63258F601EC3A7F900EC7B0A /* Profile.swift in Sources */,
 				1156B20E1E92D4BF00FAEA51 /* ProfileGridCell.swift in Sources */,
+				11BF562A1EDB1C0500BA8A7E /* PhotoCollectionView.swift in Sources */,
 				63A455121E93A3C2008C4D5E /* CommentCell.swift in Sources */,
+				11BF562C1EDB224000BA8A7E /* PhotoViewController.swift in Sources */,
 				636BEE171ED3974E001B790B /* Comment.swift in Sources */,
 				6336C9EC1EAD2B5500235933 /* VkAppUtils.swift in Sources */,
 			);
