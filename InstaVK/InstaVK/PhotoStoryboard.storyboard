@@ -105,14 +105,14 @@
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="c7h-DM-NXh">
-                                <rect key="frame" x="0.0" y="0.0" width="375" height="420"/>
+                            <imageView userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="c7h-DM-NXh">
+                                <rect key="frame" x="0.0" y="64" width="375" height="356"/>
                                 <constraints>
-                                    <constraint firstAttribute="height" constant="420" id="t1H-cp-8z7"/>
+                                    <constraint firstAttribute="height" constant="356" id="t1H-cp-8z7"/>
                                 </constraints>
                             </imageView>
                             <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="goj-E2-Ilr" customClass="PhotoCollectionView" customModule="InstaVK" customModuleProvider="target">
-                                <rect key="frame" x="0.0" y="420" width="375" height="247"/>
+                                <rect key="frame" x="0.0" y="420" width="375" height="197"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <collectionViewFlowLayout key="collectionViewLayout" minimumLineSpacing="1" minimumInteritemSpacing="1" id="oVt-Xj-16O">
                                     <size key="itemSize" width="100" height="100"/>
@@ -154,12 +154,12 @@
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
                             <constraint firstItem="goj-E2-Ilr" firstAttribute="top" secondItem="c7h-DM-NXh" secondAttribute="bottom" id="5Pc-Yg-LiN"/>
-                            <constraint firstItem="c7h-DM-NXh" firstAttribute="top" secondItem="O5L-Pn-Y2r" secondAttribute="top" id="HHn-0d-82h"/>
+                            <constraint firstItem="c7h-DM-NXh" firstAttribute="top" secondItem="O5L-Pn-Y2r" secondAttribute="top" constant="64" id="HHn-0d-82h"/>
                             <constraint firstAttribute="trailing" secondItem="c7h-DM-NXh" secondAttribute="trailing" id="O9p-6R-aF2"/>
                             <constraint firstAttribute="trailing" secondItem="goj-E2-Ilr" secondAttribute="trailing" id="PSd-HS-2w9"/>
                             <constraint firstItem="goj-E2-Ilr" firstAttribute="leading" secondItem="O5L-Pn-Y2r" secondAttribute="leading" id="Sha-9n-HAV"/>
                             <constraint firstItem="c7h-DM-NXh" firstAttribute="leading" secondItem="O5L-Pn-Y2r" secondAttribute="leading" id="dED-AK-go0"/>
-                            <constraint firstAttribute="bottom" secondItem="goj-E2-Ilr" secondAttribute="bottom" id="gYW-OG-TTl"/>
+                            <constraint firstAttribute="bottom" secondItem="goj-E2-Ilr" secondAttribute="bottom" constant="50" id="gYW-OG-TTl"/>
                         </constraints>
                     </view>
                     <navigationItem key="navigationItem" id="oyL-gf-SvJ"/>

@@ -52,7 +52,7 @@ class PhotoController: UICollectionViewController {
             }*/
             
             while self.tempIndex < fetchResult.count {
-                imgManager.requestImage(for: fetchResult.object(at: self.tempIndex), targetSize: CGSize.init(width:110, height:110), contentMode: PHImageContentMode.aspectFill, options: requestOptions, resultHandler: { (image, _) in
+                imgManager.requestImage(for: fetchResult.object(at: self.tempIndex), targetSize: CGSize.init(width: 10, height: 10), contentMode: PHImageContentMode.aspectFill, options: requestOptions, resultHandler: { (image, _) in
                     
                     self.images.add(image ?? #imageLiteral(resourceName: "Image"))
                     self.tempIndex += 1

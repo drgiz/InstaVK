@@ -65,7 +65,7 @@ class PhotoViewController: UIViewController, UICollectionViewDelegate, UICollect
             switch mode {
                 
             case .onePhotoFetchMode:
-                imgManager.requestImage(for: fetchResult.object(at: tempIndex), targetSize: view.frame.size, contentMode: PHImageContentMode.aspectFill, options: requestOptions, resultHandler: { (image, _) in
+                imgManager.requestImage(for: fetchResult.object(at: tempIndex), targetSize: CGSize.init(width:view.frame.width, height: 356), contentMode: PHImageContentMode.aspectFill, options: requestOptions, resultHandler: { (image, _) in
                     
                     self.mainImageView.image = image
                     //self.images.add(image ?? #imageLiteral(resourceName: "Image"))
@@ -123,7 +123,9 @@ class PhotoViewController: UIViewController, UICollectionViewDelegate, UICollect
     }
     
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
-        return CGSize(width: collectionView.frame.width/3 - 1, height: collectionView.frame.width/3 - 1)
+        
+       let th = collectionView.frame.width
+        return CGSize(width: collectionView.frame.width/4 - 1, height: collectionView.frame.width/4 - 1)
     }
     
      func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
