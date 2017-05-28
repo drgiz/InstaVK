@@ -35,8 +35,6 @@ class NewsController: UITableViewController, PictureCellDelegate {
     
     func handleRefresh() {
         print("Attempting to refresh feed")
-        posts.removeAll()
-        profiles.removeAll()
         fetchPosts()
     }
     
@@ -53,6 +51,7 @@ class NewsController: UITableViewController, PictureCellDelegate {
                 return
         }
         
+        
         URLSession.shared.dataTask(with: url, completionHandler: { (data, response, error) in
             if error != nil {
                 print(error ?? "")
@@ -60,6 +59,10 @@ class NewsController: UITableViewController, PictureCellDelegate {
             }
             
             do {
+                
+                self.posts.removeAll()
+                self.profiles.removeAll()
+                
                 //в JSONе приходит отдельный словарь на профайлы и отдельный на фотографии
                 let json = try JSONSerialization.jsonObject(with: data!, options: .mutableContainers)
                 guard let jsonDict = json as? [String: Any] else { return }
@@ -89,6 +92,7 @@ class NewsController: UITableViewController, PictureCellDelegate {
                     self.tableView?.reloadData()
                 })
                 self.tableView.refreshControl?.endRefreshing()
+                
             } catch let jsonError {
                 print(jsonError)
             }
