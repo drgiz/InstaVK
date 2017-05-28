@@ -35,9 +35,8 @@ class NewsController: UITableViewController, PictureCellDelegate {
     
     func handleRefresh() {
         print("Attempting to refresh feed")
-        //TO-DO: fix post data duplication via replacing array of post with dictionary
-        //posts.removeAll()
-        //profiles.removeAll()
+        posts.removeAll()
+        profiles.removeAll()
         fetchPosts()
     }
     
@@ -84,10 +83,12 @@ class NewsController: UITableViewController, PictureCellDelegate {
                         }
                     }
                 }
-                self.tableView.refreshControl?.endRefreshing()
-                DispatchQueue.main.async(execute: { () -> Void in
+               
+                //Fixed reload data with sync queue (not sure if it is correct)
+                DispatchQueue.main.sync(execute: { () -> Void in
                     self.tableView?.reloadData()
                 })
+                self.tableView.refreshControl?.endRefreshing()
             } catch let jsonError {
                 print(jsonError)
             }
