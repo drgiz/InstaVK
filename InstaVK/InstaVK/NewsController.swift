@@ -88,7 +88,7 @@ class NewsController: UITableViewController, PictureCellDelegate {
                 }
                
                 //Fixed reload data with sync queue (not sure if it is correct)
-                DispatchQueue.main.sync(execute: { () -> Void in
+                DispatchQueue.main.async(execute: { () -> Void in
                     self.tableView?.reloadData()
                 })
                 self.tableView.refreshControl?.endRefreshing()

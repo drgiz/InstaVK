@@ -23,6 +23,15 @@ class CommentsController: UITableViewController {
         self.tableView.register(nib, forCellReuseIdentifier: commentCellIdentifier)
         self.tableView.tableFooterView = UIView()
         
+        let refreshControl = UIRefreshControl()
+        refreshControl.addTarget(self, action: #selector(handleRefresh), for: .valueChanged)
+        tableView.refreshControl = refreshControl
+        
+        fetchComments()
+    }
+    
+    func handleRefresh() {
+        print("Attempting to refresh comments feed")
         fetchComments()
     }
     
@@ -53,6 +62,8 @@ class CommentsController: UITableViewController {
             }
             
             do {
+                self.comments.removeAll()
+                self.profiles.removeAll()
                 let json = try JSONSerialization.jsonObject(with: data!, options: .mutableContainers)
                 guard let jsonDict = json as? [String: Any] else { return }
                 guard let responseDict = jsonDict["response"] as? [String: Any] else { return }
@@ -70,6 +81,7 @@ class CommentsController: UITableViewController {
                 DispatchQueue.main.async(execute: { () -> Void in
                     self.tableView?.reloadData()
                 })
+                self.tableView.refreshControl?.endRefreshing()
             } catch let jsonError {
                 print(jsonError)
             }
@@ -105,8 +117,11 @@ class CommentsController: UITableViewController {
             } else {
                 commentsCell.userFirstLastName.setTitle("Unavailable", for: .normal)
             }
-            
-            commentsCell.commentText.text = comments[indexPath.row].text
+            if comments[indexPath.row].text != "" {
+                commentsCell.commentText.text = comments[indexPath.row].text
+            } else {
+                commentsCell.commentText.text = "template for picture comment"
+            }
         }
         return cell
     }
