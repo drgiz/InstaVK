@@ -109,7 +109,27 @@ class NewsController: UITableViewController, PictureCellDelegate {
     // MARK: - Table view data source
     
     override func numberOfSections(in tableView: UITableView) -> Int {
-        return 1
+        var numOfSections: Int = 0
+        if posts.count>0
+        {
+            tableView.separatorStyle = .singleLine
+            tableView.separatorInset = .zero
+            numOfSections = 1
+            tableView.backgroundView = nil
+        }
+        else
+        {
+            let noDataLabel: UILabel = UILabel(frame: CGRect(x: 0,
+                                                             y: 0,
+                                                             width: tableView.bounds.size.width,
+                                                             height: tableView.bounds.size.height))
+            noDataLabel.text = "No data to display :("
+            noDataLabel.textColor = UIColor.black
+            noDataLabel.textAlignment = .center
+            tableView.backgroundView = noDataLabel
+            tableView.separatorStyle = .none
+        }
+        return numOfSections
     }
     
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
@@ -120,7 +140,8 @@ class NewsController: UITableViewController, PictureCellDelegate {
     
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
 
-        let cell = tableView .dequeueReusableCell(withIdentifier: pictureCellIdentifier, for: indexPath)
+        let cell = tableView .dequeueReusableCell(withIdentifier: pictureCellIdentifier,
+                                                  for: indexPath)
 
         if let newsCell = cell as? PictureCell {
             newsCell.post = posts[indexPath.row]
@@ -135,7 +156,7 @@ class NewsController: UITableViewController, PictureCellDelegate {
                 newsCell.postUserAvatar.setIndicatorStyle(.gray)
                 newsCell.postUserAvatar.sd_setImage(with: URL(string: postOwnerAvatarUrl))
             } else {
-                newsCell.postUserAvatar.image = #imageLiteral(resourceName: "error404")
+                newsCell.postUserAvatar.image = #imageLiteral(resourceName: "VKSadDogSquare")
             }
             
             //TEST
@@ -145,25 +166,8 @@ class NewsController: UITableViewController, PictureCellDelegate {
             newsCell.postPicture.setIndicatorStyle(.gray)
             let scale: CGFloat = CGFloat(posts[indexPath.row].imageWidth)/UIScreen.main.bounds.width
             newsCell.postPictureHeight.constant = CGFloat(posts[indexPath.row].imageHeight)/scale
-//            newsCell.postPicture.sd_setImage(with: URL(string: posts[indexPath.row].imageUrl_604),
-//                                             placeholderImage: #imageLiteral(resourceName: "error404"),
-//                                             options: [],
-//                                             completed: { (image, error, cached, url) in
-//                                                if image != nil{
-//                                                    if cached.rawValue == 1 {
-//                                                        DispatchQueue.main.async(execute: { () -> Void in
-//                                                            self.tableView.beginUpdates()
-//                                                            self.tableView.reloadRows(
-//                                                                at: [indexPath],
-//                                                                with: .fade)
-//                                                            self.tableView.endUpdates()
-//                                                        })
-//                                                    }
-//                                                } else {
-//                                                    newsCell.postPicture.image = #imageLiteral(resourceName: "error404")
-//                                                }
-//            })
-            newsCell.postPicture.sd_setImage(with: URL(string: posts[indexPath.row].imageUrl_604), placeholderImage: #imageLiteral(resourceName: "error404"))
+            newsCell.postPicture.sd_setImage(with: URL(string: posts[indexPath.row].imageUrl_604),
+                                             placeholderImage: #imageLiteral(resourceName: "VKSadDogRect"))
 
             newsCell.postLikeButton.setImage(posts[indexPath.row].userLikes == 1 ? #imageLiteral(resourceName: "HeartFilledRed") : #imageLiteral(resourceName: "HeartEmpty"), for: .normal)
         }
@@ -237,7 +241,9 @@ class NewsController: UITableViewController, PictureCellDelegate {
     
     // MARK: LogOut
     @IBAction func logOut(_ sender: Any) {
-        let alertVC = UIAlertController(title: nil, message: nil, preferredStyle: UIAlertControllerStyle.actionSheet)
+        let alertVC = UIAlertController(title: nil,
+                                        message: nil,
+                                        preferredStyle: UIAlertControllerStyle.actionSheet)
         let logOutButton = UIAlertAction(title: "LogOut", style: .destructive, handler: logOutToLoginScreen)
         let dismiss = UIAlertAction(title: "Cancel", style: UIAlertActionStyle.cancel, handler: nil)
         alertVC.addAction(logOutButton)

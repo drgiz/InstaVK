@@ -95,7 +95,27 @@ class CommentsController: UITableViewController {
     // MARK: - Table view data source
     
     override func numberOfSections(in tableView: UITableView) -> Int {
-        return 1
+        var numOfSections: Int = 0
+        if comments.count>0
+        {
+            tableView.separatorStyle = .singleLine
+            tableView.separatorInset = .zero
+            numOfSections = 1
+            tableView.backgroundView = nil
+        }
+        else
+        {
+            let noDataLabel: UILabel     = UILabel(frame: CGRect(x: 0,
+                                                                 y: 0,
+                                                                 width: tableView.bounds.size.width,
+                                                                 height: tableView.bounds.size.height))
+            noDataLabel.text          = "No comments yet :("
+            noDataLabel.textColor     = UIColor.black
+            noDataLabel.textAlignment = .center
+            tableView.backgroundView  = noDataLabel
+            tableView.separatorStyle  = .none
+        }
+        return numOfSections
     }
     
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
@@ -110,7 +130,7 @@ class CommentsController: UITableViewController {
                 commentsCell.avatarImage.setIndicatorStyle(.gray)
                 commentsCell.avatarImage.sd_setImage(with: URL(string: postOwnerAvatarUrl))
             } else {
-                commentsCell.avatarImage.image = #imageLiteral(resourceName: "error404")
+                commentsCell.avatarImage.image = #imageLiteral(resourceName: "VKSadDogSquare")
             }
             if let commentOwnerFirstName = profiles[comments[indexPath.row].ownerId]?.firstName, let commentOwnerSecondName = profiles[comments[indexPath.row].ownerId]?.lastName {
                 commentsCell.userFirstLastName.setTitle(commentOwnerFirstName + " " + commentOwnerSecondName, for: .normal)
