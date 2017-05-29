@@ -46,6 +46,7 @@ class NewsController: UITableViewController, PictureCellDelegate {
         guard let url = vkApiUrlBuilder(vkApiMethod: "newsfeed.get",
                                         queryItems: ["filters":"wall_photo",
                                                      "count":"10",
+                                                     "source_ids":"friends,following",
                                                      "access_token":vkAccessToken])
             else {
                 return
@@ -85,6 +86,7 @@ class NewsController: UITableViewController, PictureCellDelegate {
                             }
                         }
                     }
+                    
                 }
                
                 //Fixed reload data with sync queue (not sure if it is correct)
