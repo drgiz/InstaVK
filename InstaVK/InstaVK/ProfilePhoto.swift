@@ -1,15 +1,16 @@
 //
-//  Post.swift
+//  ProfilePhoto.swift
 //  InstaVK
 //
-//  Created by Svyatoslav Bykov on 08.05.17.
+//  Created by Никита on 26.05.17.
 //  Copyright © 2017 Nikita Susoev. All rights reserved.
 //
 
-import Foundation
+import UIKit
 
-struct Post {
-    let postId: Int
+struct ProfilePhoto {
+    
+    let id: Int
     let albumId: Int
     let ownerId: Int
     let imageUrl_75: String
@@ -22,16 +23,9 @@ struct Post {
     let imageHeight: Int
     let text: String
     let date: Int
-    let access_key: String
-    let likes: [String:Int]
-    let comments: [String:Int]
-    let can_comment: Int
-    let can_repost: Int
-    var userLikes: Int
-    
-    
-    init(dictionary: [String: Any]) {
-        self.postId = dictionary["pid"] as? Int ?? 0
+
+    init(dictionary:[String: Any]) {
+        self.id = dictionary["pid"] as? Int ?? 0
         self.albumId = dictionary["aid"] as? Int ?? 0
         self.ownerId = dictionary["owner_id"] as? Int ?? 0
         self.imageUrl_75 = dictionary["src_small"] as? String ?? ""
@@ -44,11 +38,6 @@ struct Post {
         self.imageHeight = dictionary["height"] as? Int ?? 0
         self.text = dictionary["text"] as? String ?? ""
         self.date = dictionary["date"] as? Int ?? 0
-        self.access_key = dictionary["access_key"] as? String ?? ""
-        self.likes = dictionary["likes"] as? [String:Int] ?? [String:Int]()
-        self.userLikes = self.likes["user_likes"] ?? 0
-        self.comments = dictionary["comments"] as? [String:Int] ?? [String:Int]()
-        self.can_comment = dictionary["can_comment"] as? Int ?? 0
-        self.can_repost = dictionary["can_repost"] as? Int ?? 0
     }
+
 }

@@ -12,24 +12,18 @@ import VK_ios_sdk
 
 class FollowersController: UITableViewController {
     
+    var countFriends  = Int()
+    
     let followerCellIdentifier = "FollowerCell"
     var followers = [User]()
+    var friends = [Friend]()
     
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        
         let nib = UINib(nibName: "FollowerCell", bundle: nil)
         self.tableView.register(nib, forCellReuseIdentifier: followerCellIdentifier)
-        
-       
-        
         self.tableView.reloadData()
-        // Uncomment the following line to preserve selection between presentations
-        // self.clearsSelectionOnViewWillAppear = false
-
-        // Uncomment the following line to display an Edit button in the navigation bar for this view controller.
-        // self.navigationItem.rightBarButtonItem = self.editButtonItem()
     }
     
     override func didReceiveMemoryWarning() {
@@ -40,32 +34,55 @@ class FollowersController: UITableViewController {
     convenience init(id : String) {
         self.init()
     }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        fetchFriends()
+    }
+    
+    func fetchFriends(){
+        
+      let request = VKApi.friends().get(["order":"name",
+                                         "fields":"photo_50",
+                                         "name_case":"nom"])
+        
+        request?.execute(resultBlock: { (response) in
+            
+            let dictResponse = response?.json as? [String : Any]
+            print(response?.json)
+            
+            let itemsDict = dictResponse?["items"] as? [Any]
+            
+            for item in itemsDict! {
+                if let itemDict = item as? [String : Any] {
+                
+                    let friend  = Friend(dictionary: itemDict)
+                    self.friends.append(friend)
+                }
+            }
+            
+            
+            
+             self.countFriends = dictResponse?["count"] as? Int ?? 0
+            
+            DispatchQueue.main.async {
+                self.tableView.reloadData()
+            }
+            
+        }, errorBlock: { (error) in
+            
+        })
+        
+    }
 
     // MARK: - Table view data source
 
     override func numberOfSections(in tableView: UITableView) -> Int {
-       /* let params :[String: String] = ["fields":"country"]
-        let request = VKApi.friends().get(params)
-        
-        request?.execute(resultBlock: { (response) in
-            
-            let books = response?.json as! Dictionary <String, AnyObject>
-            let newBooks = books["items"] as! NSArray
-            for book in newBooks {
-                let b = book as! Dictionary<String, AnyObject>
-                let user = User()
-                user.lastName = b["last_name"] as! String?
-                self.followers.append(user)
-            }
-        }, errorBlock: { (error) in
-            
-        })
-        */
+
         return 1
     }
 
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return 5//self.followers.count
+        return self.friends.count//self.followers.count
     }
 
     
@@ -74,12 +91,12 @@ class FollowersController: UITableViewController {
         
         let cell = tableView.dequeueReusableCell(withIdentifier: followerCellIdentifier, for: indexPath) as! FollowerCell
         
-        cell.followerImageView.image = #imageLiteral(resourceName: "Image")
+        let friend = self.friends[indexPath.row]
+        
+        cell.followerImageView.sd_setImage(with: URL(string: friend.photo50URL))
         cell.followerImageView.layer.cornerRadius = 40
         cell.followerImageView.clipsToBounds = true
-        //cell.fistAndLastNameLabel.text = self.followers[indexPath.row].lastName
-        
-             // Configure the cell...
+        cell.fistAndLastNameLabel.text = friend.firstName + " " + friend.lastName
 
         return cell
     }
@@ -87,50 +104,5 @@ class FollowersController: UITableViewController {
     override func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
         return 100
     }
-
-    /*
-    // Override to support conditional editing of the table view.
-    override func tableView(_ tableView: UITableView, canEditRowAt indexPath: IndexPath) -> Bool {
-        // Return false if you do not want the specified item to be editable.
-        return true
-    }
-    */
-
-    /*
-    // Override to support editing the table view.
-    override func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCellEditingStyle, forRowAt indexPath: IndexPath) {
-        if editingStyle == .delete {
-            // Delete the row from the data source
-            tableView.deleteRows(at: [indexPath], with: .fade)
-        } else if editingStyle == .insert {
-            // Create a new instance of the appropriate class, insert it into the array, and add a new row to the table view
-        }    
-    }
-    */
-
-    /*
-    // Override to support rearranging the table view.
-    override func tableView(_ tableView: UITableView, moveRowAt fromIndexPath: IndexPath, to: IndexPath) {
-
-    }
-    */
-
-    /*
-    // Override to support conditional rearranging of the table view.
-    override func tableView(_ tableView: UITableView, canMoveRowAt indexPath: IndexPath) -> Bool {
-        // Return false if you do not want the item to be re-orderable.
-        return true
-    }
-    */
-
-    /*
-    // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        // Get the new view controller using segue.destinationViewController.
-        // Pass the selected object to the new view controller.
-    }
-    */
 
 }

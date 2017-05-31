@@ -7,10 +7,16 @@
 //
 
 import UIKit
+import VK_ios_sdk
 
 //removed PictureCellDelegate protocol reference until DelegateFix
 
-class PictureController: UITableViewController {
+class PictureController: UITableViewController, PictureCellDelegate {
+    
+    var mainImage = UIImageView()
+    var mainImageURL = String()
+    var post : Post?
+    
     
     let pictureCellIdentifier = "pictureCell"
 
@@ -45,7 +51,14 @@ class PictureController: UITableViewController {
     
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: pictureCellIdentifier, for: indexPath) as! PictureCell
-        cell.postPicture.image = #imageLiteral(resourceName: "Image")
+        
+        cell.delegate = self
+        let scale: CGFloat = CGFloat(self.post!.imageWidth)/UIScreen.main.bounds.width
+        cell.postPictureHeight.constant = CGFloat((self.post?.imageHeight)!)/scale
+        cell.postPicture.sd_setImage(with: URL(string: (self.post?.imageUrl_807)!))
+        cell.postUserAvatar.sd_setImage(with: URL(string: (self.post?.imageUrl_130)!))
+        //cell.postUserFirstNameLastName =
+        //self.mainImage.image
 //        cell.delegate = self
 
         // Configure the cell...
@@ -54,9 +67,66 @@ class PictureController: UITableViewController {
     }
     
     override func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
-        let scale : CGFloat = #imageLiteral(resourceName: "Image").size.width/UIScreen.main.bounds.width
-        return #imageLiteral(resourceName: "Image").size.height/scale + 80 + 32
+        return UITableViewAutomaticDimension
+        
     }
+    
+    override func tableView(_ tableView: UITableView, estimatedHeightForRowAt indexPath: IndexPath) -> CGFloat {
+        return 300
+    }
+    
+    func didTapCommentsButton(sender: PictureCell) {
+        let commentsControler = CommentsController()
+        if let post = sender.post {
+            commentsControler.post = post
+        }
+        navigationController?.pushViewController(commentsControler, animated: true)
+    }
+    
+    func didTapLikeButton(sender: PictureCell) {
+        
+        //guard let indexPath = tableView.indexPath(for: sender) else { return }
+        var post = self.post//posts[indexPath.item]
+        guard let owner_id = sender.post?.ownerId else { return }
+        guard let item_id = sender.post?.postId else { return }
+        guard let access_key = sender.post?.access_key else { return }
+        
+        var url: URL?
+        
+        if post?.userLikes == 0 {
+            url = vkApiUrlBuilder(vkApiMethod: "likes.add",
+                                  queryItems: ["type":"photo",
+                                               "owner_id": String(owner_id),
+                                               "item_id": String(item_id),
+                                               "access_key": String(access_key),
+                                               "access_token":VKSdk.accessToken().accessToken])
+        }
+        else {
+            url = vkApiUrlBuilder(vkApiMethod: "likes.delete",
+                                  queryItems: ["type":"photo",
+                                               "owner_id": String(owner_id),
+                                               "item_id": String(item_id),
+                                               "access_key": String(access_key),
+                                               "access_token":VKSdk.accessToken().accessToken])
+        }
+        
+        if let url = url {
+            URLSession.shared.dataTask(with: url, completionHandler: { (data, response, error) in
+                if error != nil {
+                    print(error ?? "")
+                    return
+                }
+                post?.userLikes = 1 - (post?.userLikes)!
+                self.post = post
+                
+                DispatchQueue.main.async(execute: { () -> Void in
+                    self.tableView?.reloadData()
+                })
+                
+            }).resume()
+        }
+    }
+
     
 //    func didTapCommentsButton(sender: PictureCell) {
 //        let commentsController = CommentsController()

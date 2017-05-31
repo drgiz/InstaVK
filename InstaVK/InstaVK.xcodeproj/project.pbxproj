@@ -19,15 +19,18 @@
 		1156B2101E9C155F00FAEA51 /* FollowersController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1156B20F1E9C155F00FAEA51 /* FollowersController.swift */; };
 		1156B2131E9C1BB800FAEA51 /* FollowerCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1156B2111E9C1BB800FAEA51 /* FollowerCell.swift */; };
 		1156B2141E9C1BB800FAEA51 /* FollowerCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 1156B2121E9C1BB800FAEA51 /* FollowerCell.xib */; };
-		1156B2161E9E471300FAEA51 /* FollowingController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1156B2151E9E471300FAEA51 /* FollowingController.swift */; };
 		1156B2191E9E473D00FAEA51 /* FollowingCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1156B2171E9E473D00FAEA51 /* FollowingCell.swift */; };
-		1156B21A1E9E473D00FAEA51 /* FollowingCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 1156B2181E9E473D00FAEA51 /* FollowingCell.xib */; };
 		1156B21C1E9E51BC00FAEA51 /* PictureController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1156B21B1E9E51BC00FAEA51 /* PictureController.swift */; };
 		1156B21E1E9ED2E000FAEA51 /* HeaderPhotoView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1156B21D1E9ED2E000FAEA51 /* HeaderPhotoView.swift */; };
 		1156B2201E9ED30400FAEA51 /* PhotoGridCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1156B21F1E9ED30400FAEA51 /* PhotoGridCell.swift */; };
 		117D09011ED0471B0092378F /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = 117D09001ED0471B0092378F /* User.swift */; };
 		11970FDF1ED24A5D00FF1151 /* UserPhoto.swift in Sources */ = {isa = PBXBuildFile; fileRef = 11970FDE1ED24A5D00FF1151 /* UserPhoto.swift */; };
 		11970FE11ED2EC7500FF1151 /* Photos.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 11970FE01ED2EC7500FF1151 /* Photos.framework */; };
+		11BF56261ED876DC00BA8A7E /* ProfilePhoto.swift in Sources */ = {isa = PBXBuildFile; fileRef = 11BF56251ED876DC00BA8A7E /* ProfilePhoto.swift */; };
+		11BF562A1EDB1C0500BA8A7E /* PhotoCollectionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 11BF56291EDB1C0500BA8A7E /* PhotoCollectionView.swift */; };
+		11BF562C1EDB224000BA8A7E /* PhotoViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 11BF562B1EDB224000BA8A7E /* PhotoViewController.swift */; };
+		11BF562E1EDB7BD500BA8A7E /* SentPhotoTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 11BF562D1EDB7BD500BA8A7E /* SentPhotoTableViewController.swift */; };
+		11BF56301EDEE24C00BA8A7E /* Friend.swift in Sources */ = {isa = PBXBuildFile; fileRef = 11BF562F1EDEE24C00BA8A7E /* Friend.swift */; };
 		11FE47621E81DE1F00D57721 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 11FE47611E81DE1F00D57721 /* AppDelegate.swift */; };
 		11FE47641E81DE1F00D57721 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 11FE47631E81DE1F00D57721 /* ViewController.swift */; };
 		11FE47671E81DE1F00D57721 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 11FE47651E81DE1F00D57721 /* Main.storyboard */; };
@@ -66,15 +69,18 @@
 		1156B20F1E9C155F00FAEA51 /* FollowersController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FollowersController.swift; sourceTree = "<group>"; };
 		1156B2111E9C1BB800FAEA51 /* FollowerCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FollowerCell.swift; sourceTree = "<group>"; };
 		1156B2121E9C1BB800FAEA51 /* FollowerCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = FollowerCell.xib; sourceTree = "<group>"; };
-		1156B2151E9E471300FAEA51 /* FollowingController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FollowingController.swift; sourceTree = "<group>"; };
 		1156B2171E9E473D00FAEA51 /* FollowingCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FollowingCell.swift; sourceTree = "<group>"; };
-		1156B2181E9E473D00FAEA51 /* FollowingCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = FollowingCell.xib; sourceTree = "<group>"; };
 		1156B21B1E9E51BC00FAEA51 /* PictureController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PictureController.swift; sourceTree = "<group>"; };
 		1156B21D1E9ED2E000FAEA51 /* HeaderPhotoView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HeaderPhotoView.swift; sourceTree = "<group>"; };
 		1156B21F1E9ED30400FAEA51 /* PhotoGridCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PhotoGridCell.swift; sourceTree = "<group>"; };
 		117D09001ED0471B0092378F /* User.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = User.swift; sourceTree = "<group>"; };
 		11970FDE1ED24A5D00FF1151 /* UserPhoto.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UserPhoto.swift; sourceTree = "<group>"; };
 		11970FE01ED2EC7500FF1151 /* Photos.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Photos.framework; path = System/Library/Frameworks/Photos.framework; sourceTree = SDKROOT; };
+		11BF56251ED876DC00BA8A7E /* ProfilePhoto.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ProfilePhoto.swift; sourceTree = "<group>"; };
+		11BF56291EDB1C0500BA8A7E /* PhotoCollectionView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PhotoCollectionView.swift; sourceTree = "<group>"; };
+		11BF562B1EDB224000BA8A7E /* PhotoViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PhotoViewController.swift; sourceTree = "<group>"; };
+		11BF562D1EDB7BD500BA8A7E /* SentPhotoTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SentPhotoTableViewController.swift; sourceTree = "<group>"; };
+		11BF562F1EDEE24C00BA8A7E /* Friend.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Friend.swift; sourceTree = "<group>"; };
 		11FE475E1E81DE1F00D57721 /* InstaVK.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = InstaVK.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		11FE47611E81DE1F00D57721 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		11FE47631E81DE1F00D57721 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
@@ -131,6 +137,8 @@
 			isa = PBXGroup;
 			children = (
 				63258F5D1EC0C36100EC7B0A /* Post.swift */,
+				11BF562F1EDEE24C00BA8A7E /* Friend.swift */,
+				11BF56251ED876DC00BA8A7E /* ProfilePhoto.swift */,
 				11970FDE1ED24A5D00FF1151 /* UserPhoto.swift */,
 				117D09001ED0471B0092378F /* User.swift */,
 				63258F5F1EC3A7F900EC7B0A /* Profile.swift */,
@@ -145,9 +153,10 @@
 				633BD6931EA3EC4500378414 /* LoginController.swift */,
 				113CB1661E89AC800054B413 /* NewsController.swift */,
 				113CB1681E89ACAF0054B413 /* PhotoController.swift */,
+				11BF562B1EDB224000BA8A7E /* PhotoViewController.swift */,
+				11BF562D1EDB7BD500BA8A7E /* SentPhotoTableViewController.swift */,
 				113CB1731E8EECBC0054B413 /* ProfileController.swift */,
 				1156B20F1E9C155F00FAEA51 /* FollowersController.swift */,
-				1156B2151E9E471300FAEA51 /* FollowingController.swift */,
 				63A455141E93A7E1008C4D5E /* CommentsController.swift */,
 				1156B21B1E9E51BC00FAEA51 /* PictureController.swift */,
 				63EE85861ECF97CF00B79D22 /* CameraController.swift */,
@@ -168,6 +177,7 @@
 				1156B20B1E92D3DD00FAEA51 /* HeaderProfileView.swift */,
 				1156B21D1E9ED2E000FAEA51 /* HeaderPhotoView.swift */,
 				63E3C8E41ED052C6006C6A61 /* PreviewPhotoView.swift */,
+				11BF56291EDB1C0500BA8A7E /* PhotoCollectionView.swift */,
 			);
 			name = View;
 			sourceTree = "<group>";
@@ -178,7 +188,6 @@
 				63C98EC11EB4F6310042D760 /* PictureCell.xib */,
 				63A455111E93A3C2008C4D5E /* CommentCell.xib */,
 				1156B2121E9C1BB800FAEA51 /* FollowerCell.xib */,
-				1156B2181E9E473D00FAEA51 /* FollowingCell.xib */,
 			);
 			name = Xibs;
 			sourceTree = "<group>";
@@ -336,7 +345,6 @@
 				113CB1581E86B48A0054B413 /* PhotoStoryboard.storyboard in Resources */,
 				63C98EC31EB4F6310042D760 /* PictureCell.xib in Resources */,
 				63A455131E93A3C2008C4D5E /* CommentCell.xib in Resources */,
-				1156B21A1E9E473D00FAEA51 /* FollowingCell.xib in Resources */,
 				6394EB571EB266A0005AA9DD /* Launch Screen.storyboard in Resources */,
 				113CB12F1E86A2110054B413 /* NewsStoryboard.storyboard in Resources */,
 				113CB15A1E86B4A10054B413 /* ProfileStoryboard.storyboard in Resources */,
@@ -401,6 +409,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				63258F5C1EC0AEE100EC7B0A /* NetworkManager.swift in Sources */,
+				11BF562E1EDB7BD500BA8A7E /* SentPhotoTableViewController.swift in Sources */,
 				633BD6951EA3EC4500378414 /* LoginController.swift in Sources */,
 				113CB1691E89ACAF0054B413 /* PhotoController.swift in Sources */,
 				117D09011ED0471B0092378F /* User.swift in Sources */,
@@ -414,19 +423,22 @@
 				63E3C8E51ED052C6006C6A61 /* PreviewPhotoView.swift in Sources */,
 				1156B21C1E9E51BC00FAEA51 /* PictureController.swift in Sources */,
 				11FE47621E81DE1F00D57721 /* AppDelegate.swift in Sources */,
+				11BF56261ED876DC00BA8A7E /* ProfilePhoto.swift in Sources */,
 				63EE85871ECF97CF00B79D22 /* CameraController.swift in Sources */,
 				11970FDF1ED24A5D00FF1151 /* UserPhoto.swift in Sources */,
 				63A455161E93A7E1008C4D5E /* CommentsController.swift in Sources */,
 				113CB1671E89AC800054B413 /* NewsController.swift in Sources */,
 				113CB1741E8EECBC0054B413 /* ProfileController.swift in Sources */,
+				11BF56301EDEE24C00BA8A7E /* Friend.swift in Sources */,
 				1156B21E1E9ED2E000FAEA51 /* HeaderPhotoView.swift in Sources */,
-				1156B2161E9E471300FAEA51 /* FollowingController.swift in Sources */,
 				1156B2201E9ED30400FAEA51 /* PhotoGridCell.swift in Sources */,
 				1156B2101E9C155F00FAEA51 /* FollowersController.swift in Sources */,
 				11FE476A1E81DE1F00D57721 /* InstaVK.xcdatamodeld in Sources */,
 				63258F601EC3A7F900EC7B0A /* Profile.swift in Sources */,
 				1156B20E1E92D4BF00FAEA51 /* ProfileGridCell.swift in Sources */,
+				11BF562A1EDB1C0500BA8A7E /* PhotoCollectionView.swift in Sources */,
 				63A455121E93A3C2008C4D5E /* CommentCell.swift in Sources */,
+				11BF562C1EDB224000BA8A7E /* PhotoViewController.swift in Sources */,
 				636BEE171ED3974E001B790B /* Comment.swift in Sources */,
 				6336C9EC1EAD2B5500235933 /* VkAppUtils.swift in Sources */,
 			);

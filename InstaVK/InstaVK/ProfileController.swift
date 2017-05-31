@@ -12,51 +12,144 @@ import VK_ios_sdk
 private let reuseIdentifier1 = "cell1"
 private let reuseIdentifier2 = "cell2"
 
-class ProfileController: UICollectionViewController {
+
+class ProfileController: UICollectionViewController, UICollectionViewDelegateFlowLayout  {
+    
+    @IBOutlet weak var firstAndLastNameBarItem: UIBarButtonItem!
+    var posts = [Post]()
+    var profiles = [Int:Profile]()
+    var ownerId : String?
+    var avatarURL = String()
+    var firstName = String()
+    var lastName = String()
     
     @IBAction func pressFollowersButton(_ sender: Any) {
         let followersController = FollowersController.init(id: "id")
-        //VKRequest *request =
-        
-        
-        
         navigationController?.pushViewController(followersController, animated: true)
-        //vs = storyboard?.instantiateViewController(withIdentifier: "ProfileControllerIdentifier") as! ProfileController
-        //navigationController?.pushViewController(vs, animated: true)
-        
-    }
-    @IBAction func pressFollowingButton(_ sender: Any) {
-        let followingController = FollowingController()
-        navigationController?.pushViewController(followingController, animated: true)
     }
 
     override func viewDidLoad() {
         super.viewDidLoad()
 
-        // Uncomment the following line to preserve selection between presentations
-        // self.clearsSelectionOnViewWillAppear = false
-
-        // Register cell classes
-        //self.collectionView!.register(UICollectionViewCell.self, forCellWithReuseIdentifier: reuseIdentifier1)
-        //self.collectionView!.register(UICollectionViewCell.self, forCellWithReuseIdentifier: reuseIdentifier2)
-
-        // Do any additional setup after loading the view.
+        //fetch()
+    }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewDidAppear(true)
+        
+        fetch()
+    }
+    
+    func fetch() {
+        
+        guard let vkAccessToken = VKSdk.accessToken().accessToken else {
+            return
+        }
+        self.posts.removeAll()
+        fetchPhotos(withVKAccessToken: vkAccessToken)
+        fetchInfoUser(withVKAccessToken: vkAccessToken)
+    }
+    
+    func fetchPhotos(withVKAccessToken vkAccessToken: String!) {
+        
+        let url : URL?
+        
+        if let owner_Id = self.ownerId {
+            url = vkApiUrlBuilder(vkApiMethod: "photos.getAll",
+                                            queryItems: ["skip_hidden":"1",
+                                                         "owner_id":owner_Id,
+                                                         "count":"350",
+                                                         "no_service_albums":"0",
+                                                         "access_token":vkAccessToken])
+            
+        } else {
+            url = vkApiUrlBuilder(vkApiMethod: "photos.getAll",
+                                            queryItems: ["skip_hidden":"1",
+                                                         "count":"350",
+                                                         "no_service_albums":"0",
+                                                         "access_token":vkAccessToken])
+            }
+        
+        guard (url != nil) else {return}
+        
+        URLSession.shared.dataTask(with: url!, completionHandler: { (data, response, error) in
+            if error != nil {
+                print(error ?? "")
+                return
+            }
+            
+            do {
+                let json = try JSONSerialization.jsonObject(with: data!, options: .mutableContainers)
+                guard let jsonDict = json as? [String: Any] else { return }
+                
+                if let itemsDict = jsonDict["response"] as? [Any] {
+                    for item in itemsDict {
+                        if let itemDictionary = item as? [String : Any] {
+                            let post = Post(dictionary: itemDictionary)
+                            //print(post)
+                            self.posts.append(post)
+                        }
+                    }
+                }
+                DispatchQueue.main.async(execute: { () -> Void in
+                    self.collectionView?.reloadData()
+                })
+            } catch let jsonError {
+                print(jsonError)
+            }
+        }) .resume()
+    }
+    
+    func fetchInfoUser(withVKAccessToken vkAccessToken: String!) {
+    
+        let url : URL?
+        
+        if let owner_Id = self.ownerId {
+            url = vkApiUrlBuilder(vkApiMethod: "users.get",
+                                  queryItems: ["user_id":owner_Id,
+                                               "fields":"photo_medium",
+                                               "name_case":"nom",
+                                               "access_token":vkAccessToken])
+            
+        } else {
+            url = vkApiUrlBuilder(vkApiMethod: "users.get",
+                                  queryItems: ["fields":"photo_medium",
+                                               "name_case":"nom",
+                                               "access_token":vkAccessToken])
+        }
+        
+        guard (url != nil) else {return}
+        
+        URLSession.shared.dataTask(with: url!, completionHandler: { (data, response, error) in
+            if error != nil {
+                print(error ?? "")
+                return
+            }
+            
+            do {
+                let json = try JSONSerialization.jsonObject(with: data!, options: .mutableContainers)
+                //print(json)
+                guard let jsonDict = json as? [String: Any] else { return }
+                
+                if let itemsDict = jsonDict["response"] as? [Any] {
+                    for item in itemsDict {
+                        if let itemDictionary = item as? [String : Any] {
+                            let user = User(dictionary: itemDictionary)
+                            self.avatarURL = user.photoMediumURL
+                            self.firstName = user.firstName
+                            self.lastName = user.lastName
+                        }
+                    }
+                }
+                DispatchQueue.main.async(execute: { () -> Void in
+                    self.collectionView?.reloadData()
+                })
+            } catch let jsonError {
+                //print(jsonError)
+            }
+        }) .resume()
     }
 
-    override func didReceiveMemoryWarning() {
-        super.didReceiveMemoryWarning()
-        // Dispose of any resources that can be recreated.
-    }
-
-    /*
-    // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        // Get the new view controller using [segue destinationViewController].
-        // Pass the selected object to the new view controller.
-    }
-    */
 
     //MARK: UICollectionViewDataSource
 
@@ -67,34 +160,42 @@ class ProfileController: UICollectionViewController {
 
     override func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         
-        return 50
+        return self.posts.count
     }
     
     override func collectionView(_ collectionView: UICollectionView, viewForSupplementaryElementOfKind kind: String, at indexPath: IndexPath) -> UICollectionReusableView {
         
         let header = collectionView.dequeueReusableSupplementaryView(ofKind: UICollectionElementKindSectionHeader, withReuseIdentifier: "header", for: indexPath) as! HeaderProfileView
-        header.profileHeaderImage.image = #imageLiteral(resourceName: "Kevin")
+        header.profileHeaderImage.sd_setImage(with: URL(string: avatarURL))
         header.profileHeaderImage.layer.cornerRadius = 50.0
         header.profileHeaderImage.clipsToBounds = true
-        //header.profileHeaderImage.layer.contents = #imageLiteral(resourceName: "Image").cgImage
-        //header.profileHeaderImage.layer.cornerRadius = 50
-        //header.profileHeaderImage.layer.borderColor = UIColor.black.cgColor
-        
+        header.firstAndLastNameLabel.text = self.firstName + " " + self.lastName
+        self.firstAndLastNameBarItem.title = self.firstName + " " + self.lastName
         return header
     }
 
     override func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
             
-          let  cell = collectionView.dequeueReusableCell(withReuseIdentifier: reuseIdentifier1, for: indexPath) as! ProfileGridCell
-        cell.imageCell.image = #imageLiteral(resourceName: "Image")
-        
-        return cell
+          let  cell = collectionView.dequeueReusableCell(withReuseIdentifier: reuseIdentifier1, for: indexPath) as? ProfileGridCell
+        cell?.imageCell.sd_setImage(with: URL(string: posts[indexPath.row].imageUrl_130))
+        cell?.imageCell.layer.cornerRadius = 10.0
+        cell?.imageCell.clipsToBounds = true
+        return cell!
     }
     
     override func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
         
         let pictureController = PictureController()
+        //pictureController.mainImage.setShowActivityIndicator(true)
+        //pictureController.mainImage.setIndicatorStyle(.gray)
+        pictureController.post = posts[indexPath.row]
+        //mainImage.sd_setImage(with: URL(string: posts[indexPath.row].imageUrl_807))
         navigationController?.pushViewController(pictureController, animated: true)
+    }
+    
+    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
+        
+        return CGSize(width: collectionView.frame.width/3 - 1, height: collectionView.frame.width/3 - 1)
     }
     
     

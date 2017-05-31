@@ -1,18 +1,18 @@
 //
-//  User.swift
+//  Friend.swift
 //  InstaVK
 //
-//  Created by Никита on 20.05.17.
+//  Created by Никита on 31.05.17.
 //  Copyright © 2017 Nikita Susoev. All rights reserved.
 //
 
 import UIKit
 
-struct User {
+struct Friend {
     
     let firstName: String
     let lastName: String
-    let photoMediumURL: String
+    let photo50URL: String
     let userId: Int
     
     
@@ -20,7 +20,8 @@ struct User {
         
         self.firstName = dictionary["first_name"] as? String ?? ""
         self.lastName = dictionary["last_name"] as? String ?? ""
-        self.photoMediumURL = dictionary["photo_medium"] as? String ?? ""
-        self.userId = dictionary["uid"] as? Int ?? 0
+        self.photo50URL = dictionary["photo_50"] as? String ?? ""
+        self.userId = dictionary["id"] as? Int ?? 0
     }
+
 }
