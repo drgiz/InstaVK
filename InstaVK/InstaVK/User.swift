@@ -8,6 +8,19 @@
 
 import UIKit
 
-class User: NSObject {
-
+struct User {
+    
+    let firstName: String
+    let lastName: String
+    let photoMediumURL: String
+    let userId: Int
+    
+    
+    init(dictionary: [String: Any]) {
+        
+        self.firstName = dictionary["first_name"] as? String ?? ""
+        self.lastName = dictionary["last_name"] as? String ?? ""
+        self.photoMediumURL = dictionary["photo_medium"] as? String ?? ""
+        self.userId = dictionary["uid"] as? Int ?? 0
+    }
 }

@@ -14,10 +14,7 @@ class HeaderProfileView: UICollectionReusableView {
     @IBOutlet weak var profileHeaderImage: UIImageView!
     @IBOutlet weak var firstAndLastNameLabel: UILabel!
     @IBOutlet weak var followersButton: UIButton!
-    @IBOutlet weak var followingCount: UILabel!
-    @IBOutlet weak var followingButton: UIButton!
-    @IBAction func pressFollowingButton(_ sender: Any) {
-    }
+    
     @IBAction func pressFollowersButton(_ sender: Any) {
     }
     

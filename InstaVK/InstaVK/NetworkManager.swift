@@ -12,7 +12,7 @@ func vkApiUrlBuilder(vkApiMethod: String, queryItems: [String:String]...) -> URL
     let components = NSURLComponents()
     components.scheme = "https"
     components.host = "api.vk.com"
-    components.path = "/method/"+vkApiMethod
+    components.path = "/method/" + vkApiMethod
     var items = [URLQueryItem]()
     for item in queryItems {
         for (name, value) in item {

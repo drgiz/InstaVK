@@ -9,22 +9,14 @@
 import Foundation
 
 struct UserPhoto {
-    let userPhotoId: Int
+    let photoId: Int
     let albumId: Int
     let ownerId: Int
-    let imageUrl_75: String
-    let imageUrl_130: String
-    let imageUrl_604: String
-    let imageUrl_807: String
-    let imageUrl_1280: String
-    let imageUrl_2560: String
-    let imageWidth: Int
-    let imageHeight: Int
-    let text: String
-    let date: Int
-    let access_key: String
-    let likes: [String:Int]
-    let comments: [String:Int]
-    let can_comment: Int
-    let can_repost: Int
+
+    
+    init(dictionary: [String: Any]) {
+        self.photoId = dictionary["id"] as? Int ?? 0
+        self.albumId = dictionary["album_d"] as? Int ?? 0
+        self.ownerId = dictionary["owner_id"] as? Int ?? 0
+    }
 }

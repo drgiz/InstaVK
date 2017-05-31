@@ -118,7 +118,10 @@ class PhotoViewController: UIViewController, UICollectionViewDelegate, UICollect
      func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let  cell = collectionView.dequeueReusableCell(withReuseIdentifier: cellIdentifier, for: indexPath) as! PhotoGridCell
         
+
         cell.photoImageView.image = images.object(at: indexPath.row) as? UIImage
+        cell.photoImageView.layer.cornerRadius = 7
+        cell.photoImageView.clipsToBounds = true
         
         return cell
     }
@@ -137,10 +140,12 @@ class PhotoViewController: UIViewController, UICollectionViewDelegate, UICollect
         //self.mainImageView.image = cell.photoImageView.image
     }
     
+    
     func collectionView(_ collectionView: UICollectionView, didDeselectItemAt indexPath: IndexPath) {
-       
-            let deselectedCell = collectionView.cellForItem(at: indexPath) as! PhotoGridCell
-            deselectedCell.photoImageView.alpha = 1
+      
+            //let deselectedCell = collectionView.cellForItem(at: self.indexPath) as! PhotoGridCell
+        
+            //deselectedCell.photoImageView.alpha = 1
         
         //let rt = indexPath
         //let cell = collectionView.cellForItem(at: indexPath) as? PhotoGridCell

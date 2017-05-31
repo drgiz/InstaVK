@@ -41,14 +41,14 @@
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <imageView userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="c7h-DM-NXh">
+                            <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="c7h-DM-NXh">
                                 <rect key="frame" x="0.0" y="64" width="375" height="356"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="356" id="t1H-cp-8z7"/>
                                 </constraints>
                             </imageView>
                             <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="goj-E2-Ilr" customClass="PhotoCollectionView" customModule="InstaVK" customModuleProvider="target">
-                                <rect key="frame" x="0.0" y="420" width="375" height="197"/>
+                                <rect key="frame" x="0.0" y="421" width="375" height="196"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <collectionViewFlowLayout key="collectionViewLayout" minimumLineSpacing="1" minimumInteritemSpacing="1" id="oVt-Xj-16O">
                                     <size key="itemSize" width="100" height="100"/>
@@ -89,7 +89,7 @@
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
-                            <constraint firstItem="goj-E2-Ilr" firstAttribute="top" secondItem="c7h-DM-NXh" secondAttribute="bottom" id="5Pc-Yg-LiN"/>
+                            <constraint firstItem="goj-E2-Ilr" firstAttribute="top" secondItem="c7h-DM-NXh" secondAttribute="bottom" constant="1" id="5Pc-Yg-LiN"/>
                             <constraint firstItem="c7h-DM-NXh" firstAttribute="top" secondItem="O5L-Pn-Y2r" secondAttribute="top" constant="64" id="HHn-0d-82h"/>
                             <constraint firstAttribute="trailing" secondItem="c7h-DM-NXh" secondAttribute="trailing" id="O9p-6R-aF2"/>
                             <constraint firstAttribute="trailing" secondItem="goj-E2-Ilr" secondAttribute="trailing" id="PSd-HS-2w9"/>
@@ -142,7 +142,10 @@
                                                     <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                                     <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="0.30722923801369861" colorSpace="custom" customColorSpace="sRGB"/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="16"/>
-                                                    <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
+                                                    <textInputTraits key="textInputTraits" autocapitalizationType="sentences" autocorrectionType="no"/>
+                                                    <connections>
+                                                        <outlet property="delegate" destination="rmJ-yO-Vtc" id="zSv-Az-hvQ"/>
+                                                    </connections>
                                                 </textView>
                                             </subviews>
                                         </tableViewCellContentView>
@@ -199,7 +202,11 @@
                     </tableView>
                     <toolbarItems/>
                     <navigationItem key="navigationItem" id="IMa-zF-LFd">
-                        <barButtonItem key="rightBarButtonItem" title="Sent" id="ahG-Ls-haF"/>
+                        <barButtonItem key="rightBarButtonItem" title="Sent" id="ahG-Ls-haF">
+                            <connections>
+                                <action selector="didTapSendButton:" destination="TLk-Ap-WlI" id="yAH-VY-HA3"/>
+                            </connections>
+                        </barButtonItem>
                     </navigationItem>
                     <simulatedToolbarMetrics key="simulatedBottomBarMetrics"/>
                     <connections>

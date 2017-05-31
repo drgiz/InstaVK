@@ -12,6 +12,8 @@ import UIKit
 
 class PictureController: UITableViewController {
     
+    var mainImage = UIImageView()
+    
     let pictureCellIdentifier = "pictureCell"
 
     override func viewDidLoad() {
@@ -45,7 +47,7 @@ class PictureController: UITableViewController {
     
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: pictureCellIdentifier, for: indexPath) as! PictureCell
-        cell.postPicture.image = #imageLiteral(resourceName: "Image")
+        cell.postPicture.image = self.mainImage.image
 //        cell.delegate = self
 
         // Configure the cell...
