@@ -45,7 +45,7 @@ class ProfileController: UICollectionViewController, UICollectionViewDelegateFlo
         guard let vkAccessToken = VKSdk.accessToken().accessToken else {
             return
         }
-        
+        self.posts.removeAll()
         fetchPhotos(withVKAccessToken: vkAccessToken)
         fetchInfoUser(withVKAccessToken: vkAccessToken)
     }
