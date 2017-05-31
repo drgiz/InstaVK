@@ -37,18 +37,20 @@ class PhotoController: UICollectionViewController {
         let fetchResult: PHFetchResult = PHAsset.fetchAssets(with: PHAssetMediaType.image, options: fetchOptions)
         
         if fetchResult.count > 0 {
-        
-        imgManager.requestImage(for: fetchResult.object(at: self.tempIndex), targetSize: view.frame.size, contentMode: PHImageContentMode.aspectFill, options: requestOptions, resultHandler: { (image, _) in
             
-            self.images.add(image ?? #imageLiteral(resourceName: "Image-1"))
-            //print(fetchResult.count)
-            
-            if self.tempIndex < fetchResult.count - 1 {
-                
-                self.tempIndex = self.tempIndex + 1
-                self.fetchPhotos(index: self.tempIndex)
+            while self.tempIndex < 5 {
+                imgManager.requestImage(for: fetchResult.object(at: self.tempIndex), targetSize: view.frame.size, contentMode: PHImageContentMode.aspectFill, options: requestOptions, resultHandler: { (image, _) in
+                    
+                    self.images.add(image ?? #imageLiteral(resourceName: "Image-1"))
+                    //print(fetchResult.count)
+                    
+                    self.tempIndex = self.tempIndex + 1
+                    //self.fetchPhotos(index: self.tempIndex)
+                    
+                })
             }
-        })
+        
+        
         
         //if let fetchResult: PHFetchResult = PHAsset.fetchAssetsWithMediaType(PHAssetMediaType.Image, options: fetchOptions) {
         }
