@@ -41,6 +41,7 @@ class PhotoController: UICollectionViewController {
         let fetchResult: PHFetchResult = PHAsset.fetchAssets(with: PHAssetMediaType.image, options: fetchOptions)
         
         if fetchResult.count > 0 {
+
             /*var indexWithOffset = self.tempIndex + self.offset
             
             if indexWithOffset > fetchResult.count {
@@ -60,9 +61,9 @@ class PhotoController: UICollectionViewController {
             }
             
             //self.collectionView?.reloadData()
-        }
-        }
 
+        }
+        }
     override func numberOfSections(in collectionView: UICollectionView) -> Int {
         return 1
     }
