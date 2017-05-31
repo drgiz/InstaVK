@@ -24,7 +24,7 @@ class PhotoViewController: UIViewController, UICollectionViewDelegate, UICollect
     var images = NSMutableArray()
     var tempIndex = Int()
     let offset = 20
-    var indexPath = IndexPath()
+    var selectedIndexPath : IndexPath?
     
     //var header = HeaderPhotoView()
     //var indexPath123 = IndexPath()
@@ -118,6 +118,15 @@ class PhotoViewController: UIViewController, UICollectionViewDelegate, UICollect
      func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let  cell = collectionView.dequeueReusableCell(withReuseIdentifier: cellIdentifier, for: indexPath) as! PhotoGridCell
         
+        
+        /*if self.indexPath?.row == indexPath.row {
+        
+            cell.photoImageView.alpha = 1
+        }*/
+        cell.photoImageView.alpha = 1
+        if selectedIndexPath != nil, indexPath.row == selectedIndexPath?.row {
+            cell.photoImageView.alpha = 0.5
+        }
 
         cell.photoImageView.image = images.object(at: indexPath.row) as? UIImage
         cell.photoImageView.layer.cornerRadius = 7
@@ -133,10 +142,13 @@ class PhotoViewController: UIViewController, UICollectionViewDelegate, UICollect
     
      func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
         
-        let selectedCell = collectionView.cellForItem(at: indexPath) as! PhotoGridCell
-        selectedCell.photoImageView.alpha = 0.5
+        //let selectedCell = collectionView.cellForItem(at: indexPath) as! PhotoGridCell
+        //selectedCell.photoImageView.alpha = 0.5
+        //self.indexPath?.row = indexPath.row
         
         fetchPhotos(mode: FetchMode.onePhotoFetchMode, index: indexPath.row)
+        selectedIndexPath = indexPath
+        collectionView.reloadData()
         //self.mainImageView.image = cell.photoImageView.image
     }
     

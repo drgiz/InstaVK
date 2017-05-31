@@ -8,12 +8,15 @@
 
 import UIKit
 import VK_ios_sdk
-//-----------------------users.getfollowers----------------------------
+
 
 class FollowersController: UITableViewController {
     
+    var countFriends  = Int()
+    
     let followerCellIdentifier = "FollowerCell"
     var followers = [User]()
+    var friends = [Friend]()
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -31,6 +34,45 @@ class FollowersController: UITableViewController {
     convenience init(id : String) {
         self.init()
     }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        fetchFriends()
+    }
+    
+    func fetchFriends(){
+        
+      let request = VKApi.friends().get(["order":"name",
+                                         "fields":"photo_50",
+                                         "name_case":"nom"])
+        
+        request?.execute(resultBlock: { (response) in
+            
+            let dictResponse = response?.json as? [String : Any]
+            print(response?.json)
+            
+            let itemsDict = dictResponse?["items"] as? [Any]
+            
+            for item in itemsDict! {
+                if let itemDict = item as? [String : Any] {
+                
+                    let friend  = Friend(dictionary: itemDict)
+                    self.friends.append(friend)
+                }
+            }
+            
+            
+            
+             self.countFriends = dictResponse?["count"] as? Int ?? 0
+            
+            DispatchQueue.main.async {
+                self.tableView.reloadData()
+            }
+            
+        }, errorBlock: { (error) in
+            
+        })
+        
+    }
 
     // MARK: - Table view data source
 
@@ -40,7 +82,7 @@ class FollowersController: UITableViewController {
     }
 
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return 5//self.followers.count
+        return self.friends.count//self.followers.count
     }
 
     
@@ -49,10 +91,12 @@ class FollowersController: UITableViewController {
         
         let cell = tableView.dequeueReusableCell(withIdentifier: followerCellIdentifier, for: indexPath) as! FollowerCell
         
-        cell.followerImageView.image = #imageLiteral(resourceName: "Image")
+        let friend = self.friends[indexPath.row]
+        
+        cell.followerImageView.sd_setImage(with: URL(string: friend.photo50URL))
         cell.followerImageView.layer.cornerRadius = 40
         cell.followerImageView.clipsToBounds = true
-        //cell.fistAndLastNameLabel.text = self.followers[indexPath.row].lastName
+        cell.fistAndLastNameLabel.text = friend.firstName + " " + friend.lastName
 
         return cell
     }
