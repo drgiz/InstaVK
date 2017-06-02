@@ -56,7 +56,9 @@ class PictureController: UITableViewController, PictureCellDelegate {
         let scale: CGFloat = CGFloat(self.post!.imageWidth)/UIScreen.main.bounds.width
         cell.postPictureHeight.constant = CGFloat((self.post?.imageHeight)!)/scale
         cell.postPicture.sd_setImage(with: URL(string: (self.post?.imageUrl_807)!))
-        cell.postUserAvatar.sd_setImage(with: URL(string: (self.post?.imageUrl_130)!))
+        //cell.postUserAvatar.sd_setImage(with: URL(string: (self.post?.imageUrl_130)!))
+        cell.postUserAvatar.sd_setImage(with: URL(string: self.mainImageURL))
+        cell.postUserFirstNameLastName.text = "Svyatoslav Bykov"
         //cell.postUserFirstNameLastName =
         //self.mainImage.image
 //        cell.delegate = self

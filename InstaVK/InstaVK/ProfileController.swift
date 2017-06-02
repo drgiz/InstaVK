@@ -188,6 +188,7 @@ class ProfileController: UICollectionViewController, UICollectionViewDelegateFlo
         let pictureController = PictureController()
         //pictureController.mainImage.setShowActivityIndicator(true)
         //pictureController.mainImage.setIndicatorStyle(.gray)
+        pictureController.mainImageURL = self.avatarURL
         pictureController.post = posts[indexPath.row]
         //mainImage.sd_setImage(with: URL(string: posts[indexPath.row].imageUrl_807))
         navigationController?.pushViewController(pictureController, animated: true)
