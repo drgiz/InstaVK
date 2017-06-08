@@ -2,8 +2,8 @@
 //  NewsController.swift
 //  InstaVK
 //
-//  Created by Никита on 27.03.17.
-//  Copyright © 2017 Nikita Susoev. All rights reserved.
+//  Created by Svyatoslav Bykov on 27.03.17.
+//  Copyright © 2017 InstaVK. All rights reserved.
 //
 
 import UIKit
@@ -18,6 +18,8 @@ class NewsController: UITableViewController, PictureCellDelegate {
     
     var posts = [Post]()
     var profiles = [Int:Profile]()
+    var nextFrom = ""
+    let bottomActivityIndicator = UIActivityIndicatorView()
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -27,6 +29,9 @@ class NewsController: UITableViewController, PictureCellDelegate {
         let refreshControl = UIRefreshControl()
         refreshControl.addTarget(self, action: #selector(handleRefresh), for: .valueChanged)
         tableView.refreshControl = refreshControl
+        
+        self.tableView.tableFooterView?.addSubview(bottomActivityIndicator)
+        self.tableView.tableFooterView?.isHidden = true
         
         fetchPosts()
         
@@ -63,10 +68,12 @@ class NewsController: UITableViewController, PictureCellDelegate {
                 
                 self.posts.removeAll()
                 self.profiles.removeAll()
+                self.nextFrom = ""
                 
                 //в JSONе приходит отдельный словарь на профайлы и отдельный на фотографии
                 let json = try JSONSerialization.jsonObject(with: data!, options: .mutableContainers)
                 guard let jsonDict = json as? [String: Any] else { return }
+                //                print(jsonDict)
                 guard let responseDict = jsonDict["response"] as? [String: Any] else { return }
                 guard let profilesDict = responseDict["profiles"] as? [[String: Any]] else { return }
                 //добавляем профайл в словарь наших профайлов чтобы подтягивать оттуда информацию о пользователе
@@ -88,7 +95,15 @@ class NewsController: UITableViewController, PictureCellDelegate {
                     }
                     
                 }
-               
+                if let nextFrom = responseDict["new_from"] as? String {
+                    self.nextFrom = nextFrom
+                    print(nextFrom)
+                } else {
+                    self.nextFrom = ""
+                }
+                
+                
+                
                 //Fixed reload data with sync queue (not sure if it is correct)
                 DispatchQueue.main.async(execute: { () -> Void in
                     self.tableView?.reloadData()
@@ -139,10 +154,10 @@ class NewsController: UITableViewController, PictureCellDelegate {
     
     
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-
+        
         let cell = tableView .dequeueReusableCell(withIdentifier: pictureCellIdentifier,
                                                   for: indexPath)
-
+        
         if let newsCell = cell as? PictureCell {
             newsCell.post = posts[indexPath.row]
             newsCell.delegate = self
@@ -164,7 +179,7 @@ class NewsController: UITableViewController, PictureCellDelegate {
             let scale: CGFloat = CGFloat(posts[indexPath.row].imageWidth)/UIScreen.main.bounds.width
             newsCell.postPictureHeight.constant = CGFloat(posts[indexPath.row].imageHeight)/scale
             newsCell.postPicture.sd_setImage(with: URL(string: posts[indexPath.row].imageUrl_604))
-
+            
             newsCell.postLikeButton.setImage(posts[indexPath.row].userLikes == 1 ? #imageLiteral(resourceName: "HeartFilledRed") : #imageLiteral(resourceName: "HeartEmpty"), for: .normal)
         }
         
@@ -179,6 +194,119 @@ class NewsController: UITableViewController, PictureCellDelegate {
     override func tableView(_ tableView: UITableView, estimatedHeightForRowAt indexPath: IndexPath) -> CGFloat {
         return 300
     }
+    
+    
+    let postsToAdd = 10
+    let cellBuffer = 2
+    var isFetchingPostsWithOffset = false
+    
+    override func scrollViewDidScroll(_ scrollView: UIScrollView) {
+        //        let top: CGFloat = 0
+        //        let bottom: CGFloat = scrollView.contentSize.height - scrollView.frame.size.height
+        //        let buffer: CGFloat = CGFloat(self.cellBuffer * 350)
+        //        let scrollPosition = scrollView.contentOffset.y
+        
+        let currentOffset = scrollView.contentOffset.y
+        let maximumOffset = scrollView.contentSize.height - scrollView.frame.size.height
+        let deltaOffset = maximumOffset - currentOffset
+        
+        if deltaOffset <= 0 {
+            loadMoreData()
+        }
+        
+        // Reached the bottom of the list
+        //        if scrollPosition > bottom - buffer {
+        //            // Add more dates to the bottom
+        //            if !isFetchingPostsWithOffset {
+        //                isFetchingPostsWithOffset = true
+        //                fetchPostsWithOffset()
+        //            }
+        //        }
+    }
+    
+    func loadMoreData() {
+        if (!isFetchingPostsWithOffset){
+            self.isFetchingPostsWithOffset = true
+            self.bottomActivityIndicator.startAnimating()
+            self.tableView.tableFooterView?.isHidden = false
+            fetchPostsWithOffset()
+        }
+    }
+    
+    func fetchPostsWithOffset() {
+        
+        guard let vkAccessToken = VKSdk.accessToken().accessToken else {
+            return
+        }
+        
+        guard let url = vkApiUrlBuilder(vkApiMethod: "newsfeed.get",
+                                        queryItems: ["filters":"wall_photo",
+                                                     "count":"10",
+                                                     "source_ids":"friends,following",
+                                                     "start_from":self.nextFrom,
+                                                     "access_token":vkAccessToken,
+                                                     "v":"5.60"])
+            else {
+                return
+        }
+        
+        
+        URLSession.shared.dataTask(with: url, completionHandler: { (data, response, error) in
+            if error != nil {
+                print(error ?? "")
+                return
+            }
+            
+            do {
+                //в JSONе приходит отдельный словарь на профайлы и отдельный на фотографии
+                let json = try JSONSerialization.jsonObject(with: data!, options: .mutableContainers)
+                guard let jsonDict = json as? [String: Any] else { return }
+                print(jsonDict)
+                guard let responseDict = jsonDict["response"] as? [String: Any] else { return }
+                guard let profilesDict = responseDict["profiles"] as? [[String: Any]] else { return }
+                //добавляем профайл в словарь наших профайлов чтобы подтягивать оттуда информацию о пользователе
+                for profile in profilesDict {
+                    if let profileId = profile["uid"] as? Int {
+                        self.profiles[profileId] = Profile(dictionary: profile)
+                    }
+                }
+                guard let itemsDict = responseDict["items"] as? [[String: Any]] else { return }
+                //из items вытягиваем информацию о постах и добавляем в наш массив постов
+                for item in itemsDict {
+                    //TO-DO: Fix json parsing (vk response has other structure)
+                    if let photosArray = item["photos"] as? [String:Any] {
+                        for photo in photosArray {
+                            if let photoDictionary = photo as? [String : Any] {
+                                let post = Post(dictionary: photoDictionary)
+                                self.posts.append(post)
+                            }
+                        }
+                    }
+                    
+                }
+                if let nextFrom = responseDict["next_from"] as? String {
+                    self.nextFrom = nextFrom
+                    print(nextFrom)
+                } else {
+                    self.nextFrom = ""
+                }
+                
+                self.isFetchingPostsWithOffset = false
+                
+                
+                
+                //Fixed reload data with sync queue (not sure if it is correct)
+                DispatchQueue.main.sync(execute: { () -> Void in
+                    self.tableView?.reloadData()
+                })
+                //self.tableView.refreshControl?.endRefreshing()
+                
+            } catch let jsonError {
+                print(jsonError)
+            }
+        }) .resume()
+    }
+    
     
     // MARK: TapCommentsButton
     func didTapCommentsButton(sender: PictureCell) {
