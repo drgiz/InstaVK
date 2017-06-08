@@ -274,8 +274,9 @@ class NewsController: UITableViewController, PictureCellDelegate {
                 //из items вытягиваем информацию о постах и добавляем в наш массив постов
                 for item in itemsDict {
                     //TO-DO: Fix json parsing (vk response has other structure)
-                    if let photosArray = item["photos"] as? [String:Any] {
-                        for photo in photosArray {
+                    guard let photosDict = item["photos"] as? [String:Any] else { return }
+                    if let photoItems = photosDict["items"]  as? [Any] {
+                        for photo in photoItems {
                             if let photoDictionary = photo as? [String : Any] {
                                 let post = Post(dictionary: photoDictionary)
                                 self.posts.append(post)
