@@ -278,6 +278,7 @@ class NewsController: UITableViewController, PictureCellDelegate {
                     if let photoItems = photosDict["items"]  as? [Any] {
                         for photo in photoItems {
                             if let photoDictionary = photo as? [String : Any] {
+                                print(photoDictionary)
                                 let post = Post(dictionary: photoDictionary)
                                 self.posts.append(post)
                             }
