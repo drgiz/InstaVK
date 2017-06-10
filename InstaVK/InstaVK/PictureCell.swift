@@ -22,9 +22,6 @@ class PictureCell: UITableViewCell {
     @IBOutlet weak var postUserAvatar: UIImageView!
     @IBOutlet weak var postUserFirstNameLastName: UILabel!
     @IBOutlet weak var postLikeButton: UIButton!
-    
-    //    #TO-DO
-    //    Figure out why you should make outlet to PostPicture, but not to File's owner (causes crash at NewsScreen)
 
     
     var delegate: PictureCellDelegate?

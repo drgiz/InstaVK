@@ -10,7 +10,7 @@ import UIKit
 import VK_ios_sdk
 
 fileprivate var SCOPE: [Any]? = nil
-let okButton = UIAlertAction(title: "OK", style: .destructive, handler: nil) //TO-DO move to helper class
+let okButton = UIAlertAction(title: "OK", style: .destructive, handler: nil) //TODO move to helper class
 
 
 let mainTabBarIdentifier = "mainTabBar"

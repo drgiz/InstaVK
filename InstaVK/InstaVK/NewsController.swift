@@ -15,7 +15,7 @@ fileprivate var SCOPE: [Any]? = nil
 class NewsController: UITableViewController, PictureCellDelegate {
     
     let pictureCellIdentifier = "PictureCell"
-    
+    //TODO: Rewrite posts into dict to remove possible duplicates
     var posts = [Post]()
     var profiles = [Int:Profile]()
     var nextFrom = ""
@@ -97,7 +97,7 @@ class NewsController: UITableViewController, PictureCellDelegate {
                 }
                 if let nextFrom = responseDict["new_from"] as? String {
                     self.nextFrom = nextFrom
-                    print(nextFrom)
+//                    print(nextFrom)
                 } else {
                     self.nextFrom = ""
                 }
@@ -166,7 +166,12 @@ class NewsController: UITableViewController, PictureCellDelegate {
             } else {
                 newsCell.postUserFirstNameLastName.text = "Unavailable"
             }
-            if let postOwnerAvatarUrl = profiles[posts[indexPath.row].ownerId]?.photoUrl {
+            if let postOwnerAvatarUrl = profiles[posts[indexPath.row].ownerId]?.photoUrl, postOwnerAvatarUrl != "" {
+                //TODO: Move to func
+                newsCell.postUserAvatar.setShowActivityIndicator(true)
+                newsCell.postUserAvatar.setIndicatorStyle(.gray)
+                newsCell.postUserAvatar.sd_setImage(with: URL(string: postOwnerAvatarUrl))
+            } else if let postOwnerAvatarUrl = profiles[posts[indexPath.row].ownerId]?.photoUrl_50, postOwnerAvatarUrl != "" {
                 newsCell.postUserAvatar.setShowActivityIndicator(true)
                 newsCell.postUserAvatar.setIndicatorStyle(.gray)
                 newsCell.postUserAvatar.sd_setImage(with: URL(string: postOwnerAvatarUrl))
@@ -178,10 +183,16 @@ class NewsController: UITableViewController, PictureCellDelegate {
             newsCell.postPicture.setIndicatorStyle(.gray)
             let scale: CGFloat = CGFloat(posts[indexPath.row].imageWidth)/UIScreen.main.bounds.width
             newsCell.postPictureHeight.constant = CGFloat(posts[indexPath.row].imageHeight)/scale
+            //TODO: find possible image variant based on available photo
             if posts[indexPath.row].imageUrl_SrcBig != "" {
                 newsCell.postPicture.sd_setImage(with: URL(string: posts[indexPath.row].imageUrl_SrcBig))
-            } else {
+            } else if posts[indexPath.row].imageUrl_807 != "" {
                 newsCell.postPicture.sd_setImage(with: URL(string: posts[indexPath.row].imageUrl_807))
+            } else if posts[indexPath.row].imageUrl_604 != "" {
+                newsCell.postPicture.sd_setImage(with: URL(string: posts[indexPath.row].imageUrl_604))
+            } else {
+                newsCell.postPictureHeight.constant = 225
+                newsCell.postPicture.image = #imageLiteral(resourceName: "VKSadDogRect")
             }
             
             newsCell.postLikeButton.setImage(posts[indexPath.row].userLikes == 1 ? #imageLiteral(resourceName: "HeartFilledRed") : #imageLiteral(resourceName: "HeartEmpty"), for: .normal)
@@ -270,21 +281,21 @@ class NewsController: UITableViewController, PictureCellDelegate {
                 guard let profilesDict = responseDict["profiles"] as? [[String: Any]] else { return }
                 //добавляем профайл в словарь наших профайлов чтобы подтягивать оттуда информацию о пользователе
                 for profile in profilesDict {
-                    if let profileId = profile["uid"] as? Int {
+//                    print(profile)
+                    if let profileId = profile["id"] as? Int {
                         self.profiles[profileId] = Profile(dictionary: profile)
                     }
                 }
                 guard let itemsDict = responseDict["items"] as? [[String: Any]] else { return }
                 //из items вытягиваем информацию о постах и добавляем в наш массив постов
                 for item in itemsDict {
-                    //TO-DO: Fix json parsing (vk response has other structure)
                     guard let photosDict = item["photos"] as? [String:Any] else { return }
                     if let photoItems = photosDict["items"]  as? [Any] {
                         for photo in photoItems {
                             if let photoDictionary = photo as? [String : Any] {
 //                                print(photoDictionary)
                                 let post = Post(dictionary: photoDictionary)
-                                print(post)
+//                                print(post)
                                 self.posts.append(post)
                             }
                         }
@@ -293,7 +304,7 @@ class NewsController: UITableViewController, PictureCellDelegate {
                 }
                 if let nextFrom = responseDict["next_from"] as? String {
                     self.nextFrom = nextFrom
-                    print(nextFrom)
+//                    print(nextFrom)
                 } else {
                     self.nextFrom = ""
                 }
@@ -303,7 +314,7 @@ class NewsController: UITableViewController, PictureCellDelegate {
                 
                 
                 //Fixed reload data with sync queue (not sure if it is correct)
-                DispatchQueue.main.sync(execute: { () -> Void in
+                DispatchQueue.main.async(execute: { () -> Void in
                     self.tableView?.reloadData()
                 })
                 //self.tableView.refreshControl?.endRefreshing()

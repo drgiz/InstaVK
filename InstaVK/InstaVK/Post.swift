@@ -35,7 +35,7 @@ struct Post {
     let can_repost: Int
     var userLikes: Int
     
-    //TO-DO: Fix vk response json parsing due to SRC photo links only in FIRST JSON response (next comes as in documentation)
+    //Note: SRC_SIZE photo urls come in FIRST JSON response, next - PHOTO_SIZE urls)
     init(dictionary: [String: Any]) {
         self.postId = dictionary["pid"] as? Int ?? 0
         self.albumId = dictionary["aid"] as? Int ?? 0

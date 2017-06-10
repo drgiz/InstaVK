@@ -55,7 +55,7 @@ class PictureController: UITableViewController, PictureCellDelegate {
         cell.delegate = self
         let scale: CGFloat = CGFloat(self.post!.imageWidth)/UIScreen.main.bounds.width
         cell.postPictureHeight.constant = CGFloat((self.post?.imageHeight)!)/scale
-        //TO-DO: Fix it based on post model change due to image url in JSON
+        //TODO: Fix it based on post model change due to image url in JSON
         cell.postPicture.sd_setImage(with: URL(string: (self.post?.imageUrl_807)!))
         //cell.postUserAvatar.sd_setImage(with: URL(string: (self.post?.imageUrl_130)!))
         cell.postUserAvatar.sd_setImage(with: URL(string: self.mainImageURL))
