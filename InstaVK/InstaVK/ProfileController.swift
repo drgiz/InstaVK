@@ -177,7 +177,8 @@ class ProfileController: UICollectionViewController, UICollectionViewDelegateFlo
     override func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
             
           let  cell = collectionView.dequeueReusableCell(withReuseIdentifier: reuseIdentifier1, for: indexPath) as? ProfileGridCell
-        cell?.imageCell.sd_setImage(with: URL(string: posts[indexPath.row].imageUrl_130))
+//        cell?.imageCell.sd_setImage(with: URL(string: posts[indexPath.row].imageUrl_130))
+        cell?.imageCell.sd_setImage(with: URL(string: posts[indexPath.row].imageUrl_Src))
         cell?.imageCell.layer.cornerRadius = 10.0
         cell?.imageCell.clipsToBounds = true
         return cell!

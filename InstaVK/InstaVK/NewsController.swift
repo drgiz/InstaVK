@@ -178,7 +178,11 @@ class NewsController: UITableViewController, PictureCellDelegate {
             newsCell.postPicture.setIndicatorStyle(.gray)
             let scale: CGFloat = CGFloat(posts[indexPath.row].imageWidth)/UIScreen.main.bounds.width
             newsCell.postPictureHeight.constant = CGFloat(posts[indexPath.row].imageHeight)/scale
-            newsCell.postPicture.sd_setImage(with: URL(string: posts[indexPath.row].imageUrl_604))
+            if posts[indexPath.row].imageUrl_SrcBig != "" {
+                newsCell.postPicture.sd_setImage(with: URL(string: posts[indexPath.row].imageUrl_SrcBig))
+            } else {
+                newsCell.postPicture.sd_setImage(with: URL(string: posts[indexPath.row].imageUrl_807))
+            }
             
             newsCell.postLikeButton.setImage(posts[indexPath.row].userLikes == 1 ? #imageLiteral(resourceName: "HeartFilledRed") : #imageLiteral(resourceName: "HeartEmpty"), for: .normal)
         }
@@ -261,7 +265,7 @@ class NewsController: UITableViewController, PictureCellDelegate {
                 //в JSONе приходит отдельный словарь на профайлы и отдельный на фотографии
                 let json = try JSONSerialization.jsonObject(with: data!, options: .mutableContainers)
                 guard let jsonDict = json as? [String: Any] else { return }
-                print(jsonDict)
+//                print(jsonDict)
                 guard let responseDict = jsonDict["response"] as? [String: Any] else { return }
                 guard let profilesDict = responseDict["profiles"] as? [[String: Any]] else { return }
                 //добавляем профайл в словарь наших профайлов чтобы подтягивать оттуда информацию о пользователе
@@ -278,8 +282,9 @@ class NewsController: UITableViewController, PictureCellDelegate {
                     if let photoItems = photosDict["items"]  as? [Any] {
                         for photo in photoItems {
                             if let photoDictionary = photo as? [String : Any] {
-                                print(photoDictionary)
+//                                print(photoDictionary)
                                 let post = Post(dictionary: photoDictionary)
+                                print(post)
                                 self.posts.append(post)
                             }
                         }
