@@ -81,7 +81,9 @@ class CommentsController: UITableViewController {
                 DispatchQueue.main.async(execute: { () -> Void in
                     self.tableView?.reloadData()
                 })
-                self.tableView.refreshControl?.endRefreshing()
+                DispatchQueue.main.sync(execute: { () -> Void in
+                    self.tableView.refreshControl?.endRefreshing()
+                })
             } catch let jsonError {
                 print(jsonError)
             }
